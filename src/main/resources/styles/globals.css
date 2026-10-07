@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    /* Fuente de texto considerando también alternativa */
+    --fuenteTexto: "Quicksand", sans-serif;
+
+    /* Colores */
+    --color-background: #272933;
+    --colorInput: #1D2230; /*  Color para campos que piden ingresar valores */
+    --colorLegend: #CBD5E1; /* Color para títulos de formularios */
+    --colorPlaceholder: #64748B; /* Color del texto placeholder en inputs */
+    --colorBoton: linear-gradient(#FF7B7B, #F96C6C);
+    --colorTexto: #DDDDDD;
+    --colorResaltar: #C56364; /* Color para texto resaltado */
+    --shadow-color: rgb(0 0 0 / 0.25);
+
+    /* Medidas */
+    --tamanioTextoBoton: 20px;
+    --tamanioTextoInput: 21px;
+    --tamanio-legend: 30px;
+    --tamanioH1: 38px;
+    --tamanioH2: 36px;
+    --tamanioH3: 32px;
+    --tamanioTexto: 16px;
+    --tamanioTextoArea: 10px; /* El texto de un TextArea */
+    --tamanio-label:24px;
+
+    /* Efectos */
+    --shadow-box-effect: 0px 4px 10px 0px var(--shadow-color);
+    --radio-border: 8px;
+}
+
+*{
+    color: var(--colorTexto);
+    font-family: 'Quicksand', sans-serif;
+}
+
