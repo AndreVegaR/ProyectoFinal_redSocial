@@ -7,111 +7,133 @@
     <link rel="stylesheet" href="../styles/styleAdmin.css">
 </head>
 <body>
-    <header>
+<header>
+    <nav class="navegation-desktop">
         <a class="logo">
             <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
         </a>
-    </header>
+        <ul>
+            <li><a href="crear-lugar.html">Lugares</a></li>
+            <li><a href="gestionar-categoria.html">Categorías</a></li>
+            <li><a href="gestion-usuarios.html">Usuarios</a></li>
+            <li><a href="metricas.html">Métricas</a></li>
+            <li><a href="index.html">Inicio</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <form>
-            <h1>¡Crea un lugar!</h1>
+<main>
+    <form>
+        <h1>¡Crea un lugar!</h1>
 
-            <div id="nombre-lugar">
-                <label for="txt-lugar"> Nombre lugar:</label>
-                <input type="text" name="lugar" id="txt-lugar" placeholder="Nombre del lugar">
+        <div id="nombre-lugar">
+            <label for="txt-lugar"> Nombre lugar:</label>
+            <input type="text" name="lugar" id="txt-lugar" placeholder="Nombre del lugar">
+        </div>
+
+        <div id="direccion-lugar">
+            <div>
+                <label for="txt-calle"> Calle:</label>
+                <input type="text" name="calle" id="txt-calle" placeholder="Calle">
             </div>
-
-            <div id="direccion-lugar">
-                <div>
-                    <label for="txt-calle"> Calle:</label>
-                    <input type="text" name="calle" id="txt-calle" placeholder="Calle">
-                </div>
-                <div>
-                    <label for="txt-numero"> Número:</label>
-                    <input type="text" name="numero" id="txt-numero" placeholder="Número">
-                </div>
-                <div>
-                    <label for="txt-colonia"> Colonia:</label>
-                    <input type="text" name="colonia" id="txt-colonia" placeholder="Colonia">
-                </div>
+            <div>
+                <label for="txt-numero"> Número:</label>
+                <input type="text" name="numero" id="txt-numero" placeholder="Número">
             </div>
-
-            <div id="coordenadas-lugar">
-                <div>
-                    <label for="txt-latitud">Latitud:</label>
-                    <input type="text" name="latitud" id="txt-latitud" placeholder="Latitud">
-                </div>
-                <div>
-                    <label for="txt-longitud">Longitud:</label>
-                    <input type="text" name="longitud" id="txt-longitud" placeholder="Longitud">
-                </div>
+            <div>
+                <label for="txt-colonia"> Colonia:</label>
+                <input type="text" name="colonia" id="txt-colonia" placeholder="Colonia">
             </div>
+        </div>
 
-            <div id="categoria-lugar">
-                <label for="categoria"> Categoría:</label>
-                <select name="categoria" id="categoria">
-                    <option>Restaurante</option>
-                    <option>Parque</option>
-                    <option>Café</option>
-                </select>
+        <div id="coordenadas-lugar">
+            <div>
+                <label for="txt-latitud">Latitud:</label>
+                <input type="text" name="latitud" id="txt-latitud" placeholder="Latitud">
             </div>
-
-
-            <div id="descricion-lugar">
-                <label for="descripcion">Descripción</label>
-                <textarea name="descripcionLugar" id="descripcion" cols="40" rows="5" placeholder="Ingrese una descripción"></textarea>
+            <div>
+                <label for="txt-longitud">Longitud:</label>
+                <input type="text" name="longitud" id="txt-longitud" placeholder="Longitud">
             </div>
+        </div>
 
-            <div id="imagen-lugar">
-                <label for="input-imagen">Imagen:</label>
-                <input type="file" name="imagen" id="input-imagen">
-            </div>
-
-            <button type="button" id="publicar-lugar">Publicar lugar</button>
-        </form>
-
-
-        <dialog id="aceptarModal">
-            <p>¿Estás seguro?</p>
-            <button id="boton-aceptar" type="button">Aceptar</button>
-            <button id="boton-cancelar" type="button">Cancelar</button>
-        </dialog>
-
-        <script>
-            const modal = document.getElementById('aceptarModal');
-            const abrirModal = document.getElementById('publicar-lugar');
-            const btnAceptar = document.getElementById('boton-aceptar');
-            const btnCancelar = document.getElementById('boton-cancelar');
+        <div id="categoria-lugar">
+            <label for="categoria"> Categoría:</label>
+            <select name="categoria" id="categoria">
+                <option>Restaurante</option>
+                <option>Parque</option>
+                <option>Café</option>
+            </select>
+        </div>
 
 
-            if (abrirModal) {
-                abrirModal.addEventListener('click', () => {
-                    modal.showModal();
-                });
-            }
+        <div id="descricion-lugar">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcionLugar" id="descripcion" cols="40" rows="5"
+                      placeholder="Ingrese una descripción"></textarea>
+        </div>
 
-            if (btnAceptar) {
-                btnAceptar.addEventListener('click', () => {
-                    // Aqui se añadira la lógica de aceptar
-                    console.log('Acción confirmada');
+        <div id="imagen-lugar">
+            <label for="input-imagen">Imagen:</label>
+            <input type="file" name="imagen" id="input-imagen">
+        </div>
 
-                    modal.close();
-                });
-            }
-
-            if (btnCancelar) {
-                btnCancelar.addEventListener('click', () => {
-                    modal.close();
-                });
-            }
-        </script>
-
-    </main>
+        <button type="button" id="publicar-lugar">Publicar lugar</button>
+    </form>
 
 
-    <footer>
+    <dialog id="aceptarModal">
+        <p>¿Estás seguro?</p>
+        <button id="boton-aceptar" type="button">Aceptar</button>
+        <button id="boton-cancelar" type="button">Cancelar</button>
+    </dialog>
 
-    </footer>
+    <script>
+        const modal = document.getElementById('aceptarModal');
+        const abrirModal = document.getElementById('publicar-lugar');
+        const btnAceptar = document.getElementById('boton-aceptar');
+        const btnCancelar = document.getElementById('boton-cancelar');
+
+
+        if (abrirModal) {
+            abrirModal.addEventListener('click', () => {
+                modal.showModal();
+            });
+        }
+
+        if (btnAceptar) {
+            btnAceptar.addEventListener('click', () => {
+                // Aqui se añadira la lógica de aceptar
+                console.log('Acción confirmada');
+
+                modal.close();
+            });
+        }
+
+        if (btnCancelar) {
+            btnCancelar.addEventListener('click', () => {
+                modal.close();
+            });
+        }
+    </script>
+
+</main>
+
+<footer class="footer-mobile">
+    <nav class="navegation-mobile">
+        <ul>
+            <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
+                <p>Lugares</p></a></li>
+            <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
+                <p>Categorías</p></a></li>
+            <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
+                <p>Usuarios</p></a></li>
+            <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
+                <p>Métricas</p></a></li>
+            <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
+                <p>Inicio</p></a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>

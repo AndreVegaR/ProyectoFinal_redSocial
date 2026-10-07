@@ -7,113 +7,139 @@
     <link rel="stylesheet" href="../styles/styleAdmin.css">
 </head>
 <body>
-    <header>
+<header>
+    <nav class="navegation-desktop">
         <a class="logo">
             <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
         </a>
-    </header>
-    <main>
-        <form action="">
-            <h1>Gestionar categoría</h1>
+        <ul>
+            <li><a href="crear-lugar.html">Lugares</a></li>
+            <li><a href="gestionar-categoria.html">Categorías</a></li>
+            <li><a href="gestion-usuarios.html">Usuarios</a></li>
+            <li><a href="metricas.html">Métricas</a></li>
+            <li><a href="index.html">Inicio</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form action="">
+        <h1>Gestionar categoría</h1>
 
-            <div class="categoria">
-                <div class="nombre-categoria">
-                    <h2>Restaurante</h2>
+        <div class="categoria">
+            <div class="nombre-categoria">
+                <h2>Restaurante</h2>
+            </div>
+            <div class="opciones-categoria">
+                <div>
+                    <img src="../recursos/icons/lapiz.png" alt="Lápiz">
+                    <p>Editar</p>
                 </div>
-                <div class="opciones-categoria">
-                    <div>
-                        <img src="../recursos/icons/lapiz.png" alt="Lápiz">
-                        <p>Editar</p>
-                    </div>
 
-                    <div>
-                        <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
-                        <p>Eliminar</p>
-                    </div>
-
+                <div>
+                    <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
+                    <p>Eliminar</p>
                 </div>
+
+            </div>
+        </div>
+
+        <div class="categoria">
+            <div class="nombre-categoria">
+                <h2>Café</h2>
+            </div>
+            <div class="opciones-categoria">
+                <div>
+                    <img src="../recursos/icons/lapiz.png" alt="Lápiz">
+                    <p>Editar</p>
+                </div>
+
+                <div>
+                    <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
+                    <p>Eliminar</p>
+                </div>
+
+            </div>
+        </div>
+
+        <dialog id="modalEditarCategoria">
+            <h2>Nuevo nombre</h2>
+
+            <div class="form-group">
+                <label for="nuevo-nombre-input">Introduce el nuevo nombre:</label>
+                <input type="text" id="nuevo-nombre-input" placeholder="Escribe aquí..." autocomplete="off">
             </div>
 
-            <div class="categoria">
-                <div class="nombre-categoria">
-                    <h2>Café</h2>
-                </div>
-                <div class="opciones-categoria">
-                    <div>
-                        <img src="../recursos/icons/lapiz.png" alt="Lápiz">
-                        <p>Editar</p>
-                    </div>
-
-                    <div>
-                        <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
-                        <p>Eliminar</p>
-                    </div>
-
-                </div>
+            <div class="modal-acciones">
+                <button id="boton-cancelar">Cancelar</button>
+                <button id="boton-aceptar">Aceptar</button>
             </div>
+        </dialog>
 
-            <dialog id="modalEditarCategoria">
-                <h2>Nuevo nombre</h2>
-
-                <div class="form-group">
-                    <label for="nuevo-nombre-input">Introduce el nuevo nombre:</label>
-                    <input type="text" id="nuevo-nombre-input" placeholder="Escribe aquí..." autocomplete="off">
-                </div>
-
-                <div class="modal-acciones">
-                    <button id="boton-cancelar">Cancelar</button>
-                    <button id="boton-aceptar">Aceptar</button>
-                </div>
-            </dialog>
-
-            <dialog id="modalExito">
-                <h2>Cambios realizados</h2>
-                <div class="modal-acciones">
-                    <button id="boton-exito-aceptar">Aceptar</button>
-                </div>
-            </dialog>
+        <dialog id="modalExito">
+            <h2>Cambios realizados</h2>
+            <div class="modal-acciones">
+                <button id="boton-exito-aceptar">Aceptar</button>
+            </div>
+        </dialog>
 
 
-            <button><a href="crear-categoria.html">Crear categoría</a></button>
+        <button><a href="crear-categoria.html">Crear categoría</a></button>
 
-        </form>
+    </form>
 
-        <script>
+    <script>
 
-            const editarCategoria = document.querySelector('.categoria');
-            const modalEditarCategoria = document.getElementById('modalEditarCategoria');
-            const btnAceptar = document.getElementById('boton-aceptar');
-            const btnCancelar = document.getElementById('boton-cancelar');
+        const editarCategoria = document.querySelector('.categoria');
+        const modalEditarCategoria = document.getElementById('modalEditarCategoria');
+        const btnAceptar = document.getElementById('boton-aceptar');
+        const btnCancelar = document.getElementById('boton-cancelar');
 
-            const modalExito = document.getElementById('modalExito');
-            const btnExitoAceptar = document.getElementById('boton-exito-aceptar');
+        const modalExito = document.getElementById('modalExito');
+        const btnExitoAceptar = document.getElementById('boton-exito-aceptar');
 
-            if (editarCategoria) {
-                editarCategoria.style.cursor = 'pointer';
-                editarCategoria.addEventListener('click', () => {
-                    modalEditarCategoria.showModal();
-                });
-            }
+        if (editarCategoria) {
+            editarCategoria.style.cursor = 'pointer';
+            editarCategoria.addEventListener('click', () => {
+                modalEditarCategoria.showModal();
+            });
+        }
 
-            if (btnAceptar) {
-                btnAceptar.addEventListener('click', () => {
-                    modalEditarCategoria.close();
-                    modalExito.showModal();
-                });
-            }
+        if (btnAceptar) {
+            btnAceptar.addEventListener('click', () => {
+                modalEditarCategoria.close();
+                modalExito.showModal();
+            });
+        }
 
-            if (btnCancelar) {
-                btnCancelar.addEventListener('click', () => {
-                    modalEditarCategoria.close();
-                });
-            }
+        if (btnCancelar) {
+            btnCancelar.addEventListener('click', () => {
+                modalEditarCategoria.close();
+            });
+        }
 
-            if (btnExitoAceptar) {
-                btnExitoAceptar.addEventListener('click', () => {
-                    modalExito.close();
-                });
-            }
-        </script>
-    </main>
+        if (btnExitoAceptar) {
+            btnExitoAceptar.addEventListener('click', () => {
+                modalExito.close();
+            });
+        }
+    </script>
+</main>
+
+<footer class="footer-mobile">
+    <nav class="navegation-mobile">
+        <ul>
+            <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
+                <p>Lugares</p></a></li>
+            <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
+                <p>Categorías</p></a></li>
+            <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
+                <p>Usuarios</p></a></li>
+            <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
+                <p>Métricas</p></a></li>
+            <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
+                <p>Inicio</p></a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
