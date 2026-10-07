@@ -95,6 +95,12 @@ button:hover{
     transition-duration: 0.2s;
 }
 
+/*
+    Específico para botones de los formularios de inicio y registro
+*/
+#form-button{
+    background: var(--color-boton-normal);
+}
 a{
     text-decoration: none;
 }
@@ -113,3 +119,8 @@ header{
     margin-top: 1rem;
 }
 
+/*
+=================================================================
+    Configuración de lugar
+
+*/

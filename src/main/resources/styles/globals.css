@@ -14,6 +14,7 @@
     --colorTexto: #DDDDDD;
     --colorResaltar: #C56364; /* Color para texto resaltado */
     --shadow-color: rgb(0 0 0 / 0.25);
+    --color-boton-normal: #C56364;
 
     /* Medidas */
     --tamanioTextoBoton: 20px;
@@ -22,6 +23,7 @@
     --tamanioH1: 38px;
     --tamanioH2: 36px;
     --tamanioH3: 32px;
+    --tamanioH5: 20px;
     --tamanioTexto: 16px;
     --tamanioTextoArea: 10px; /* El texto de un TextArea */
     --tamanio-label:24px;
