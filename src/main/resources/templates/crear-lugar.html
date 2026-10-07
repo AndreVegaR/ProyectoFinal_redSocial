@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel-Administrador</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styleAdmin.css">
+</head>
+<body>
+    <header>
+        <a class="logo">
+            <img src="../src/img/isotipo.png" alt="logo obregon dice">
+        </a>
+    </header>
+
+    <main>
+        <form>
+            <h1>¡Crea un lugar!</h1>
+
+            <div id="nombre-lugar">
+                <label for="txt-lugar"> Nombre lugar:</label>
+                <input type="text" name="lugar" id="txt-lugar" placeholder="Nombre del lugar">
+            </div>
+
+            <div id="direccion-lugar">
+                <div>
+                    <label for="txt-calle"> Calle:</label>
+                    <input type="text" name="calle" id="txt-calle" placeholder="Calle">
+                </div>
+                <div>
+                    <label for="txt-numero"> Número:</label>
+                    <input type="text" name="numero" id="txt-numero" placeholder="Número">
+                </div>
+                <div>
+                    <label for="txt-colonia"> Colonia:</label>
+                    <input type="text" name="colonia" id="txt-colonia" placeholder="Colonia">
+                </div>
+            </div>
+
+            <div id="coordenadas-lugar">
+                <div>
+                    <label for="txt-latitud">Latitud:</label>
+                    <input type="text" name="latitud" id="txt-latitud" placeholder="Latitud">
+                </div>
+                <div>
+                    <label for="txt-longitud">Longitud:</label>
+                    <input type="text" name="longitud" id="txt-longitud" placeholder="Longitud">
+                </div>
+            </div>
+
+            <div id="categoria-lugar">
+                <label for="categoria"> Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option>Restaurante</option>
+                    <option>Parque</option>
+                    <option>Café</option>
+                </select>
+            </div>
+
+
+            <div id="descricion-lugar">
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcionLugar" id="descripcion" cols="40" rows="5" placeholder="Ingrese una descripción"></textarea>
+            </div>
+
+            <div id="imagen-lugar">
+                <label for="input-imagen">Imagen:</label>
+                <input type="file" name="imagen" id="input-imagen">
+            </div>
+
+            <button type="submit">Publicar lugar</button>
+        </form>
+
+    </main>
+
+
+    <footer>
+
+    </footer>
+</body>
+</html>

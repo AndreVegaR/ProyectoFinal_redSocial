@@ -1,0 +1,142 @@
+@import url(globals.css);
+
+
+header{
+    display: flex;
+    justify-content: left;
+}
+
+.logo img{
+    width: 3rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+
+body{
+    background-color: var(--color-background);
+}
+
+form{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form h1{
+    font-size: var(--tamanioH1);
+    text-align: center;
+}
+
+#nombre-lugar{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: initial;
+    margin-bottom: 40px;
+}
+
+#nombre-lugar input{
+    width: 100%;
+}
+
+#direccion-lugar, #coordenadas-lugar{
+    display: flex;
+    gap: 1rem;
+    text-align: initial;
+    margin-bottom: 40px;
+}
+
+#categoria-lugar select{
+    width: 100%;
+}
+
+#descricion-lugar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#imagen-lugar{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+label{
+    color: var(--colorTexto);
+    font-weight: bold;
+    font-size: var(--tamanio-label);
+}
+
+button{
+    background: var(--colorBoton);
+    padding: 0.4rem;
+    font-weight: bold;
+    font-size: var(--tamanioTextoBoton);
+    border: none;
+    border-radius: var(--radio-border);
+    color: #FFFFFF;
+    margin-top: 1rem;
+    box-shadow: var(--shadow-box-effect);
+    cursor: pointer;
+    width: 30%;
+}
+
+input[type="text"],
+select,
+textarea{
+    background-color: var(--colorInput);
+    border-style: none;
+    box-shadow: var(--shadow-box-effect);
+    color: var(--colorTexto);
+    padding: .5rem;
+    font-size: var(--tamanioTextoInput);
+    border-radius: var(--radio-border);
+    cursor: pointer;
+    display: block;
+}
+input::placeholder{
+    color: var(--colorPlaceholder);
+}
+
+
+/* Adaptación Dispositivos Móviles (Celular) */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+        max-width: 700px;
+    }
+
+    label{
+        font-size: 2em;
+    }
+
+    #nombre-lugar input{
+        width: 100%;
+    }
+
+
+    input[type="text"]{
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    #nombre-lugar,#direccion-lugar{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    button {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
