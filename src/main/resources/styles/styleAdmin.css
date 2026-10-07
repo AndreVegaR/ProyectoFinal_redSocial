@@ -1,5 +1,12 @@
 @import url(globals.css);
 
+:root{
+    --backgroundHerramientasAdministrador: #373A48;
+}
+
+
+/* INICIO */
+
 
 header{
     display: flex;
@@ -86,6 +93,12 @@ button{
     width: 30%;
 }
 
+button a{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
 input[type="text"],
 select,
 textarea{
@@ -103,6 +116,72 @@ input::placeholder{
     color: var(--colorPlaceholder);
 }
 
+dialog p{
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    color: #272933;
+}
+
+dialog button {
+    display: inline-block;
+    width: calc(50% - 5px);
+}
+
+#boton-cancelar{
+    background-color: #64748B;
+}
+
+
+
+/* CATEGORIA */
+.categoria{
+    background-color: var(--backgroundHerramientasAdministrador);
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nombre-categoria{
+    justify-content: left;
+    margin-left: 1em;
+}
+
+.opciones-categoria{
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.opciones-categoria p {
+    text-align: center;
+}
+
+.opciones-categoria div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.opciones-categoria img{
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 auto;
+}
+
+#crear-categoria{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#crear-categoria input{
+    width: 60%;
+    padding: 15px;
+    margin-bottom: 20px;
+}
 
 /* Adaptación Dispositivos Móviles (Celular) */
 @media (max-width: 768px) {
@@ -137,6 +216,25 @@ input::placeholder{
         margin-left: auto;
         margin-right: auto;
     }
+
+    .categoria {
+        gap: 12px;
+        padding: 1.5em;
+    }
+
+
+    #crear-categoria label{
+        font-size: 20px;
+    }
+
+    #crear-categoria input{
+        width: 100%;
+    }
+
+    dialog{
+        width: 70%;
+    }
+
 }
 
 

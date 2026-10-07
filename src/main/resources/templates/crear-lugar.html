@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel-Administrador</title>
+    <title>Crear Lugar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styleAdmin.css">
 </head>
 <body>
     <header>
         <a class="logo">
-            <img src="../src/img/isotipo.png" alt="logo obregon dice">
+            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
         </a>
     </header>
 
@@ -68,8 +68,44 @@
                 <input type="file" name="imagen" id="input-imagen">
             </div>
 
-            <button type="submit">Publicar lugar</button>
+            <button type="button" id="publicar-lugar">Publicar lugar</button>
         </form>
+
+
+        <dialog id="aceptarModal">
+            <p>¿Estás seguro?</p>
+            <button id="boton-aceptar" type="button">Aceptar</button>
+            <button id="boton-cancelar" type="button">Cancelar</button>
+        </dialog>
+
+        <script>
+            const modal = document.getElementById('aceptarModal');
+            const abrirModal = document.getElementById('publicar-lugar');
+            const btnAceptar = document.getElementById('boton-aceptar');
+            const btnCancelar = document.getElementById('boton-cancelar');
+
+
+            if (abrirModal) {
+                abrirModal.addEventListener('click', () => {
+                    modal.showModal();
+                });
+            }
+
+            if (btnAceptar) {
+                btnAceptar.addEventListener('click', () => {
+                    // Aqui se añadira la lógica de aceptar
+                    console.log('Acción confirmada');
+
+                    modal.close();
+                });
+            }
+
+            if (btnCancelar) {
+                btnCancelar.addEventListener('click', () => {
+                    modal.close();
+                });
+            }
+        </script>
 
     </main>
 
