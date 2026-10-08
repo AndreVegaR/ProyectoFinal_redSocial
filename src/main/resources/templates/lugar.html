@@ -17,16 +17,16 @@
     </header>
 
     <main>
-        <article>
+        <article class="info-lugar">
 
-            <header>
-                <h2>Mc Donnald's</h2>
+            <header id="header-lugar">
+                <h1>Mc Donnald's</h1>
                 <img src="../recursos/imgs/mcDonnals.png" alt="Restaurante de mc donnald's">
             </header>
 
-            <section>
+            <section class="info-lugar-detalle">
 
-                <div>
+                <div id ="calificacion-lugar">
                     <img src="../recursos/icons/fueguito.png" alt="icono de fueguito de calificacion">
                     <img src="../recursos/icons/fueguito.png" alt="icono de fueguito de calificacion">
                     <img src="../recursos/icons/fueguito.png" alt="icono de fueguito de calificacion">
@@ -36,32 +36,37 @@
                 </div>
 
                 <p>McDonald’s es la cadena de comida rápida más grande y reconocida del mundo. Se especializa en un servicio ultra rápido y económico con un menú estandarizado a nivel global, famoso por productos icónicos como la hamburguesa Big Mac, sus papas a la francesa, los McNuggets y el helado McFlurry.</p>
-                <h5>Dirección</h5>
+                <h3>Dirección</h3>
                 <p>Av. Miguel Alemán 931</p>
-                <h5>Categoría</h5>
-                <p><span>Restaurante</span></p>
+
+                <div class="categoria-fila">
+                    <div class="categoria-info">
+                        <h3>Categoría</h3>
+                        <p><span>Restaurante</span></p>
+                    </div>
+                    <button type="button" id="boton-reseñar">Reseñar</button>
+                </div>
             </section>
 
             <section class ="reseñas">
-                <h5>Reseñas</h5>
+                <h3>Reseñas</h3>
 
                 <article class="reseña">
                     <img src="../recursos/imgs/perrolengua.png" alt="perro lengua" class ="foto-perfil">
-                    <h5>Briaan67</h5>
+                    <h3>Briaan67</h3>
                     <div>
                         <img src="../recursos/icons/fueguito.png" alt="icono de fueguito de calificacion">
                         <img src="../recursos/icons/fuego-apagado.png" alt="icono de fueguito de calificacion">
                         <img src="../recursos/icons/fuego-apagado.png" alt="icono de fueguito de calificacion">
                         <img src="../recursos/icons/fuego-apagado.png" alt="icono de fueguito de calificacion">
                         <img src="../recursos/icons/fuego-apagado.png" alt="icono de fueguito de calificacion">
-                        <h5>12 sep, 2026</h5>
+                        <h3>12 sep, 2026</h3>
                     </div>
                     <p>¡Pésimo servicio! Tardaron más de 20 minutos en darme una simple orden y, para colmo, cuando me entregaron la bolsa la comida estaba completamente helada. Las papas parecían de cartón aguado, se les olvidó ponerme los McNuggets que pagué y, como siempre, la máquina de helados "estaba fuera de servicio". Le reclamé a la cajera y me atendió con una cara de amargada fatal, como si me estuviera haciendo un favor. Tiré mi dinero a la basura, no vuelvo jamás.</p>
                 </article>
 
             </section>
 
-            <button type="submit">Reseñar</button>
         </article>
 
     </main>
