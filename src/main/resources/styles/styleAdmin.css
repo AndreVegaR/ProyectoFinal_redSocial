@@ -363,7 +363,7 @@ dialog button {
         z-index: 1000;
         bottom: 0;
         left: 0;
-        position: fixed;
+        position: sticky;
     }
 
     .navegation-mobile ul {
