@@ -1,0 +1,442 @@
+@import url(globals.css);
+
+html{
+    background-color: var(--color-background);
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input::placeholder{
+    color: var(--colorPlaceholder);
+}
+form div p{
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*
+  LOGO
+*/
+header{
+    display: flex;
+    justify-content: left;
+}
+.logo-movil img{
+    width: 3rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+/*-------------MIS CSS-----------------*/
+.nav-movil{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 3.2rem;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.buscador{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--colorInput);
+    border-radius: var(--radio-border);
+    padding: 0.4rem 0.8rem;
+    box-shadow: var(--shadow-box-effect);
+    width: 80%;
+}
+
+#barra-busqueda {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0.4rem 0;
+    font-family: Quicksand, sans-serif;
+    font-size: 16px;
+    color: var(--colorTexto);
+    width: 100%;
+}
+
+.lupa img{
+    width: 1.2rem;
+    height: auto;
+    margin: 0;
+    display: block;
+}
+
+
+.desplegar {
+    display: none;
+}
+
+.boton-desplegado {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    justify-content: space-between;
+
+}
+
+.opciones {
+    display: none;
+    position: absolute;
+    background-color: var(--color-background);
+    width: auto;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.opciones label {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.opciones label:hover {
+    background-color: var(--color-background);
+}
+
+.desplegar:checked ~ .opciones {
+    display: block;
+}
+
+.filtros{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.categorias{
+    width: auto;
+    background-color: var(--colorInput);
+    position: relative;
+    display: inline-block;
+    border-radius: var(--radio-border);
+    box-shadow: var(--shadow-box-effect);
+}
+.calificacion{
+    display: flex;
+    background-color: var(--colorInput);;
+    border-radius: var(--radio-border);
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px;
+
+}
+.calificacion img{
+    width: 1.6rem;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    width: 80%;
+    gap: 15px;
+}
+.botones button{
+    background-color: var(--colorInput);
+    border-color: var(--colorInput);
+    border-radius: var(--radio-border);
+    box-shadow: var(--shadow-box-effect);
+    border: none;
+    color: white;
+    padding: 0.8rem;
+}
+button:focus{
+    color: var(--colorResaltar);
+}
+section{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 80%;
+    margin-top: 2rem;
+    margin-left: 55px;
+}
+.tarjeta{
+    background-color: #373A48;
+    border-radius: var(--radio-border);
+    box-shadow: var(--shadow-box-effect);
+    padding: 1rem;
+}
+.encabezado-tarjeta{
+    display: flex;
+    flex-direction: row;
+}
+h3{
+    color: var(--colorTexto);
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.calificacion-tarjeta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+.calificacion-tarjeta img {
+    width: 1.1rem;
+    height: auto;
+}
+.calificacion-tarjeta h3{
+    font-size: 1.1rem;
+    color: var(--colorTexto);
+}
+.numero-resenas {
+    color: var(--colorPlaceholder);
+    font-size: 0.9rem;
+    margin: 0 0 0 0.3rem;
+}
+
+.tarjeta > img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.footer-movil{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:space-around;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-background);
+    padding: 0.5rem 0;
+}
+
+.Elemento-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+.Elemento-footer img {
+    width: 2.5rem;
+    height: auto;
+}
+
+.Elemento-footer p {
+    font-size: 15px;
+    color: var(--colorTexto);
+    margin: 0;
+}
+
+.Elemento-footer:focus{
+    color: var(--colorResaltar);
+
+}
+
+/*Cosas de desktop*/
+.version-desktop,
+.footer-desktop {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+
+    .version-movil,
+    .footer-movil {
+        display: none !important;
+    }
+    header {
+        display: block !important;
+        width: 100%;
+    }
+
+    .version-desktop {
+        display: block;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .fondo-img-desktop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        opacity: 35%;
+    }
+
+    .contenido-header-desktop {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 2rem 4rem;
+        color: white;
+    }
+
+    .header-top-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo-desktop img {
+        width: 11rem;
+        height: auto;
+    }
+
+    .buscador-desktop {
+        display: flex;
+        align-items: center;
+        background-color: var(--colorInput);
+        border-radius: var(--radio-border);
+        width: 40%;
+        overflow: hidden;
+    }
+
+    .buscador-desktop input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 0.6rem 1rem;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .btn-lupa-desktop {
+        background-color: #B83F3F;
+        border: none;
+        padding: 0.7rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-lupa-desktop img {
+        width: 1rem;
+        height: auto;
+    }
+
+    .links-desktop {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .links-desktop a {
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .btn-cuenta {
+        background-color: #B83F3F;
+        color: white;
+        border: none;
+        padding: 0.5rem 1.3rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .pestanas-desktop {
+        display: flex;
+        gap: 1.5rem;
+        margin-left: 13rem;
+    }
+
+    .pestanas-desktop a {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .pestanas-desktop a.activa {
+        color: var(--colorResaltar);
+    }
+
+    .filtros-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .categorias-desktop {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.95rem;
+        font-weight: bold;
+    }
+
+    .dropdown {
+        cursor: pointer;
+        color: white;
+    }
+
+    .calificacion-desktop {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .fuegos-desktop {
+        background-color: var(--colorInput);
+        border-radius: 20px;
+        padding: 0.4rem;
+        display: flex;
+        gap: 0.3rem;
+    }
+
+    .fuegos-desktop img {
+        width: 1.1rem;
+        height: auto;
+    }
+
+    section {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        width: 85%;
+        margin: 3rem auto;
+    }
+
+    .footer-desktop {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        left: 0;
+        background-color: var(--colorInput);
+        padding: 1rem 0;
+    }
+}
+
+
