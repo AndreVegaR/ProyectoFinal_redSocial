@@ -1,0 +1,203 @@
+:root {
+    --sombra: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    --centrar: display: flex; justify-content: center; align-items: center;
+}
+
+
+
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.usuarioContenedor {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding: 10%;
+    background-color: blue;
+
+    .todoUsuarioMenosDescripcion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: green;
+
+        .pfp {
+            width: 100px;
+            height: 100px;
+        }
+
+        .usuarioDatosNumeros {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+            background-color: red;
+        }
+    }
+}
+
+/* Tarjeta de un usuario dentro de un perfil */
+.tarjetaUsuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+
+    button {
+        margin-left: 50px;
+    }
+
+    .pfp {
+        height: 75px;
+        width: 75px;
+        margin-right: 10px;
+    }
+}
+
+
+/* Estilos para el contenedor inferior (reseñas, seguidores, seguidos) */
+.usuarioContenedorInferior {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: yellow;
+}
+
+
+
+/* Estilo para una reseña dentro de un perfil */
+.reseniaPerfil {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    border-radius: var(--radio-border);
+    box-sizing: border-box; 
+    padding: 20px;
+
+    img {
+        height: 100px;
+    }
+
+    p {
+        text-align: justify;
+    }
+}
+
+
+
+/* Estilo para cualquier tarjeta (rectángulo de información rápida) */
+.tarjeta {
+    background-color: var(--colorTarjeta);
+    border-radius: var(--radio-border);
+}
+
+
+
+/* Estilo para las fotografías de perfil*/
+.pfp {
+    border-radius: 100%;
+}
+
+
+
+/* Estilo para una sección de información sin contenido */
+.contenidoVacio {
+    padding: 100px;
+
+    img {
+        width: 200px;
+    }
+    
+    p { text-align: center; }
+}
+
+
+.usuarioDescripcion {
+    background-color: orange;
+}
+
+
+.apareceMovil {
+    display: block;
+}
+
+.apareceEscritorio {
+    display: none;
+}
+
+/* El main del HTML de las métricas de administrador */
+.metricas {
+    h1 {
+        text-align: center;
+    }
+}
+
+
+.cantidadMetricas {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+
+    /* 2. OBLIGATORIO: Forzar el estilo a cada opción de la lista */
+    .combobox option {
+        background-color: #2b2b2b !important;
+        color: #ffffff !important;
+    }
+
+    .cuadritoMetricas {
+        box-shadow: var(--sombra);
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+@media(min-width: 900px) {
+    .usuarioContenedor {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .sombrear {
+        box-shadow: var(--sombra);
+    }
+
+    .todoUsuarioMenosDescripcion {
+        display: flex;
+        flex-direction: row; 
+        justify-content: flex-start;
+        align-items: center;
+        gap: 100px;
+        width: 80%;
+    } 
+
+    .apareceMovil {
+        display: none !important;
+    }
+
+    .apareceEscritorio {
+        display: block !important;
+    }
+
+    .tarjetaUsuario {
+        width: 600px;
+    }
+}

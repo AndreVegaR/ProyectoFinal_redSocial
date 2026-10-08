@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles/styles.css">
+        <link rel="stylesheet" href="../styles/perfil.css">
+        <link rel="icon" type="image/png" href="../src/img/imagotipo.png">
+        <title>Perfil de usuario</title>
+    </head>
+    <body>
+        
+        <!-- Cabecera -->
+        <header>
+            <a class="logo"><img src="../src/img/imagotipo.png" alt="logo obregon dice"></a>
+        </header>
+
+        <!-- Principal -->
+        <main>
+
+            <!-- Parte superior con los datos del usuario -->
+            <section class="usuarioContenedor">
+                <div class="todoUsuarioMenosDescripcion">
+
+                    <!-- Imagen de perfil del usuario -->
+                    <div class="usuarioImagen">
+                        <img class="pfp" src="../src/img/pfp_default.jpg" alt="pfp">
+                    </div>
+
+                    <!-- Sección de nombre, cantidad de reseñas, seguidores y seguidos -->
+                    <div class="usuarioInfo">
+                        <h2>@Juan_Leonel</h2>
+                        <div class="usuarioDatosNumeros">
+
+                            <!-- Cantidad de reseñas publicadas -->
+                            <div class="usuarioDatosCantidad">
+                                <p>Reseñas</p>
+                                <p>0</p>
+                            </div>
+
+                            <!-- Cantidad de seguidores -->
+                            <div class="usuarioDatosCantidad">
+                                <p>Seguidores</p>
+                                <p>0</p>
+                            </div>
+
+                            <!-- Cantidad de seguidos -->
+                            <div class="usuarioDatosCantidad">
+                                <p>Seguidos</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boton que aparece en escritorio -->
+                    <button class="apareceEscritorio" onclick="window.location.href='editar-perfil.html'">Editar</button>
+                </div>
+
+                <!-- Descripción del usuario -->
+                <div class="usuarioDescripcion">
+                    <p>Sin descripción.</p>
+                </div>
+
+                <!-- Botón -->
+                <button class="apareceMovil" onclick="window.location.href='editar-perfil.html'">Editar</button>
+            </section>
+
+            <!-- Reseñas publicadas por el usuario -->
+            <section class="usuarioResenias">
+                <div class="contenidoVacio">
+                    <img src="../src/icons/vacio.png">
+                    <p>Sin reseñas</p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

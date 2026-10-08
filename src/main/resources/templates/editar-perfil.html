@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editar perfil</title>
+        <link rel="stylesheet" href="../styles/andre.css">
+    </head>
+    
+    
+    <body>
+        
+        <header>
+            <a class="logo">
+                <img src="../src/img/imagotipo.png" alt="logo obregon dice">
+            </a>
+        </header>
+
+        <main>
+            <form>
+                <legend> Editar perfil</legend>
+                
+                <!-- Nombre de usuario -->
+                <div>
+                    <label for="txt-pseudonimo">Nombre de usuario</label>
+                    <input type="text" name="pseudonimo" id="txt-pseudonimo" placeholder="JuanTop1">
+                </div>
+
+                <!-- Nombres -->
+                <div>
+                    <label for="txt-nombres">Nombres</label>
+                    <input type="text" name="nombres" id="txt-nombres" placeholder="Juan Leonel">
+                </div>
+
+                <!-- Apellidos -->
+                <div>
+                    <label for="txt-apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="txt-apellidos" placeholder="Bojórquez Terán">
+                </div>
+
+                <!-- Descripción -->
+                <div>
+                    <label for="txt-apellidos">Descripción</label>
+                    <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea>
+                </div>
+
+                <!-- Botones -->
+                <div>
+                    <button type="submit"><a href="perfil-vacio.html">Actualizar</a></button>
+                    <button type="submit"><a href="perfil-vacio.html">Cancelar</a></button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
