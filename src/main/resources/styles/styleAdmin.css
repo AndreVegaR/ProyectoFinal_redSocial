@@ -117,7 +117,7 @@ label {
 }
 
 button {
-    background: var(--colorBoton);
+    background: var(--color-boton-normal);
     padding: 0.4rem;
     font-weight: bold;
     font-size: var(--tamanioTextoBoton);

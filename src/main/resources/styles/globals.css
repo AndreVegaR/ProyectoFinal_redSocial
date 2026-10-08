@@ -15,6 +15,7 @@
     --colorResaltar: #C56364; /* Color para texto resaltado */
     --shadow-color: rgb(0 0 0 / 0.25);
     --color-boton-normal: #C56364;
+    --color-boton-normal-desktop: #B83F3F;
 
     /* Medidas */
     --tamanioTextoBoton: 20px;
@@ -37,4 +38,9 @@
     color: var(--colorTexto);
     font-family: 'Quicksand', sans-serif;
 }
+/* para que todos los html tengan el mismo fondo*/
+html{
+    background-color: var(--color-background);
+}
+
 
