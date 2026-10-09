@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Escribir reseña</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Leonel.css">
+</head>
+<body>
+<header>
+    <div class="version-desktop">
+        <img src="../recursos/imgs/imgFeedDesktop.png" class="fondo-img-desktop" alt="Fondo">
+        <div class="contenido-header-desktop">
+            <div class="header-top-desktop">
+                <a class="logo-desktop">
+                    <img src="../recursos/icons/titulo.png" alt="logo obregon dice">
+                </a>
+
+                <div class="buscador-desktop">
+                    <input type="text" placeholder="Busca cosas de tu interés">
+                    <button class="btn-lupa-desktop">
+                        <img src="../recursos/icons/lupa.png" alt="buscar">
+                    </button>
+                </div>
+
+                <nav class="links-desktop">
+                    <a href="./Feed-principal-usuario.html">Inicio</a>
+                    <a href="./Mi-feed.html">Mi feed</a>
+                    <a href="./perfil-vacio.html" class="btn-cuenta">Cuenta</a>
+                </nav>
+            </div>
+
+            <div class="pestanas-desktop">
+                <a href="#" class="activa">Lugares</a>
+                <a href="#">Usuarios</a>
+            </div>
+
+            <div class="filtros-desktop">
+                <div class="categorias-desktop">
+                    <span class="dropdown">Gastronomia</span>
+                    <span class="dropdown">Cultura</span>
+                    <span class="dropdown">Entretenimiento</span>
+                    <span class="dropdown">Naturaleza</span>
+                </div>
+
+                <div class="calificacion-desktop">
+                    <span>Calificación</span>
+                    <div class="fuegos-desktop">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="version-movil">
+        <a class="logo-movil">
+            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
+        </a>
+        <h1>Escribe una reseña</h1>
+    </div>
+</header>
+
+<main class="contenedor-escribir-resena">
+    <div class="Body-escribir-reseña-movil">
+        <div class="seccion-calificacion">
+            <h2>Califícame</h2>
+            <div class="fuegos-resena">
+                <img src="../recursos/icons/fueguito.png" alt="fuego 1">
+                <img src="../recursos/icons/fueguito.png" alt="fuego 2">
+                <img src="../recursos/icons/fueguito.png" alt="fuego 3">
+                <img src="../recursos/icons/fueguito.png" alt="fuego 4">
+                <img src="../recursos/icons/fuego-apagado.png" alt="fuego 5">
+            </div>
+        </div>
+
+        <form class="formulario-resena">
+            <textarea placeholder="¡Escríbeme, vamos! ¡Sin miedo!"></textarea>
+            <button type="submit" class="btn-publicar">Publicar reseña</button>
+        </form>
+    </div>
+    <div class="Body-escribir-reseña-desktop">
+        <article class="tarjeta-resena-detalle">
+
+            <div class="encabezado-detalle">
+                <h1 class="titulo-lugar">Mc Donnald's</h1>
+                <div class="calificacion-general">
+                    <div class="fuegos-detalle">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego">
+                        <img src="../recursos/icons/fuego-apagado.png" alt="fuego">
+                    </div>
+                    <span class="total-resenas">5424 reseñas</span>
+                </div>
+            </div>
+
+            <div class="cuerpo-detalle">
+
+                <div class="columna-izquierda">
+                    <img src="../recursos/imgs/mcDonnals.png" class="foto-lugar-detalle" alt="Mc Donalds">
+
+                    <div class="seccion-califica-interactiva">
+                        <span>Califica:</span>
+                        <div class="fuegos-interactivos">
+                            <img src="../recursos/icons/fueguito.png" alt="fuego 1">
+                            <img src="../recursos/icons/fueguito.png" alt="fuego 2">
+                            <img src="../recursos/icons/fueguito.png" alt="fuego 3">
+                            <img src="../recursos/icons/fuego-apagado.png" alt="fuego 4">
+                            <img src="../recursos/icons/fuego-apagado.png" alt="fuego 5">
+                        </div>
+                    </div>
+
+                    <div class="seccion-comentario">
+                        <h3>Escribe un comentario:</h3>
+                        <textarea placeholder="El lugar estaba muy normal nada sorprendente pero la comida esta bien"></textarea>
+                    </div>
+                </div>
+
+                <div class="columna-derecha">
+                    <p class="descripcion-lugar">
+                        McDonald's es la cadena de comida rápida más grande y reconocida del mundo.
+                        Se especializa en un servicio ultra rápido y económico con un menú estandarizado a nivel global,
+                        famoso por productos icónicos como la hamburguesa Big Mac, sus papas a la francesa, los McNuggets y el helado McFlurry.
+                    </p>
+
+                    <div class="info-item">
+                        <h4>Direccion</h4>
+                        <p>Blvd. Náinari No. 931 (esquina con Av. Miguel Alemán), Col. Norte, C.P. 85000</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Categoría</h4>
+                        <p class="texto-categoria">Restaurante</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-tarjeta-resena">
+                <button type="submit" class="btn-publicar">Publicar</button>
+            </div>
+
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-movil">
+        <a href="./Feed-principal-usuario.html" class="Elemento-footer">
+            <img src="../recursos/icons/casita.png" alt="Inicio">
+            <p>Inicio</p>
+        </a>
+
+        <a href="#" class="Elemento-footer activo">
+            <img src="../recursos/icons/usuarios.png" alt="Feed">
+            <p>Feed</p>
+        </a>
+
+        <a href="./perfil.html" class="Elemento-footer">
+            <img src="../recursos/icons/perfil.png" alt="Perfil">
+            <p>Perfil</p>
+        </a>
+    </div>
+    <div class="footer-desktop">
+        <span>Copyright© 2026 ObregonDice</span>
+
+    </div>
+</footer>
+</body>
+
+</html>
