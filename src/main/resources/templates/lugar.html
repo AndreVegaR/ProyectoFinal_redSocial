@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
     <title>Página del lugar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/aaron.css">
@@ -30,9 +31,9 @@
                     </div>
 
                     <nav class="links-desktop">
-                        <a href="#">Inicio</a>
-                        <a href="#">Mi feed</a>
-                        <button class="btn-cuenta">Cuenta</button>
+                        <a href="Feed-principal-usuario.html">Inicio</a>
+                        <a href="Mi-feed.html">Mi feed</a>
+                        <button type="submit" class ="form-button" onclick="window.location.href='perfil-vacio.html'">Cuenta</button>
                     </nav>
                 </div>
 
@@ -94,7 +95,7 @@
                         <h3>Categoría</h3>
                         <p><span>Restaurante</span></p>
                     </div>
-                    <button type="button" id="boton-reseñar">Reseñar</button>
+                    <button type="button" id="boton-reseñar" onclick="window.location.href='escribir-reseña'">Reseñar</button>
                 </div>
             </section>
 
@@ -103,8 +104,8 @@
 
                 <article class="reseña">
                     <div class="encabezado-usuario">
-                        <img src="../recursos/imgs/perrolengua.png" alt="perro lengua" class ="foto-perfil">
-                        <h3>Briaan67</h3>
+                        <a href="perfil.html"><img src="../recursos/imgs/perrolengua.png" alt="perro lengua" class ="foto-perfil"></a>
+                        <h3>@briaan67</h3>
                         <div class="calificacion-usuario-lugar">
                             <img src="../recursos/icons/fueguito.png" alt="icono de fueguito de calificacion">
                             <img src="../recursos/icons/fuego-apagado.png" alt="icono de fueguito de calificacion">

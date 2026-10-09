@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/Leonel.css">
+  <link rel="stylesheet" href="../styles/styleAdmin.css">
+  <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
+  <title>Inicio admin</title>
+</head>
+<body>
+
+<header>
+
+  <div class="version-desktop">
+    <img src="../recursos/imgs/imgFeedDesktop.png" class="fondo-img-desktop" alt="Fondo">
+    <div class="contenido-header-desktop">
+      <div class="header-top-desktop">
+        <a class="logo-desktop">
+          <img src="../recursos/icons/titulo.png" alt="logo obregon dice">
+        </a>
+
+        <div class="buscador-desktop">
+          <input type="text" placeholder="Busca cosas de tu interés">
+          <button class="btn-lupa-desktop">
+            <img src="../recursos/icons/lupa.png" alt="buscar">
+          </button>
+        </div>
+
+        <nav class="navegation-desktop">
+          <a class="logo">
+            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
+          </a>
+          <ul>
+            <li><a href="crear-lugar.html">Lugares</a></li>
+            <li><a href="gestionar-categoria.html">Categorías</a></li>
+            <li><a href="gestion-usuarios.html">Usuarios</a></li>
+            <li><a href="metricas.html">Métricas</a></li>
+            <li><a href="feed-admin.html">Inicio</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="pestanas-desktop">
+        <a href="#" class="activa">Lugares</a>
+        <a href="#">Usuarios</a>
+      </div>
+
+      <div class="filtros-desktop">
+        <div class="categorias-desktop">
+          <span class="dropdown">Gastronomia</span>
+          <span class="dropdown">Cultura</span>
+          <span class="dropdown">Entretenimiento</span>
+          <span class="dropdown">Naturaleza</span>
+        </div>
+
+        <div class="calificacion-desktop">
+          <span>Calificación</span>
+          <div class="fuegos-desktop">
+            <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+            <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+            <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+            <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+            <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="version-movil">
+    <a class="logo-movil">
+      <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
+    </a>
+
+    <nav class="nav-movil">
+      <div class="buscador">
+        <a class="lupa">
+          <img src="../recursos/icons/lupa.png" alt="lupa buscadora">
+        </a>
+        <input type="text" id="barra-busqueda" placeholder="Busca tu lugar de preferencia">
+      </div>
+
+      <div class="filtros">
+        <div class="categorias">
+          <input type="checkbox" id="menu-desplegable" class="desplegar">
+          <label for="menu-desplegable" class="boton-desplegado">Categorias ▼</label>
+
+          <div class="opciones">
+            <label><input type="checkbox" name="opcion" value="1"> Gastronomia</label>
+            <label><input type="checkbox" name="opcion" value="2"> Naturaleza</label>
+            <label><input type="checkbox" name="opcion" value="3"> Cafe</label>
+          </div>
+        </div>
+
+        <div class="calificacion">
+          <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+          <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+          <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+          <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+          <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+        </div>
+      </div>
+
+      <div class="botones">
+        <button id="boton-filtro-lugar">Lugares</button>
+        <button id="boton-filtro-usuario">Usuarios</button>
+      </div>
+    </nav>
+  </div>
+</header>
+<section>
+
+  <a href="lugar.html" class="enlace-tarjeta">
+    <article class="tarjeta">
+      <h3>Mc Donalds's</h3>
+      <div class="calificacion-tarjeta">
+        <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+        <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+        <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_4">
+        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
+        <h3 class="numero-resenas">15</h3>
+      </div>
+
+      <img src="../recursos/imgs/mcdonals.png" alt="McDonalds">
+    </article>
+  </a>
+
+  <article class="tarjeta">
+    <h3>Carls Jr</h3>
+    <div class="calificacion-tarjeta">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+      <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
+      <h3 class="numero-resenas">15</h3>
+    </div>
+    <img src="../recursos/imgs/Carls%20Jr.png">
+  </article>
+
+  <article class="tarjeta">
+    <h3>Dogos el chapo</h3>
+    <div class="calificacion-tarjeta">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+      <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+      <h3 class="numero-resenas">15</h3>
+    </div>
+
+
+    <img src="../recursos/imgs/dogos.png">
+  </article>
+
+</section>
+<footer class="footer-mobile">
+  <nav class="navegation-mobile">
+    <ul>
+      <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
+        <p>Lugares</p></a></li>
+      <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
+        <p>Categorías</p></a></li>
+      <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
+        <p>Usuarios</p></a></li>
+      <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
+        <p>Métricas</p></a></li>
+      <li><a href="feed-admin.html"><img src="../recursos/icons/casita.png" alt="Marcador">
+        <p>Inicio</p></a></li>
+    </ul>
+  </nav>
+</footer>
+
+</body>
+</html>

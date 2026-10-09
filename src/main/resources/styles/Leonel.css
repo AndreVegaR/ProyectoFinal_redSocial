@@ -337,6 +337,13 @@ h3{
         width: 100%;
         box-sizing: border-box;
     }
+    section {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        width: 85%;
+        margin: 3rem auto !important;
+    }
 
     .fondo-img-desktop {
         position: absolute;
@@ -560,11 +567,13 @@ h3{
         display: flex;
         justify-content: center;
         width: 100%;
-        position: static;
+        position: fixed;
         background-color: var(--colorInput);
         padding: 1.2rem 0;
         margin-top: 3rem;
+        bottom: 0;
         color: var(--colorPlaceholder);
     }
+
 }
 
