@@ -4,7 +4,47 @@
     --sombra: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+html{
+    background-color: var(--color-background);
+}
 
+/* FORMULARIOS */
+main{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+button{
+    background: var(--colorBoton);
+    padding: 0.6rem;
+    font-weight: bold;
+    font-size: var(--tamanioTextoBoton);
+    border: none;
+    border-radius: var(--radio-border);
+    color: #FFFFFF;
+    margin-top: 1rem;
+    box-shadow: var(--shadow-box-effect);
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*
+   LOGO
+*/
+header{
+    display: flex;
+    justify-content: left;
+}
+.logo img{
+    width: 3rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
 
 .centrar {
     display: flex;
@@ -12,20 +52,17 @@
     align-items: center;
 }
 
-
 .usuarioContenedor {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
     padding: 10%;
-    background-color: blue;
 
     .todoUsuarioMenosDescripcion {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 20px;
-        background-color: green;
 
         .pfp {
             width: 100px;
@@ -38,7 +75,6 @@
             align-items: center;
             gap: 20px;
             text-align: center;
-            background-color: red;
         }
     }
 }
@@ -62,17 +98,13 @@
     }
 }
 
-
 /* Estilos para el contenedor inferior (reseñas, seguidores, seguidos) */
 .usuarioContenedorInferior {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: yellow;
 }
-
-
 
 /* Estilo para una reseña dentro de un perfil */
 .reseniaPerfil {
@@ -81,7 +113,7 @@
     flex-direction: column;
     width: 80%;
     border-radius: var(--radio-border);
-    box-sizing: border-box; 
+    box-sizing: border-box;
     padding: 20px;
 
     img {
@@ -93,22 +125,16 @@
     }
 }
 
-
-
 /* Estilo para cualquier tarjeta (rectángulo de información rápida) */
 .tarjetaAndre {
     background-color: var(--colorTarjeta);
     border-radius: var(--radio-border);
 }
 
-
-
 /* Estilo para las fotografías de perfil*/
 .pfp {
     border-radius: 100%;
 }
-
-
 
 /* Estilo para una sección de información sin contenido */
 .contenidoVacio {
@@ -117,15 +143,9 @@
     img {
         width: 200px;
     }
-    
+
     p { text-align: center; }
 }
-
-
-.usuarioDescripcion {
-    background-color: orange;
-}
-
 
 .apareceMovil {
     display: block;
@@ -142,7 +162,6 @@
     }
 }
 
-
 .cantidadMetricas {
     display: flex;
     flex-direction: row;
@@ -157,21 +176,72 @@
     .cuadritoMetricas {
         box-shadow: var(--sombra);
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
         padding: 10px;
     }
 }
 
+.footer-movil{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-background);
+    padding: 0.5rem 0;
+}
+
+.Elemento-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+.Elemento-footer img {
+    width: 2.5rem;
+    height: auto;
+}
+
+.Elemento-footer p {
+    font-size: 15px;
+    color: var(--colorTexto);
+    margin: 0;
+}
+
+.Elemento-footer:focus{
+    color: var(--colorResaltar);
+}
+
+.footer-desktop {
+    display: none;
+}
 
 
-
+@media (max-width: 900px) {
+    .contenido-header-desktop {
+        display: flex;
+    }
+}
 
 
 @media(min-width: 900px) {
+    .contenido-header-desktop {
+        display: none;
+    }
+
+    .footer-movil {
+        display: none !important;
+    }
+
     .usuarioContenedor {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
         width: 100%;
         gap: 15px;
@@ -183,12 +253,12 @@
 
     .todoUsuarioMenosDescripcion {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
         justify-content: flex-start;
         align-items: center;
         gap: 100px;
         width: 80%;
-    } 
+    }
 
     .apareceMovil {
         display: none !important;
@@ -200,5 +270,139 @@
 
     .tarjetaUsuario {
         width: 600px;
+    }
+
+    .contenido-header-desktop {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 2rem 4rem;
+        color: white;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .header-top-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo-desktop img {
+        width: 11rem;
+        height: auto;
+    }
+
+    .buscador-desktop {
+        display: flex;
+        align-items: center;
+        background-color: var(--colorInput);
+        border-radius: var(--radio-border);
+        width: 40%;
+        overflow: hidden;
+    }
+
+    .buscador-desktop input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 0.6rem 1rem;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .btn-lupa-desktop {
+        background-color: #B83F3F;
+        border: none;
+        padding: 0.7rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-lupa-desktop img {
+        width: 1rem;
+        height: auto;
+    }
+
+    .links-desktop {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .links-desktop a {
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .btn-cuenta {
+        background-color: #B83F3F;
+        color: white;
+        border: none;
+        padding: 0.5rem 1.3rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .pestanas-desktop {
+        display: flex;
+        gap: 1.5rem;
+        margin-left: 13rem;
+    }
+
+    .pestanas-desktop a {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .pestanas-desktop a.activa {
+        color: var(--colorResaltar);
+    }
+
+    .filtros-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .categorias-desktop {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.95rem;
+        font-weight: bold;
+    }
+
+    .dropdown {
+        cursor: pointer;
+        color: white;
+    }
+
+    .calificacion-desktop {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .fuegos-desktop {
+        background-color: var(--colorInput);
+        border-radius: 20px;
+        padding: 0.4rem;
+        display: flex;
+        gap: 0.3rem;
+    }
+
+    .fuegos-desktop img {
+        width: 1.1rem;
+        height: auto;
     }
 }
