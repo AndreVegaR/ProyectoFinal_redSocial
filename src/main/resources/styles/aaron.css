@@ -1,6 +1,6 @@
 @import url(globals.css);
 
-
+@import url(leonel.css);
 /*  Son imagenes que tuve que ocultar porque posteriormente  al pasar a pc las mostraré
     de momento se mantienen ocultas.
 */
@@ -247,41 +247,79 @@ header{
     }
 
     /*
-        Configuración de la pantalla de lugar
+        Configuración de la pantalla de lugar 😼😼
     */
+    .page-place main{
+        padding: 4rem;
+    }
     .info-lugar{
         box-shadow: var(--shadow-box-effect);
-        width: 95%;
+        box-shadow: inset var(--shadow-box-effect);
+        /* Acomodo para que salga como en el figma*/
+
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 300px 1fr; /* es la columna de la foto*/
+        grid-template-rows: auto auto;      /* fila 1 es pura info y la 2 las reseñas que se apilaran*/
         gap: 1.5rem;
-        align-items: center;
+        align-items: start;
         background: #272933;
         border-radius: var(--radio-border);
     }
 
     #header-lugar{
+        /* Fila para acomodar la info de la imagen*/
         grid-column: 1;
+        grid-row: 1;
+        padding-left: 2rem;
     }
     #header-lugar span{
         color: #C56364;
     }
-    #header-lugar img{
-        width: 100%;
-        height: auto;
-        display: block;
-    }
 
+    #header-lugar img{
+        /* configuración solo de la imagen*/
+        width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+    #calificacion-lugar h2{
+        margin: 0 0 0 0.5rem;
+    }
     .info-lugar-detalle{
-        grid-column: 2/4;
+        /* Fila 1, columna 2. Es el almacen de la info a detalle*/
+        grid-column: 2;
+        grid-row: 1;
+        display: flex !important;  /*QUitar el important despues, lo puse solo porque la conf del juan afecta mi acomodo*/
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2rem;
+        width: auto;
+        padding-right: 1rem;
+    }
+    .info-lugar-detalle h3{
+        margin:0;
+        padding:0;
+        border: none;
     }
 
     .reseñas{
-        grid-column: 1 / -1;
+        grid-column: 1 / -1; /* abarca toda las columnas*/
+        grid-row: 2;
+        display: flex !important; /*tmb quitar el juan troll las usó y me anda dañando mi bebé*/
+        flex-direction: column;
+        width: 95%;
     }
 
+    /*
+        CONFIGURACIÓN DEL CONTENIDO DE CALIFICACION DE UN LUGAR
+    */
     #calificacion-lugar{
+        display:flex;
         align-items: center;
+        gap:0.4rem;
+    }
+    #calificacion-lugar h2{
+        padding-top: 1rem;
     }
 
     .footer-desk{
@@ -307,8 +345,69 @@ header{
         width: 20%;
     }
 
-    .info-lugar-detalle{
-        display: grid;
+    /* Configuración del boton de reseña y categoria*/
+    .categoria-fila {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /*  ORDENAMIENTO DE CADA RESEÑA POR SEPARADO */
+    .reseña {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem 1rem;                /* Espacio vertical y horizontal */
+        background-color: #2E313E;
+        padding: 1rem;
+        border-radius: var(--radio-border);
+        margin-top: 1rem;
+    }
+
+    .reseña .foto-perfil {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%; /* Hace la foto circular */
+        object-fit: cover;
+    }
+
+    /* Nombre de usuario y Fueguitos: Fila 1, Columna 2 */
+    .reseña h3 {
+        margin: 0;
+        display: flex;
+        gap: 0.8rem;
+        color: var(--colorTexto);
+    }
+
+    .reseña div {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        margin-left: 6rem; /* Empuja los fueguitos al lado del nombre */
+    }
+
+    /* Los fueguitos */
+    .reseña div img {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .reseña p {
+        text-align: justify;
+        margin: 0;
+        color: #E0E0E0;
+        line-height: 1.5;
+    }
+    .encabezado-usuario{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        margin: 0 !important; /* bro juan stop deja de usar los important*/
+        gap: 1rem;
+    }
+    .calificacion-usuario-lugar{
+        margin: 1rem !important;
     }
 
 
