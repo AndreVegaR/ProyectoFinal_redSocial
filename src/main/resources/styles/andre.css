@@ -1,6 +1,7 @@
+@import url(globals.css);
+
 :root {
     --sombra: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    --centrar: display: flex; justify-content: center; align-items: center;
 }
 
 
@@ -95,7 +96,7 @@
 
 
 /* Estilo para cualquier tarjeta (rectángulo de información rápida) */
-.tarjeta {
+.tarjetaAndre {
     background-color: var(--colorTarjeta);
     border-radius: var(--radio-border);
 }

@@ -3,17 +3,64 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../styles/styles.css">
-        <link rel="stylesheet" href="../styles/perfil.css">
-        <link rel="icon" type="image/png" href="../src/img/imagotipo.png">
+        <link rel="stylesheet" href="../styles/aaron.css">
+        <link rel="stylesheet" href="../styles/andre.css">
+        <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
         <title>Perfil de usuario</title>
     </head>
     <body>
-        
-        <!-- Cabecera -->
-        <header>
-            <a class="logo"><img src="../src/img/imagotipo.png" alt="logo obregon dice"></a>
-        </header>
+
+    <!-- Cabecera -->
+    <header>
+        <a class="logo"><img src="../recursos/imgs/isotipo.png" alt="logo obregon dice"></a>
+
+        <!-- Navegador en escritorio -->
+        <div class="contenido-header-desktop">
+            <div class="header-top-desktop">
+                <a class="logo-desktop">
+                    <img src="../recursos/icons/titulo.png" alt="logo obregon dice">
+                </a>
+
+                <div class="buscador-desktop">
+                    <input type="text" placeholder="Busca cosas de tu interés">
+                    <button class="btn-lupa-desktop">
+                        <img src="../recursos/icons/lupa.png" alt="buscar">
+                    </button>
+                </div>
+
+                <nav class="links-desktop">
+                    <a href="#">Inicio</a>
+                    <a href="#">Mi feed</a>
+                    <button class="btn-cuenta">Cuenta</button>
+                </nav>
+            </div>
+
+            <div class="pestanas-desktop">
+                <a href="#" class="activa">Lugares</a>
+                <a href="#">Usuarios</a>
+            </div>
+
+            <div class="filtros-desktop">
+                <div class="categorias-desktop">
+                    <span class="dropdown">Gastronomia</span>
+                    <span class="dropdown">Cultura</span>
+                    <span class="dropdown">Entretenimiento</span>
+                    <span class="dropdown">Naturaleza</span>
+                </div>
+
+                <div class="calificacion-desktop">
+                    <span>Calificación</span>
+                    <div class="fuegos-desktop">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_4">
+                        <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
         <!-- Principal -->
         <main>
@@ -24,7 +71,7 @@
 
                     <!-- Imagen de perfil del usuario -->
                     <div class="usuarioImagen">
-                        <img class="pfp" src="../src/img/pfp_default.jpg" alt="pfp">
+                        <img class="pfp" src="../recursos/imgs/pfp_default.jpg" alt="pfp">
                     </div>
 
                     <!-- Sección de nombre, cantidad de reseñas, seguidores y seguidos -->
@@ -68,10 +115,33 @@
             <!-- Reseñas publicadas por el usuario -->
             <section class="usuarioResenias">
                 <div class="contenidoVacio">
-                    <img src="../src/icons/vacio.png">
+                    <img src="../recursos/icons/vacio.png">
                     <p>Sin reseñas</p>
                 </div>
             </section>
         </main>
+
+        <!-- Pie de página -->
+        <footer>
+            <div class="footer-movil">
+                <a href="./Feed-principal-usuario.html" class="Elemento-footer">
+                    <img src="../recursos/icons/casita.png" alt="Inicio">
+                    <p>Inicio</p>
+                </a>
+
+                <a href="./Mi-feed.html" class="Elemento-footer activo">
+                    <img src="../recursos/icons/usuarios.png" alt="Feed">
+                    <p>Feed</p>
+                </a>
+
+                <a href="./perfil-vacio.html" class="Elemento-footer">
+                    <img src="../recursos/icons/perfil.png" alt="Perfil">
+                    <p>Perfil</p>
+                </a>
+            </div>
+            <div class="footer-desktop">
+                <span>Copyright© 2026 ObregonDice</span>
+            </div>
+        </footer>
     </body>
 </html>
