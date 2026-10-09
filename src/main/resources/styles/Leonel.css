@@ -298,6 +298,126 @@ h3{
     margin: 0;
     margin-right: auto;
 }
+/*--reseñas--*/
+main.contenedor-escribir-resena {
+    width: 85%;
+    margin: 1.5rem auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.seccion-calificacion h2 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.fuegos-resena {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.fuegos-resena img {
+    width: 1.4rem;
+    height: auto;
+}
+.formulario-resena {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.formulario-resena textarea {
+    width: 100%;
+    height: 220px;
+    background-color: #262934;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    color: white;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+}
+
+.formulario-resena textarea::placeholder {
+    color: #6c7086;
+}
+
+.btn-publicar {
+    background-color: #C85A5A;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--shadow-box-effect);
+}
+
+.btn-publicar:hover {
+    background-color: #b34a4a;
+}
+
+.Body-escribir-reseña-desktop {
+    display: none;
+}
+
+/* Activa la versión móvil */
+.Body-escribir-reseña-movil {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.seccion-calificacion h2 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.fuegos-resena {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.fuegos-resena img {
+    width: 1.4rem;
+    height: auto;
+}
+
+.formulario-resena {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.formulario-resena textarea {
+    width: 100%;
+    height: 220px;
+    background-color: #262934;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    color: white;
+    box-sizing: border-box;
+    resize: none;
+}
+.Body-escribir-reseña-desktop {
+    display: none;
+}
 
 /*Cosas de desktop*/
 .version-desktop,
@@ -337,6 +457,7 @@ h3{
         width: 100%;
         box-sizing: border-box;
     }
+
     section {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
@@ -477,6 +598,7 @@ h3{
         width: 1.1rem;
         height: auto;
     }
+
     .contenedor-feed-lugares {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
@@ -563,6 +685,7 @@ h3{
         line-height: 1.4;
         margin: 0;
     }
+
     .footer-desktop {
         display: flex;
         justify-content: center;
@@ -575,5 +698,165 @@ h3{
         color: var(--colorPlaceholder);
     }
 
-}
+    /*-Reseñas --*/
+    .Body-escribir-reseña-movil {
+        display: none !important;
+    }
 
+    .Body-escribir-reseña-desktop {
+        display: block !important;
+        width: 100%;
+        max-width: 950px;
+        margin: 2rem auto;
+    }
+
+    .tarjeta-resena-detalle {
+        background-color: #373A48;
+        border-radius: 16px;
+        padding: 1.8rem 2rem;
+        box-shadow: var(--shadow-box-effect);
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .encabezado-detalle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.8rem;
+    }
+
+    .titulo-lugar {
+        color: #D96B6B;
+        font-size: 1.6rem;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .calificacion-general {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .fuegos-detalle {
+        display: flex;
+        gap: 0.25rem;
+    }
+
+    .fuegos-detalle img {
+        width: 1.2rem;
+        height: auto;
+    }
+
+    .total-resenas {
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .cuerpo-detalle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .columna-izquierda,
+    .columna-derecha {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .foto-lugar-detalle {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .seccion-califica-interactiva {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .fuegos-interactivos {
+        display: flex;
+        gap: 0.3rem;
+    }
+
+    .fuegos-interactivos img {
+        width: 1.2rem;
+        height: auto;
+    }
+
+    .seccion-comentario h3 {
+        color: white;
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem 0;
+        border: none;
+    }
+
+    .seccion-comentario textarea {
+        width: 100%;
+        height: 80px;
+        background-color: transparent;
+        border: none;
+        color: #e0e0e0;
+        font-family: inherit;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        resize: none;
+        outline: none;
+        padding: 0;
+    }
+
+    .descripcion-lugar {
+        color: #d1d5db;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .info-item h4 {
+        color: white;
+        font-size: 1rem;
+        margin: 0 0 0.3rem 0;
+        font-weight: bold;
+        border: none;
+    }
+
+    .info-item p {
+        color: #a0a0a0;
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .texto-categoria {
+        color: #D96B6B !important;
+        font-weight: bold;
+    }
+
+    .footer-tarjeta-resena {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .footer-tarjeta-resena .btn-publicar {
+        background-color: #C85A5A;
+        color: white;
+        border: none;
+        padding: 0.6rem 2.2rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: var(--shadow-box-effect);
+    }
+}
