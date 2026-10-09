@@ -250,6 +250,54 @@ h3{
     color: var(--colorResaltar);
 
 }
+/*-----Css del feed-------*/
+.version-movil h1{
+    margin-left: 30px;
+}
+.contenedor-feed-lugares {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
+    margin: 1.5rem auto;
+    padding-bottom: 5rem;
+}
+
+.tarjeta-feed {
+    background-color: #373A48;
+    border-radius: var(--radio-border);
+    padding: 1rem;
+    box-shadow: var(--shadow-box-effect);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.header-tarjeta-feed {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+}
+
+.nombre-fecha-tarjeta{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.foto-perfil-tarjeta {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header-tarjeta-feed h2 {
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+    margin-right: auto;
+}
 
 /*Cosas de desktop*/
 .version-desktop,
@@ -263,27 +311,19 @@ h3{
     .footer-movil {
         display: none !important;
     }
+
     header {
         display: block !important;
-        width: 100%;
+        width: 100% !important;
+        box-sizing: border-box;
     }
 
     .version-desktop {
-        display: block;
+        display: block !important;
+        width: 100% !important;
         position: relative;
-        width: 100%;
         overflow: hidden;
-    }
-
-    .fondo-img-desktop {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 1;
-        opacity: 35%;
+        box-sizing: border-box;
     }
 
     .contenido-header-desktop {
@@ -294,6 +334,19 @@ h3{
         gap: 1.2rem;
         padding: 2rem 4rem;
         color: white;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .fondo-img-desktop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        filter: brightness(0.35);
     }
 
     .header-top-desktop {
@@ -417,26 +470,101 @@ h3{
         width: 1.1rem;
         height: auto;
     }
-
-    section {
+    .contenedor-feed-lugares {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
         width: 85%;
         margin: 3rem auto;
+        padding-bottom: 0;
     }
 
+    .tarjeta-feed {
+        background-color: #373A48;
+        border-radius: var(--radio-border);
+        padding: 1rem;
+        box-shadow: var(--shadow-box-effect);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .header-tarjeta-feed {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .foto-perfil-tarjeta {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .header-tarjeta-feed h2 {
+        font-size: 0.95rem;
+        color: white;
+        margin: 0 0 0 0.5rem;
+        margin-right: auto;
+    }
+
+    .calificacion-tarjeta {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    .calificacion-tarjeta img {
+        width: 1rem;
+        height: auto;
+    }
+
+    .nombre-fecha-tarjeta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.1rem;
+    }
+
+    .nombre-fecha-tarjeta h3 {
+        font-size: 1rem;
+        color: white;
+        margin: 0;
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .nombre-fecha-tarjeta h3:last-child {
+        color: var(--colorPlaceholder);
+        font-size: 0.85rem;
+        font-weight: normal;
+    }
+
+    .foto-lugar-tarjeta {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        margin: 0.2rem 0;
+    }
+
+    .tarjeta-feed p {
+        color: #d1d5db;
+        font-size: 0.82rem;
+        line-height: 1.4;
+        margin: 0;
+    }
     .footer-desktop {
         display: flex;
         justify-content: center;
         width: 100%;
-        position: fixed;
-        z-index: 100;
-        bottom: 0;
-        left: 0;
+        position: static;
         background-color: var(--colorInput);
-        padding: 1rem 0;
+        padding: 1.2rem 0;
+        margin-top: 3rem;
+        color: var(--colorPlaceholder);
     }
 }
-
 
