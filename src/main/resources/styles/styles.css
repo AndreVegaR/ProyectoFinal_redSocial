@@ -1,62 +1,36 @@
 /* 1. GLOBALES */
 @import url("globals.css");
 
+/*
+    ------------- Contexto del where ---------------
+    :where() es una función. Agrupa multiples condiciones sin hacer un cochinero.
+
+    El where reduce la prioridad que tiene un elemento a 0. (mientras más específico, más prioridad)
+    con esto ya se quita el important del juan xd
+
+    '>' significa hijo directo, entre gama > gammita, entonces gammita es el hijo.
+
+    Dentro de aquí se usa algo como MAIN > FORM.
+
+    Es para referirse directamente al primer FORM dentro de MAIN
+*/
 
 
+/* ==================================================================
+   BLOQUE DE Leonel.css  Incluye: (header, feeds, tarjetas, footer y escribir reseña)
+   ================================================================== */
 
+/* Ocultar conf de pc Leonel.css */
 
-/* configuración de visibilidad entre móvil y escritorio */
 .version-desktop {
     display: none;
 }
 
-.apareceMovil {
-    display: block;
-}
+/* configuración del header de escritorio (feeds, lugar y escribir reseña). De Leonel.css */
 
-.apareceEscritorio {
-    display: none;
-}
-
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: antes era display: none !important / display: block !important, ya no hace falta
-       porque este bloque va después de la regla base */
-    .version-movil {
-        display: none;
-    }
-
-    .version-desktop {
-        display: block;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    .apareceMovil {
-        display: none;
-    }
-
-    .apareceEscritorio {
-        display: block;
-    }
-}
-
-
-/* configuración del logo */
-/* REVISAR: .logo img estaba en aaron.css, andre.css y styleAdmin.css, y .logo-movil img en Leonel.css.
-   En el admin el logo ahora también tiene margin-left de 1rem. */
-.logo img,
-.logo-movil img {
-    width: 3rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
-}
-
-
-/* configuración del header de escritorio (feeds, lugar y escribir reseña) */
-/* REVISAR: este bloque estaba repetido idéntico en Leonel.css y andre.css. Se dejó una sola vez y
-   fuera del @media, porque .version-desktop solo se muestra a partir de 1024px. */
+/*  Estaba repetido en andre y juan. Como no ocupa configuración para pc
+    le quité su media query.
+ */
 .contenido-header-desktop {
     position: relative;
     z-index: 2;
@@ -99,13 +73,15 @@
     border-radius: var(--radio-border);
     width: 40%;
     overflow: hidden;
+    /* Pa que baje suave el brillito*/
+    transition: filter 0.25s ease;
 }
 
 .buscador-desktop input {
     background: transparent;
     border: none;
     outline: none;
-    box-shadow: none; /* REVISAR: nuevo, porque ahora input[type="text"] tiene sombra global */
+    box-shadow: none; /* lo movi al global xd */
     color: white;
     padding: 0.6rem 1rem;
     width: 100%;
@@ -119,11 +95,17 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin: 0;
 }
 
-/* REVISAR: nuevo, el hover global sube el botón y el buscador tiene overflow: hidden (se recortaba) */
+/* REVISAR: Para que no se eleve el botón de bsuqueda */
 .btn-lupa-desktop:hover {
     transform: none;
+}
+.buscador-desktop:hover{
+    /* Tmb nuevo, se lo puse pq me gustó el efecto que hace spotify*/
+    filter: brightness(1.2);
+    transition: filter 0.4s ease;
 }
 
 .btn-lupa-desktop img {
@@ -208,8 +190,7 @@
     height: auto;
 }
 
-
-/* configuración del header móvil (feeds): buscador, filtros y botones */
+/* configuración del header móvil (feeds): buscador, filtros y botones. De Leonel.css */
 .nav-movil {
     display: flex;
     flex-direction: column;
@@ -352,8 +333,7 @@
     color: var(--colorResaltar);
 }
 
-
-/* configuración del footer móvil y de escritorio (usuario) */
+/* configuración del footer móvil y de escritorio (usuario). De Leonel.css */
 /* REVISAR: .footer-movil y .Elemento-footer estaban repetidos en andre.css y Leonel.css */
 .footer-movil {
     display: flex;
@@ -395,30 +375,7 @@
     display: none;
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: andre.css usaba 900px con !important, ahora 1024px sin !important */
-    .footer-movil {
-        display: none;
-    }
-
-    .footer-desktop {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        position: fixed;
-        background-color: var(--colorInput);
-        padding: 1.2rem 0;
-        margin-top: 3rem;
-        bottom: 0;
-        color: var(--colorPlaceholder);
-    }
-    .footer-desktop span{
-        opacity: 0.3;
-    }
-}
-
-
-/* configuración de tarjetas (feeds, métricas, perfil y reseña) */
+/* configuración de tarjetas (feeds, métricas, perfil y reseña). De Leonel.css */
 /* REVISAR: el fondo y el radio de .tarjeta, .tarjeta-feed, .tarjeta-resena-detalle y .tarjetaAndre
    se repetía en 3 archivos con #373A48 escrito a mano. Ahora usan --colorTarjeta. */
 .tarjeta,
@@ -520,64 +477,7 @@
     margin: 0.2rem 0;
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: en Leonel.css se repetía todo el bloque de tarjetas dentro del @media.
-       Ahora solo quedan las propiedades que cambian respecto a móvil. */
-    .calificacion-tarjeta {
-        gap: 0.2rem;
-    }
-
-    .calificacion-tarjeta img {
-        width: 1rem;
-    }
-
-    .tarjeta-feed {
-        gap: 0.5rem;
-    }
-
-    .header-tarjeta-feed {
-        gap: 0;
-    }
-
-    .header-tarjeta-feed h2 {
-        font-size: 0.95rem;
-        margin: 0 auto 0 0.5rem;
-    }
-
-    .foto-perfil-tarjeta {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .nombre-fecha-tarjeta {
-        align-items: center;
-        margin-top: 0.1rem;
-    }
-
-    .nombre-fecha-tarjeta h3 {
-        font-size: 1rem;
-        color: white;
-        margin: 0;
-        padding: 0;
-        border-bottom: none;
-    }
-
-    .nombre-fecha-tarjeta h3:last-child {
-        color: var(--colorPlaceholder);
-        font-size: 0.85rem;
-        font-weight: normal;
-    }
-
-    .tarjeta-feed p {
-        color: var(--colorTextoSuave);
-        font-size: 0.82rem;
-        line-height: 1.4;
-        margin: 0;
-    }
-}
-
-
-/* configuración de section (feeds, lugar y métricas) */
+/* configuración de section (feeds, lugar y métricas). De Leonel.css */
 /* REVISAR: en Leonel.css "section" era global y afectaba a TODAS las páginas (por eso aaron.css
    tenía !important para defenderse). Ahora solo aplica a las páginas que lo usaban, con :where()
    para que su especificidad siga siendo la de "section" y cualquier clase lo pueda sobrescribir. */
@@ -590,7 +490,7 @@
     margin-left: 55px;
 }
 
-/* configuración del feed (lugares / Mi feed) */
+/* configuración del feed (lugares / Mi feed). De Leonel.css */
 .contenedor-feed-lugares {
     display: flex;
     flex-direction: column;
@@ -600,367 +500,7 @@
     padding-bottom: 5rem;
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: la cuadrícula de 3 columnas ahora solo aplica a los feeds (body > section) y sin !important.
-       Antes también convertía en cuadrícula las secciones de lugar y métricas por accidente. */
-    body > section,
-    .contenedor-feed-lugares {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        width: 85%;
-        margin: 3rem auto;
-    }
-
-    .contenedor-feed-lugares {
-        padding-bottom: 0;
-    }
-}
-
-
-/* configuración de inicio de sesión y registro */
-/* Son imágenes que se ocultan en móvil y se muestran en escritorio */
-.img-yaqui {
-    display: none;
-}
-
-.titulo-app {
-    display: none;
-}
-
-.page-form main {
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-    padding: 2rem 0;
-}
-
-.form-button {
-    background: var(--colorBoton);
-    font-weight: bold;
-}
-
-/* configuración de formulario tipo tarjeta (inicio de sesión, registro y perfil) */
-/* REVISAR: esto era global en aaron.css y arruinaba los formularios del admin y el de reseña.
-   Se limita a las páginas page-form y page-profile. */
-:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form {
-    border-radius: 15px;
-    background-color: var(--color-background);
-    align-items: center;
-    box-shadow: var(--shadow-box-effect);
-    width: clamp(280px, 90%, 1000px);
-    margin: auto;
-    margin-top: 2rem;
-}
-
-:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div {
-    display: flex;
-    flex-direction: column;
-    gap: .6rem;
-    text-align: initial;
-    width: 90%;
-}
-
-:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div span {
-    color: var(--colorResaltar);
-    font-size: 1rem;
-}
-
-/* REVISAR: estaba repetida en aaron.css y Leonel.css */
-:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div p {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 1024px) {
-    .page-form {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* REVISAR: aaron.css ocultaba .logo en escritorio para TODAS las páginas (incluido el admin,
-       perfil y métricas). Ahora solo en login/registro y lugar, que muestran el título en su lugar. */
-    .page-form .logo,
-    .page-place .logo {
-        display: none;
-    }
-
-    .page-form header {
-        /* Flota pegado arriba para que la imagen se meta por debajo del header */
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 10;
-    }
-
-    .page-form main {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        flex: 1; /* para que tome todo el alto */
-        padding: 0;
-        width: 100%;
-    }
-
-    :where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form {
-        /* quitar decoración */
-        background: none;
-        box-shadow: none;
-        margin: auto;
-        /* cambiar el ancho que toma */
-        width: 80%;
-    }
-
-    .img-yaqui {
-        align-self: start;
-        overflow: hidden;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        display: block; /* ahora sí se muestra */
-    }
-
-    .titulo-app {
-        display: block; /* también se muestra */
-        width: 16rem;
-        padding: 1rem 2rem;
-    }
-
-    .form-button {
-        align-self: center;
-        width: 50%;
-    }
-}
-
-
-/* configuración de la página del lugar */
-.page-place main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
-    padding-top: 0;
-}
-
-.info-lugar {
-    width: clamp(280px, 90%, 1000px);
-    gap: 2rem;
-}
-
-.info-lugar-detalle {
-    text-align: justify;
-    font-size: var(--tamanioTexto);
-}
-
-.info-lugar-detalle p {
-    margin: 0;
-}
-
-.info-lugar-detalle span {
-    color: var(--colorResaltar);
-}
-
-.categoria-fila {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-#header-lugar {
-    display: flex;
-    flex-direction: column;
-}
-
-#calificacion-lugar {
-    display: flex;
-    flex-direction: row;
-}
-
-#calificacion-lugar img {
-    justify-content: center;
-    padding-top: 1rem;
-    width: 2rem;
-    height: 2rem;
-}
-
-/* REVISAR: right, bottom y z-index no hacen nada porque el botón no tiene position.
-   Se dejaron igual que en aaron.css por si piensan usarlo. */
-#boton-reseñar {
-    right: 2rem;
-    bottom: 13rem;
-    z-index: 1000;
-}
-
-.footer-desk {
-    display: none;
-}
-
-@media (min-width: var(--punto-quiebre)) {
-    .page-place main {
-        padding: 4rem;
-    }
-
-    .info-lugar {
-        /* REVISAR: aaron.css tenía dos box-shadow seguidos, el primero se sobrescribía. Quedó solo el inset. */
-        box-shadow: inset var(--shadow-box-effect);
-        display: grid;
-        grid-template-columns: 300px 1fr; /* columna de la foto */
-        grid-template-rows: auto auto;    /* fila 1: info, fila 2: reseñas apiladas */
-        gap: 1.5rem;
-        align-items: start;
-        background: var(--color-background); /* REVISAR: antes #272933 a mano */
-        border-radius: var(--radio-border);
-    }
-
-    #header-lugar {
-        /* Fila para acomodar la info de la imagen */
-        grid-column: 1;
-        grid-row: 1;
-        padding-left: 2rem;
-    }
-
-    #header-lugar span {
-        color: var(--colorResaltar); /* REVISAR: antes #C56364 a mano */
-    }
-
-    #header-lugar img {
-        width: 100%;
-        display: block;
-        object-fit: cover;
-    }
-
-    /* REVISAR: estaban dos reglas de #calificacion-lugar y dos de #calificacion-lugar h2, se unieron */
-    #calificacion-lugar {
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    #calificacion-lugar h2 {
-        margin: 0 0 0 0.5rem;
-        padding-top: 1rem;
-    }
-
-    /* REVISAR: se quitó el !important (display: flex !important). Ya no hace falta porque
-       "section" dejó de ser global con grid !important. */
-    .info-lugar-detalle {
-        /* Fila 1, columna 2: la info a detalle */
-        grid-column: 2;
-        grid-row: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin: 2rem;
-        width: auto;
-        padding-right: 1rem;
-    }
-
-    .info-lugar-detalle h3 {
-        margin: 0;
-        padding: 0;
-        border: none;
-    }
-
-    /* REVISAR: se quitó el !important. Se agregó margin: 0 auto porque antes lo daba
-       "margin: 3rem auto !important" del section global de Leonel.css. */
-    .reseñas {
-        grid-column: 1 / -1; /* abarca todas las columnas */
-        grid-row: 2;
-        display: flex;
-        flex-direction: column;
-        width: 95%;
-        margin: 0 auto;
-    }
-
-    .categoria-fila {
-        margin-top: 0;
-    }
-
-    #boton-reseñar {
-        background-color: var(--color-boton-normal-desktop);
-        margin: auto;
-        width: 20%;
-    }
-
-    /* ordenamiento de cada reseña por separado */
-    .reseña {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem 1rem; /* espacio vertical y horizontal */
-        background-color: var(--colorTarjetaResena);
-        padding: 1rem;
-        border-radius: var(--radio-border);
-        margin-top: 1rem;
-    }
-
-    .reseña .foto-perfil {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%; /* foto circular */
-        object-fit: cover;
-    }
-
-    .reseña h3 {
-        margin: 0;
-        display: flex;
-        gap: 0.8rem;
-        color: var(--colorTexto);
-    }
-
-    .reseña p {
-        text-align: justify;
-        margin: 0;
-        color: var(--colorTextoResena);
-        line-height: 1.5;
-    }
-
-    /* REVISAR: antes había ".reseña div" con margin-left: 6rem y luego ".encabezado-usuario" y
-       ".calificacion-usuario-lugar" lo cancelaban con "margin: ... !important".
-       Se reemplazó ".reseña div" por estas dos reglas directas y se quitaron los !important. */
-    .reseña .encabezado-usuario {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        gap: 1rem;
-        margin: 0;
-    }
-
-    .reseña .calificacion-usuario-lugar {
-        display: flex;
-        align-items: center;
-        gap: 0.2rem;
-        margin: 1rem;
-    }
-
-    .reseña .calificacion-usuario-lugar img {
-        width: 1.2rem;
-        height: 1.2rem;
-    }
-
-    /* REVISAR: se quitó "box-shadow-offset: revert" de aaron.css (esa propiedad no existe en CSS) */
-    .footer-desk {
-        display: block;
-        padding-top: 0.5rem;
-        margin-top: 2rem;
-        padding-bottom: 0.5rem;
-        text-align: center;
-        background-color: var(--colorInput); /* REVISAR: antes #1D2230 a mano */
-        box-shadow: inset 0 4px 4px 0 var(--shadow-color);
-        width: 100%;
-    }
-
-    .footer-desk span {
-        color: #FFFFFF;
-        opacity: 30%;
-    }
-}
-
-
-/* configuración de escribir reseña */
+/* configuración de escribir reseña. De Leonel.css */
 main.contenedor-escribir-resena {
     width: 85%;
     margin: 1.5rem auto 3rem auto;
@@ -1041,167 +581,154 @@ main.contenedor-escribir-resena {
     background-color: var(--color-boton-publicar-hover);
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: se quitaron los !important, este bloque va después de las reglas base */
-    .Body-escribir-reseña-movil {
-        display: none;
-    }
+/* ==================================================================
+   BLOQUE DE aaron.css (inicio de sesión, registro y lugar)
+   ================================================================== */
 
-    .Body-escribir-reseña-desktop {
-        display: block;
-        width: 100%;
-        max-width: 950px;
-        margin: 2rem auto;
-    }
-
-    .tarjeta-resena-detalle {
-        border-radius: 16px;
-        padding: 1.8rem 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-    }
-
-    .encabezado-detalle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 0.8rem;
-    }
-
-    .titulo-lugar {
-        color: var(--colorTituloResena);
-        font-size: 1.6rem;
-        margin: 0;
-        font-weight: bold;
-    }
-
-    .calificacion-general {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
-
-    .fuegos-detalle {
-        display: flex;
-        gap: 0.25rem;
-    }
-
-    .fuegos-detalle img {
-        width: 1.2rem;
-        height: auto;
-    }
-
-    .total-resenas {
-        color: white;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-
-    .cuerpo-detalle {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-
-    .columna-izquierda,
-    .columna-derecha {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .foto-lugar-detalle {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .seccion-califica-interactiva {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        color: white;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-
-    .fuegos-interactivos {
-        display: flex;
-        gap: 0.3rem;
-    }
-
-    .fuegos-interactivos img {
-        width: 1.2rem;
-        height: auto;
-    }
-
-    .seccion-comentario h3 {
-        color: white;
-        font-size: 1.1rem;
-        margin: 0 0 0.5rem 0;
-        border: none;
-    }
-
-    .seccion-comentario textarea {
-        width: 100%;
-        height: 80px;
-        background-color: transparent;
-        border: none;
-        box-shadow: none; /* REVISAR: nuevo, porque textarea ahora tiene sombra global */
-        color: var(--colorTextoResena);
-        font-family: inherit;
-        font-size: 0.9rem;
-        line-height: 1.4;
-        resize: none;
-        outline: none;
-        padding: 0;
-    }
-
-    .descripcion-lugar {
-        color: var(--colorTextoSuave);
-        font-size: 0.85rem;
-        line-height: 1.4;
-        margin: 0;
-    }
-
-    .info-item h4 {
-        color: white;
-        font-size: 1rem;
-        margin: 0 0 0.3rem 0;
-        font-weight: bold;
-        border: none;
-    }
-
-    .info-item p {
-        color: var(--colorTextoApagado);
-        font-size: 0.85rem;
-        margin: 0;
-    }
-
-    /* REVISAR: antes ".texto-categoria { ... !important }". Con ".info-item .texto-categoria"
-       tiene más especificidad que ".info-item p" y ya no necesita !important. */
-    .info-item .texto-categoria {
-        color: var(--colorTituloResena);
-        font-weight: bold;
-    }
-
-    .footer-tarjeta-resena {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .footer-tarjeta-resena .btn-publicar {
-        padding: 0.6rem 2.2rem;
-        border-radius: 10px;
-        font-size: 1rem;
-    }
+/* configuración del logo. De aaron.css */
+/* REVISAR: .logo img estaba en aaron.css, andre.css y styleAdmin.css, y .logo-movil img en Leonel.css.
+   En el admin el logo ahora también tiene margin-left de 1rem. */
+.logo img,
+.logo-movil img {
+    width: 3rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
 
+/* configuración de inicio de sesión y registro. De aaron.css */
+/* Son imágenes que se ocultan en móvil y se muestran en escritorio */
+.img-yaqui {
+    display: none;
+}
 
-/* configuración del perfil de usuario */
+.titulo-app {
+    display: none;
+}
+
+.page-form main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.form-button {
+    background: var(--colorBoton);
+    font-weight: bold;
+}
+
+/* configuración de formulario tipo tarjeta (inicio de sesión, registro y perfil). De aaron.css */
+/* REVISAR: esto era global en aaron.css y arruinaba los formularios del admin y el de reseña.
+   Se limita a las páginas page-form y page-profile. */
+:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form {
+    border-radius: 15px;
+    background-color: var(--color-background);
+    align-items: center;
+    box-shadow: var(--shadow-box-effect);
+    width: clamp(280px, 90%, 1000px);
+    margin: auto;
+    margin-top: 2rem;
+    gap: 0.5rem;
+}
+
+:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: initial;
+    width: 90%;
+}
+
+:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div span {
+    color: var(--colorResaltar);
+    font-size: 1rem;
+}
+
+/* REVISAR: estaba repetida en aaron.css y Leonel.css */
+:where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div p {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* configuración de la página del lugar. De aaron.css */
+.page-place main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    padding-top: 0;
+}
+
+.info-lugar {
+    width: clamp(280px, 90%, 1000px);
+    gap: 2rem;
+}
+
+.info-lugar-detalle {
+    text-align: justify;
+    font-size: var(--tamanioTexto);
+}
+
+.info-lugar-detalle p {
+    margin: 0;
+}
+
+.info-lugar-detalle span {
+    color: var(--colorResaltar);
+}
+
+.categoria-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#header-lugar {
+    display: flex;
+    flex-direction: column;
+}
+
+#calificacion-lugar {
+    display: flex;
+    flex-direction: row;
+}
+
+#calificacion-lugar img {
+    justify-content: center;
+    padding-top: 1rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+/* REVISAR: right, bottom y z-index no hacen nada porque el botón no tiene position.
+   Se dejaron igual que en aaron.css por si piensan usarlo. */
+#boton-reseñar {
+    right: 2rem;
+    bottom: 13rem;
+    z-index: 1000;
+}
+
+.footer-desk {
+    display: none;
+}
+
+/* ==================================================================
+   BLOQUE DE andre.css (perfil de usuario y métricas)
+   ================================================================== */
+
+/* configuración de visibilidad entre móvil y escritorio. De andre.css */
+.apareceMovil {
+    display: block;
+}
+
+.apareceEscritorio {
+    display: none;
+}
+
+/* configuración del perfil de usuario. De andre.css */
 /* REVISAR: "main" era global en andre.css y afectaba a cualquier página que lo cargara.
    Ahora solo aplica a las páginas de perfil y a main.metricas. */
 :where(body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) main,
@@ -1317,31 +844,7 @@ main.metricas {
     text-align: center;
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    .usuarioContenedor {
-        align-items: center;
-        width: 100%;
-        gap: 15px;
-    }
-
-    .sombrear {
-        box-shadow: var(--sombra);
-    }
-
-    .todoUsuarioMenosDescripcion {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 100px;
-        width: 80%;
-    }
-
-    .tarjetaUsuario {
-        width: 600px;
-    }
-}
-
-
-/* configuración de métricas (parte visual de andre.css) */
+/* configuración de métricas (parte visual). De andre.css */
 .metricas h1 {
     text-align: center;
 }
@@ -1368,18 +871,11 @@ main.metricas {
     color: var(--colorTexto);
 }
 
-@media (min-width: var(--punto-quiebre)) {
-    /* REVISAR: en escritorio las secciones de métricas heredaban por accidente la cuadrícula del feed
-       (section global de Leonel.css). Ahora quedan en columna y centradas. Si querían los 3 cuadros,
-       se puede poner display: grid aquí. */
-    .metricas section {
-        width: 85%;
-        margin: 2rem auto;
-    }
-}
+/* ==================================================================
+   BLOQUE DE styleAdmin.css (páginas de administrador)
+   ================================================================== */
 
-
-/* configuración de páginas de administrador (styleAdmin.css) */
+/* configuración de páginas de administrador. De styleAdmin.css */
 /* REVISAR: todo lo de etiquetas (header, form, button, label, input) de styleAdmin.css se limitó a
    :where(body:has(> header > .navegation-desktop)) para que no afecte a feed-admin ni a las demás páginas. */
 :where(body:has(> header > .navegation-desktop)) header {
@@ -1635,7 +1131,560 @@ dialog button {
     display: none;
 }
 
-/* adaptación a móvil del admin (antes max-width: 768px, ahora max-width: 1023px) */
+/* ==================================================================
+   MEDIA QUERIES (al final para que ganen a las reglas base)
+   ================================================================== */
+
+@media (min-width: 1024px) {
+
+    /* ------------------------------------------------------------
+       ESCRITORIO: Leonel.css
+       ------------------------------------------------------------ */
+
+
+    /* configuración para escritorio de visibilidad entre móvil y escritorio. De Leonel.css */
+    /* REVISAR: antes era display: none !important / display: block !important, ya no hace falta
+       porque este bloque va después de la regla base */
+    .version-movil {
+        display: none;
+    }
+
+    .version-desktop {
+        display: block;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+
+    /* configuración para escritorio de footer móvil y de escritorio. De Leonel.css */
+    /* REVISAR: andre.css usaba 900px con !important, ahora 1024px sin !important */
+    .footer-movil {
+        display: none;
+    }
+
+    .footer-desktop {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        position: fixed;
+        background-color: var(--colorInput);
+        padding: 1.2rem 0;
+        margin-top: 3rem;
+        bottom: 0;
+        color: var(--colorPlaceholder);
+    }
+
+
+    /* configuración para escritorio de tarjetas. De Leonel.css */
+    /* REVISAR: en Leonel.css se repetía todo el bloque de tarjetas dentro del @media.
+       Ahora solo quedan las propiedades que cambian respecto a móvil. */
+    .calificacion-tarjeta {
+        gap: 0.2rem;
+    }
+
+    .calificacion-tarjeta img {
+        width: 1rem;
+    }
+
+    .tarjeta-feed {
+        gap: 0.5rem;
+    }
+
+    .header-tarjeta-feed {
+        gap: 0;
+    }
+
+    .header-tarjeta-feed h2 {
+        font-size: 0.95rem;
+        margin: 0 auto 0 0.5rem;
+    }
+
+    .foto-perfil-tarjeta {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .nombre-fecha-tarjeta {
+        align-items: center;
+        margin-top: 0.1rem;
+    }
+
+    .nombre-fecha-tarjeta h3 {
+        font-size: 1rem;
+        color: white;
+        margin: 0;
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .nombre-fecha-tarjeta h3:last-child {
+        color: var(--colorPlaceholder);
+        font-size: 0.85rem;
+        font-weight: normal;
+    }
+
+    .tarjeta-feed p {
+        color: var(--colorTextoSuave);
+        font-size: 0.82rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+
+    /* configuración para escritorio de feed (lugares / Mi feed). De Leonel.css */
+    /* REVISAR: la cuadrícula de 3 columnas ahora solo aplica a los feeds (body > section) y sin !important.
+       Antes también convertía en cuadrícula las secciones de lugar y métricas por accidente. */
+    body > section,
+    .contenedor-feed-lugares {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        width: 85%;
+        margin: 3rem auto;
+    }
+
+    .contenedor-feed-lugares {
+        padding-bottom: 0;
+    }
+
+
+    /* configuración para escritorio de escribir reseña. De Leonel.css */
+    /* REVISAR: se quitaron los !important, este bloque va después de las reglas base */
+    .Body-escribir-reseña-movil {
+        display: none;
+    }
+
+    .Body-escribir-reseña-desktop {
+        display: block;
+        width: 100%;
+        max-width: 950px;
+        margin: 2rem auto;
+    }
+
+    .tarjeta-resena-detalle {
+        border-radius: 16px;
+        padding: 1.8rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .encabezado-detalle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.8rem;
+    }
+
+    .titulo-lugar {
+        color: var(--colorTituloResena);
+        font-size: 1.6rem;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .calificacion-general {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .fuegos-detalle {
+        display: flex;
+        gap: 0.25rem;
+    }
+
+    .fuegos-detalle img {
+        width: 1.2rem;
+        height: auto;
+    }
+
+    .total-resenas {
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .cuerpo-detalle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .columna-izquierda,
+    .columna-derecha {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .foto-lugar-detalle {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .seccion-califica-interactiva {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .fuegos-interactivos {
+        display: flex;
+        gap: 0.3rem;
+    }
+
+    .fuegos-interactivos img {
+        width: 1.2rem;
+        height: auto;
+    }
+
+    .seccion-comentario h3 {
+        color: white;
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem 0;
+        border: none;
+    }
+
+    .seccion-comentario textarea {
+        width: 100%;
+        height: 80px;
+        background-color: transparent;
+        border: none;
+        box-shadow: none; /* REVISAR: nuevo, porque textarea ahora tiene sombra global */
+        color: var(--colorTextoResena);
+        font-family: inherit;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        resize: none;
+        outline: none;
+        padding: 0;
+    }
+
+    .descripcion-lugar {
+        color: var(--colorTextoSuave);
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .info-item h4 {
+        color: white;
+        font-size: 1rem;
+        margin: 0 0 0.3rem 0;
+        font-weight: bold;
+        border: none;
+    }
+
+    .info-item p {
+        color: var(--colorTextoApagado);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    /* REVISAR: antes ".texto-categoria { ... !important }". Con ".info-item .texto-categoria"
+       tiene más especificidad que ".info-item p" y ya no necesita !important. */
+    .info-item .texto-categoria {
+        color: var(--colorTituloResena);
+        font-weight: bold;
+    }
+
+    .footer-tarjeta-resena {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .footer-tarjeta-resena .btn-publicar {
+        padding: 0.6rem 2.2rem;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+
+
+    /* ------------------------------------------------------------
+       ESCRITORIO: aaron.css
+       ------------------------------------------------------------ */
+
+
+    /* configuración para escritorio de inicio de sesión, registro y formulario tipo tarjeta. De aaron.css */
+    .page-form {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* REVISAR: aaron.css ocultaba .logo en escritorio para TODAS las páginas (incluido el admin,
+       perfil y métricas). Ahora solo en login/registro y lugar, que muestran el título en su lugar. */
+    .page-form .logo,
+    .page-place .logo {
+        display: none;
+    }
+
+    .page-form header {
+        /* Flota pegado arriba para que la imagen se meta por debajo del header */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .page-form main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        flex: 1; /* para que tome todo el alto */
+        padding: 0;
+        width: 100%;
+    }
+
+    :where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form {
+        /* quitar decoración */
+        background: none;
+        box-shadow: none;
+        margin: auto;
+        /* cambiar el ancho que toma */
+        width: 80%;
+    }
+
+    .img-yaqui {
+        align-self: start;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        display: block; /* ahora sí se muestra */
+    }
+
+    .titulo-app {
+        display: block; /* también se muestra */
+        width: 16rem;
+        padding: 1rem 2rem;
+    }
+
+    .form-button {
+        align-self: center;
+        width: 50%;
+    }
+
+
+    /* configuración para escritorio de la página del lugar. De aaron.css */
+    .page-place main {
+        padding: 4rem;
+    }
+
+    .info-lugar {
+        /* REVISAR: aaron.css tenía dos box-shadow seguidos, el primero se sobrescribía. Quedó solo el inset. */
+        box-shadow: inset var(--shadow-box-effect);
+        display: grid;
+        grid-template-columns: 300px 1fr; /* columna de la foto */
+        grid-template-rows: auto auto;    /* fila 1: info, fila 2: reseñas apiladas */
+        gap: 1.5rem;
+        align-items: start;
+        background: var(--color-background); /* REVISAR: antes #272933 a mano */
+        border-radius: var(--radio-border);
+    }
+
+    #header-lugar {
+        /* Fila para acomodar la info de la imagen */
+        grid-column: 1;
+        grid-row: 1;
+        padding-left: 2rem;
+    }
+
+    #header-lugar span {
+        color: var(--colorResaltar); /* REVISAR: antes #C56364 a mano */
+    }
+
+    #header-lugar img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    /* REVISAR: estaban dos reglas de #calificacion-lugar y dos de #calificacion-lugar h2, se unieron */
+    #calificacion-lugar {
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    #calificacion-lugar h2 {
+        margin: 0 0 0 0.5rem;
+        padding-top: 1rem;
+    }
+
+    /* REVISAR: se quitó el !important (display: flex !important). Ya no hace falta porque
+       "section" dejó de ser global con grid !important. */
+    .info-lugar-detalle {
+        /* Fila 1, columna 2: la info a detalle */
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2rem;
+        width: auto;
+        padding-right: 1rem;
+    }
+
+    .info-lugar-detalle h3 {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    /* REVISAR: se quitó el !important. Se agregó margin: 0 auto porque antes lo daba
+       "margin: 3rem auto !important" del section global de Leonel.css. */
+    .reseñas {
+        grid-column: 1 / -1; /* abarca todas las columnas */
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .categoria-fila {
+        margin-top: 0;
+    }
+
+    #boton-reseñar {
+        background-color: var(--color-boton-normal-desktop);
+        margin: auto;
+        width: 20%;
+    }
+
+    /* ordenamiento de cada reseña por separado */
+    .reseña {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem 1rem; /* espacio vertical y horizontal */
+        background-color: var(--colorTarjetaResena);
+        padding: 1rem;
+        border-radius: var(--radio-border);
+        margin-top: 1rem;
+    }
+
+    .reseña .foto-perfil {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%; /* foto circular */
+        object-fit: cover;
+    }
+
+    .reseña h3 {
+        margin: 0;
+        display: flex;
+        gap: 0.8rem;
+        color: var(--colorTexto);
+    }
+
+    .reseña p {
+        text-align: justify;
+        margin: 0;
+        color: var(--colorTextoResena);
+        line-height: 1.5;
+    }
+
+    /* REVISAR: antes había ".reseña div" con margin-left: 6rem y luego ".encabezado-usuario" y
+       ".calificacion-usuario-lugar" lo cancelaban con "margin: ... !important".
+       Se reemplazó ".reseña div" por estas dos reglas directas y se quitaron los !important. */
+    .reseña .encabezado-usuario {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        gap: 1rem;
+        margin: 0;
+    }
+
+    .reseña .calificacion-usuario-lugar {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        margin: 1rem;
+    }
+
+    .reseña .calificacion-usuario-lugar img {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    /* REVISAR: se quitó "box-shadow-offset: revert" de aaron.css (esa propiedad no existe en CSS) */
+    .footer-desk {
+        display: block;
+        padding-top: 0.5rem;
+        margin-top: 2rem;
+        padding-bottom: 0.5rem;
+        text-align: center;
+        background-color: var(--colorInput); /* REVISAR: antes #1D2230 a mano */
+        box-shadow: inset 0 4px 4px 0 var(--shadow-color);
+        width: 100%;
+    }
+
+    .footer-desk span {
+        color: #FFFFFF;
+        opacity: 30%;
+    }
+
+
+    /* ------------------------------------------------------------
+       ESCRITORIO: andre.css
+       ------------------------------------------------------------ */
+
+
+    /* configuración para escritorio de visibilidad entre móvil y escritorio. De andre.css */
+    .apareceMovil {
+        display: none;
+    }
+
+    .apareceEscritorio {
+        display: block;
+    }
+
+
+    /* configuración para escritorio de perfil de usuario. De andre.css */
+    .usuarioContenedor {
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .sombrear {
+        box-shadow: var(--sombra);
+    }
+
+    .todoUsuarioMenosDescripcion {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 100px;
+        width: 80%;
+    }
+
+    .tarjetaUsuario {
+        width: 600px;
+    }
+
+
+    /* configuración para escritorio de métricas. De andre.css */
+    /* REVISAR: en escritorio las secciones de métricas heredaban por accidente la cuadrícula del feed
+       (section global de Leonel.css). Ahora quedan en columna y centradas. Si querían los 3 cuadros,
+       se puede poner display: grid aquí. */
+    .metricas section {
+        width: 85%;
+        margin: 2rem auto;
+    }
+}
+
+
+/* configuración para móvil del admin (antes max-width: 768px, ahora max-width: 1023px). De styleAdmin.css */
 @media (max-width: 1023px) {
     :where(body:has(> header > .navegation-desktop)) form {
         width: 90%;
