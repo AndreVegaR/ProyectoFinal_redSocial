@@ -1,23 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+/*
+===============================================
+        configuración de variables
+===============================================
+*/
 :root {
-    /* Fuente de texto considerando también alternativa */
+
+    /* Fuente de texto para todo */
     --fuenteTexto: "Quicksand", sans-serif;
 
-    /* Colores */
+    /* Colores base */
     --color-background: #272933;
-    --colorInput: #1D2230; /*  Color para campos que piden ingresar valores */
+    --colorTarjeta: #373A48;
+    --colorInput: #1D2230; /* Color para campos que piden ingresar valores */
     --colorLegend: #CBD5E1; /* Color para títulos de formularios */
     --colorPlaceholder: #64748B; /* Color del texto placeholder en inputs */
-    --colorBoton: linear-gradient(#FF7B7B, #F96C6C);
     --colorTexto: #DDDDDD;
     --colorResaltar: #C56364; /* Color para texto resaltado */
-    --shadow-color: rgb(0 0 0 / 0.25);
+
+    /* REVISAR: colores NUEVOS, estaban escritos a mano (#hex) en varios CSS */
+    --colorTextoSuave: #D1D5DB;        /* antes #d1d5db en Leonel.css */
+    --colorTextoResena: #E0E0E0;       /* antes #E0E0E0 / #e0e0e0 en aaron.css y Leonel.css */
+    --colorTextoApagado: #A0A0A0;      /* antes #a0a0a0 en Leonel.css */
+    --colorTituloResena: #D96B6B;      /* antes #D96B6B en Leonel.css */
+    --colorFondoTextarea: #262934;     /* antes #262934 en Leonel.css */
+    --colorTarjetaResena: #2E313E;     /* antes #2E313E en aaron.css */
+    --colorTarjetaClara: #D9D9D9;      /* antes #D9D9D9 en styleAdmin.css */
+
+    /* Colores de botones */
+
+    --colorBoton: linear-gradient(#FF7B7B, #F96C6C);
     --color-boton-normal: #C56364;
     --color-boton-normal-desktop: #B83F3F;
 
-    --colorTarjeta: #373A48;
+    /* REVISAR: botones NUEVOS, estaban escritos a mano en Leonel.css y styleAdmin.css */
+
+    --color-boton-publicar: #C85A5A;
+    --color-boton-publicar-hover: #B34A4A;
+    --color-boton-admin-hover: #B03A3C;
+    --color-boton-cancelar: #64748B;
 
     /* Medidas */
     --tamanioTextoBoton: 20px;
@@ -29,20 +52,166 @@
     --tamanioH5: 20px;
     --tamanioTexto: 16px;
     --tamanioTextoArea: 10px; /* El texto de un TextArea */
-    --tamanio-label:24px;
+    --tamanio-label: 24px;
 
     /* Efectos */
+
+    --shadow-color: rgb(0 0 0 / 0.25);
     --shadow-box-effect: 0px 4px 10px 0px var(--shadow-color);
     --radio-border: 8px;
+
+    /* REVISAR: variables que estaban fuera de globals */
+
+    --sombra: 5px 5px 10px rgba(0, 0, 0, 0.5);   /* antes en andre.css */
+    --radio-pastilla: 20px;                      /* botón Cuenta (antes 20px a mano en Leonel.css) */
+
+    /* Puntode quiebre*/
+    --punto-quiebre: 1024px
 }
 
-*{
+
+/* configuración base de la página */
+* {
     color: var(--colorTexto);
-    font-family: 'Quicksand', sans-serif;
+    font-family: var(--fuenteTexto);
 }
-/* para que todos los html tengan el mismo fondo*/
-html{
+
+/* para que todos los html tengan el mismo fondo */
+html {
     background-color: var(--color-background);
 }
 
+/* REVISAR: margin y padding en 0 venían solo de Leonel.css, y el fondo del body solo de styleAdmin.css.
+   Ahora son globales: en las páginas de admin el body pierde el margen de 8px por defecto. */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    min-height: 100vh;
+}
 
+a {
+    text-decoration: none;
+}
+
+/* REVISAR: venía de Leonel.css, ahora es global (lo usaban lugar, métricas y feeds) */
+h3 {
+    color: var(--colorTexto);
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* configuración de header */
+/* REVISAR: header estaba repetido en aaron.css, andre.css y Leonel.css */
+header {
+    display: flex;
+    justify-content: left;
+}
+
+@media (min-width: var(--punto-quiebre)) {
+    /* REVISAR: en Leonel.css era "header { display: block !important }" y afectaba también
+       al <header> interno de lugar.html. Con "body > header" ya no hace falta !important
+       y el header de #header-lugar no se rompe. */
+    body > header {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+/* configuración de formularios */
+/* REVISAR: aquí solo queda lo común a TODOS los formularios (login, perfil, admin y reseña).
+   El estilo de "formulario tipo tarjeta" (aaron.css) y el ancho del admin (styleAdmin.css)
+   se movieron a styles.css, porque cada página los necesita distinto. */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* configuración general de legend y label */
+legend {
+    text-align: center;
+    color: var(--colorLegend);
+    font-weight: bold;
+    font-size: var(--tamanio-legend);
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+form{
+    gap: 1rem;
+}
+
+label {
+    color: var(--colorTexto);
+    font-weight: bold;
+    font-size: var(--tamanio-label);
+}
+
+
+/* configuración de inputs, select y textarea */
+/* REVISAR: aaron.css solo tenía los input y styleAdmin.css solo text/select/textarea.
+   Ahora comparten una sola regla. El admin usaba cursor de mano en los inputs de texto,
+   ahora es cursor de texto (y de mano en date y select). */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+    background-color: var(--colorInput);
+    border-style: none;
+    box-shadow: var(--shadow-box-effect);
+    color: var(--colorTexto);
+    padding: .5rem;
+    font-size: var(--tamanioTextoInput);
+    border-radius: var(--radio-border);
+    cursor: text;
+}
+
+input[type="date"],
+select {
+    cursor: pointer;
+}
+
+input::placeholder {
+    padding-left: 0.3rem;
+    color: var(--colorPlaceholder);
+}
+
+
+/* configuración general de button */
+/* REVISAR: el button estaba en 5 archivos con pequeñas diferencias. Quedó la versión de
+   aaron.css (fondo --color-boton-normal, con transición). El degradado (--colorBoton) ahora
+   es una variante .form-button y de perfil en styles.css. */
+button {
+    background: var(--color-boton-normal);
+    padding: 0.6rem;
+    font-weight: bold;
+    font-size: var(--tamanioTextoBoton);
+    border: none;
+    border-radius: var(--radio-border);
+    color: #FFFFFF;
+    margin-top: 1rem;
+    box-shadow: var(--shadow-box-effect);
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+/* REVISAR: el efecto hover venía de aaron.css, ahora aplica a todos los botones */
+button:hover {
+    transform: translateY(-3px);
+    transition-duration: 0.2s;
+
+}
+
+/* REVISAR: venía de styleAdmin.css, ahora aplica a cualquier <a> dentro de un botón
+   (por ejemplo los botones de editar-perfil.html) */
+button a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
