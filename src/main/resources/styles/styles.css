@@ -138,16 +138,16 @@
     display: flex;
     gap: 1.5rem;
     margin-left: 13rem;
-}
 
-.pestanas-desktop a {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
+    a {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: bold;
 
-.pestanas-desktop a.activa {
-    color: var(--colorResaltar);
+        .activa {
+            color: var(--colorResaltar);
+        }
+    }
 }
 
 .filtros-desktop {
@@ -631,6 +631,10 @@ main.contenedor-escribir-resena {
     gap: 0.5rem;
 }
 
+
+
+
+
 :where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div {
     display: flex;
     flex-direction: column;
@@ -719,6 +723,36 @@ main.contenedor-escribir-resena {
    BLOQUE DE andre.css (perfil de usuario y métricas)
    ================================================================== */
 
+.metricas-escritorio {
+    visibility: hidden;
+}
+.metricas-movil {
+    visibility: visible;
+}
+
+
+.masActivos {
+    justify-content: center;
+}
+
+.metricas-movil {
+
+}
+
+
+/* Centra la sección inferior dentro del perfil */
+.usuarioContenedorInferior {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px; /* Ajusta este valor al ancho máximo que quieras */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
 /* configuración de visibilidad entre móvil y escritorio. De andre.css */
 .apareceMovil {
     display: block;
@@ -758,6 +792,7 @@ main.metricas {
     flex-direction: column;
     margin-bottom: 30px;
     padding: 10%;
+
 }
 
 .todoUsuarioMenosDescripcion {
@@ -765,6 +800,10 @@ main.metricas {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.main-perfil {
+    justify-content: center;
 }
 
 .todoUsuarioMenosDescripcion .pfp {
@@ -798,6 +837,9 @@ main.metricas {
     width: 75px;
     margin-right: 10px;
 }
+
+
+
 
 /* Contenedor inferior (reseñas, seguidores, seguidos) */
 .usuarioContenedorInferior {
@@ -1135,7 +1177,7 @@ dialog button {
    MEDIA QUERIES (al final para que ganen a las reglas base)
    ================================================================== */
 
-@media (min-width: 1024px) {
+@media (min-width: 800px) {
 
     /* ------------------------------------------------------------
        ESCRITORIO: Leonel.css
@@ -1156,7 +1198,6 @@ dialog button {
         overflow: hidden;
         box-sizing: border-box;
     }
-
 
     /* configuración para escritorio de footer móvil y de escritorio. De Leonel.css */
     /* REVISAR: andre.css usaba 900px con !important, ahora 1024px sin !important */
@@ -1230,6 +1271,30 @@ dialog button {
         font-size: 0.82rem;
         line-height: 1.4;
         margin: 0;
+    }
+
+
+
+    /* 1. Asegura que la sección alinee todo al centro */
+    .usuarioContenedorInferior {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* 2. Convierte el enlace <a> en un bloque centrado */
+    .usuarioContenedorInferior > a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-decoration: none; /* Opcional: quita el subrayado del enlace */
+    }
+
+    /* 3. Define el ancho final de la tarjeta gris */
+    .tarjetaAndre.reseniaPerfil {
+        width: 100%;
+        max-width: 650px; /* Ajusta este ancho según lo que necesites */
     }
 
 
@@ -1638,6 +1703,18 @@ dialog button {
     /* ------------------------------------------------------------
        ESCRITORIO: andre.css
        ------------------------------------------------------------ */
+
+    .usuarioContenedorInferior {
+        justify-content: center;
+    }
+
+    .metricas-escritorio {
+        visibility: visible;
+    }
+    .metricas-movil {
+        visibility: hidden;
+    }
+
 
 
     /* configuración para escritorio de visibilidad entre móvil y escritorio. De andre.css */

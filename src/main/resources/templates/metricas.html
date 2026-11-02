@@ -24,12 +24,13 @@
     </nav>
 </header>
 
-    <main class="metricas">
-        
+<main class="metricas">
+    <!-- PARTE PARA MOVIL -->
+    <div class="metricas-movil">
         <!-- Parte superior -->
         <section class="tituloMetricas">
             <h1>Métricas</h1>
-            <div class="comboboxMetricas"> 
+            <div class="comboboxMetricas">
                 <select class="combobox" id="opciones" name="opciones">
                     <option value="opcion1">Últimos 30 días</option>
                     <option value="opcion2">Últimos 60 días</option>
@@ -55,19 +56,19 @@
         <section class="masReseniados">
             <h1>Más reseñados</h1>
 
-                <!-- Lugar reseñado -->
-                <article class="tarjeta">
-                    <h3>Mc Donalds's</h3>
-                    <div class="calificacion-tarjeta">
-                        <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-                        <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-                        <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-                        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_4">
-                        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
-                        <h3 class="numero-resenas">15</h3>
-                    </div>
-                    <img src="../recursos/imgs/mcdonals.png">
-                </article>
+            <!-- Lugar reseñado -->
+            <article class="tarjeta">
+                <h3>Mc Donalds's</h3>
+                <div class="calificacion-tarjeta">
+                    <img src="../recursos/icons/fueguito.png" alt="fuego_1">
+                    <img src="../recursos/icons/fueguito.png" alt="fuego_2">
+                    <img src="../recursos/icons/fueguito.png" alt="fuego_3">
+                    <img src="../recursos/icons/fuego-apagado.png" alt="fuego_4">
+                    <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
+                    <h3 class="numero-resenas">15</h3>
+                </div>
+                <img src="../recursos/imgs/mcdonals.png">
+            </article>
         </section>
 
         <!-- Más activos -->
@@ -88,24 +89,62 @@
                 <button>Siguiendo</button>
             </article>
         </section>
-    </main>
+    </div>
 
-    <!-- Pie de págida -->
-    <footer class="footer-mobile">
-        <nav class="navegation-mobile">
-            <ul>
-                <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
-                    <p>Lugares</p></a></li>
-                <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
-                    <p>Categorías</p></a></li>
-                <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
-                    <p>Usuarios</p></a></li>
-                <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
-                    <p>Métricas</p></a></li>
-                <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
-                    <p>Inicio</p></a></li>
-            </ul>
-        </nav>
-    </footer>
+
+
+    <!-- PARTE PARA ESCRITORIO -->
+    <div class="metricas-escritorio">
+        <!-- Parte superior de las métricas -->
+        <section class="tituloMetricas">
+            <h1>Métricas</h1>
+            <div class="comboboxMetricas">
+
+                <!-- Combobox para días -->
+                <select class="combobox" id="opciones-escritorio" name="opciones">
+                    <option value="opcion1">Últimos 30 días</option>
+                    <option value="opcion2">Últimos 60 días</option>
+                    <option value="opcion3">Últimos 90 días</option>
+                </select>
+
+                <!-- Combobox para categorías -->
+                <select class="combobox" id="categorias-escritorio" name="opciones">
+                    <option value="opcion1">Restaurantes</option>
+                    <option value="opcion2">Recreación</option>
+                    <option value="opcion3">Instituciones</option>
+                </select>
+
+                <!-- Combobox según reseñas -->
+                <select class="combobox" id="reseniados-escritorio" name="opciones">
+                    <option value="opcion1">Más reseñados</option>
+                    <option value="opcion2">Menos reseñados</option>
+                </select>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+</main>
+
+<!-- Pie de págida -->
+<footer class="footer-mobile">
+    <nav class="navegation-mobile">
+        <ul>
+            <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
+                <p>Lugares</p></a></li>
+            <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
+                <p>Categorías</p></a></li>
+            <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
+                <p>Usuarios</p></a></li>
+            <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
+                <p>Métricas</p></a></li>
+            <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
+                <p>Inicio</p></a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
