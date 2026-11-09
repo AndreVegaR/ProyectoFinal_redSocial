@@ -1,21 +1,6 @@
 /* 1. GLOBALES */
 @import url("globals.css");
 
-/*
-    ------------- Contexto del where ---------------
-    :where() es una función. Agrupa multiples condiciones sin hacer un cochinero.
-
-    El where reduce la prioridad que tiene un elemento a 0. (mientras más específico, más prioridad)
-    con esto ya se quita el important del juan xd
-
-    '>' significa hijo directo, entre gama > gammita, entonces gammita es el hijo.
-
-    Dentro de aquí se usa algo como MAIN > FORM.
-
-    Es para referirse directamente al primer FORM dentro de MAIN
-*/
-
-
 /* ==================================================================
    BLOQUE DE Leonel.css  Incluye: (header, feeds, tarjetas, footer y escribir reseña)
    ================================================================== */
@@ -98,7 +83,7 @@
     margin: 0;
 }
 
-/* REVISAR: Para que no se eleve el botón de bsuqueda */
+/* REVISADO: Para que no se eleve el botón de bsuqueda */
 .btn-lupa-desktop:hover {
     transform: none;
 }
@@ -212,7 +197,7 @@
     border-radius: var(--radio-border);
     padding: 0.4rem 0.8rem;
     box-shadow: var(--shadow-box-effect);
-    width: 80%;
+    width: 100%;
 }
 
 #barra-busqueda {

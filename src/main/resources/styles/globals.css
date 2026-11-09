@@ -215,3 +215,7 @@ button a {
     text-decoration: none;
     color: #FFFFFF;
 }
+
+footer span{
+    opacity: 0.3;
+}
