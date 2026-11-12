@@ -23,7 +23,7 @@
     </nav>
 </header>
 <main>
-    <form action="">
+    <form action="" class="form-gestionar-categoria">
         <h1>Gestionar categoría</h1>
 
         <div class="categoria">
@@ -31,16 +31,15 @@
                 <h2>Restaurante</h2>
             </div>
             <div class="opciones-categoria">
-                <div>
+                <div class="accion-editar">
                     <img src="../recursos/icons/lapiz.png" alt="Lápiz">
                     <p>Editar</p>
                 </div>
 
-                <div>
+                <div class="accion-eliminar">
                     <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
                     <p>Eliminar</p>
                 </div>
-
             </div>
         </div>
 
@@ -49,16 +48,15 @@
                 <h2>Café</h2>
             </div>
             <div class="opciones-categoria">
-                <div>
+                <div class="accion-editar">
                     <img src="../recursos/icons/lapiz.png" alt="Lápiz">
                     <p>Editar</p>
                 </div>
 
-                <div>
+                <div class="accion-eliminar">
                     <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
                     <p>Eliminar</p>
                 </div>
-
             </div>
         </div>
 
@@ -71,58 +69,68 @@
             </div>
 
             <div class="modal-acciones">
-                <button id="boton-cancelar">Cancelar</button>
-                <button id="boton-aceptar">Aceptar</button>
+                <button type="button" id="boton-cancelar">Cancelar</button>
+                <button type="button" id="boton-aceptar">Aceptar</button>
+            </div>
+        </dialog>
+
+        <dialog id="modalEliminarCategoria">
+            <h2>¿Eliminar categoría?</h2>
+            <div class="modal-acciones">
+                <button type="button" id="boton-cancelar-eliminar">Cancelar</button>
+                <button type="button" id="boton-confirmar-eliminar">Eliminar</button>
             </div>
         </dialog>
 
         <dialog id="modalExito">
             <h2>Cambios realizados</h2>
             <div class="modal-acciones">
-                <button id="boton-exito-aceptar">Aceptar</button>
+                <button type="button" id="boton-exito-aceptar">Aceptar</button>
             </div>
         </dialog>
 
-
-        <button><a href="crear-categoria.html">Crear categoría</a></button>
-
+        <button type="button" class="boton-crear-categoria" onclick="location.href='crear-categoria.html'">Crear categoría</button>
     </form>
 
     <script>
-
-        const editarCategoria = document.querySelector('.categoria');
-        const modalEditarCategoria = document.getElementById('modalEditarCategoria');
-        const btnAceptar = document.getElementById('boton-aceptar');
-        const btnCancelar = document.getElementById('boton-cancelar');
-
+        const modalEditar = document.getElementById('modalEditarCategoria');
+        const modalEliminar = document.getElementById('modalEliminarCategoria');
         const modalExito = document.getElementById('modalExito');
-        const btnExitoAceptar = document.getElementById('boton-exito-aceptar');
+        const inputNombre = document.getElementById('nuevo-nombre-input');
 
-        if (editarCategoria) {
-            editarCategoria.style.cursor = 'pointer';
-            editarCategoria.addEventListener('click', () => {
-                modalEditarCategoria.showModal();
-            });
-        }
+        // Abrir modales según el botón pulsado
+        document.addEventListener('click', (e) => {
+            const editar = e.target.closest('.accion-editar');
+            const eliminar = e.target.closest('.accion-eliminar');
 
-        if (btnAceptar) {
-            btnAceptar.addEventListener('click', () => {
-                modalEditarCategoria.close();
-                modalExito.showModal();
-            });
-        }
+            if (editar) {
+                inputNombre.value = editar.closest('.categoria').querySelector('.nombre-categoria h2').textContent;
+                modalEditar.showModal();
+            } else if (eliminar) {
+                modalEliminar.showModal();
+            }
+        });
 
-        if (btnCancelar) {
-            btnCancelar.addEventListener('click', () => {
-                modalEditarCategoria.close();
-            });
-        }
+        // Editar
+        document.getElementById('boton-cancelar').addEventListener('click', () => modalEditar.close());
 
-        if (btnExitoAceptar) {
-            btnExitoAceptar.addEventListener('click', () => {
-                modalExito.close();
-            });
-        }
+        document.getElementById('boton-aceptar').addEventListener('click', () => {
+            // aquí va la lógica de editar la categoría
+            modalEditar.close();
+            modalExito.showModal();
+        });
+
+        // Eliminar
+        document.getElementById('boton-cancelar-eliminar').addEventListener('click', () => modalEliminar.close());
+
+        document.getElementById('boton-confirmar-eliminar').addEventListener('click', () => {
+            //aquí va la lógica de eliminar la categoría
+            modalEliminar.close();
+            modalExito.showModal();
+        });
+
+        // Éxito
+        document.getElementById('boton-exito-aceptar').addEventListener('click', () => modalExito.close());
     </script>
 </main>
 

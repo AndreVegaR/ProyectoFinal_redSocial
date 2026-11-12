@@ -102,7 +102,8 @@
 .btn-lupa-desktop:hover {
     transform: none;
 }
-.buscador-desktop:hover{
+
+.buscador-desktop:hover {
     /* Tmb nuevo, se lo puse pq me gustó el efecto que hace spotify*/
     filter: brightness(1.2);
     transition: filter 0.4s ease;
@@ -470,7 +471,7 @@
 /* REVISAR: antes solo existía en escritorio, en móvil la foto salía a su tamaño original */
 .foto-lugar-tarjeta {
     width: 100%;
-    height: 140px;
+    height: 13em;
     object-fit: cover;
     border-radius: 8px;
     display: block;
@@ -632,9 +633,6 @@ main.contenedor-escribir-resena {
 }
 
 
-
-
-
 :where(body.page-form, body:has(.footer-movil):has(main > form), body:has(.usuarioContenedor)) form div {
     display: flex;
     flex-direction: column;
@@ -726,6 +724,7 @@ main.contenedor-escribir-resena {
 .metricas-escritorio {
     visibility: hidden;
 }
+
 .metricas-movil {
     visibility: visible;
 }
@@ -750,7 +749,6 @@ main.contenedor-escribir-resena {
     margin-left: auto;
     margin-right: auto;
 }
-
 
 
 /* configuración de visibilidad entre móvil y escritorio. De andre.css */
@@ -839,8 +837,6 @@ main.metricas {
 }
 
 
-
-
 /* Contenedor inferior (reseñas, seguidores, seguidos) */
 .usuarioContenedorInferior {
     display: flex;
@@ -926,36 +922,44 @@ main.metricas {
     height: 10vh; /* REVISAR: antes max(10vh), es lo mismo */
 }
 
-/* navegación de escritorio del admin */
-/* REVISAR: antes eran reglas sobre "nav", "nav ul", "nav a" y "nav li" (todas las navs). Ahora usan la clase. */
+:where(body:has(> header > .navegation-desktop)) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+:where(body:has(> header > .navegation-desktop)) main {
+    flex: 1;
+}
+
+/* Móvil: el menú de escritorio se oculta, pero el logo se queda visible */
 .navegation-desktop {
     display: flex;
     justify-content: space-between;
+    visibility: hidden;
 }
 
 .navegation-desktop .logo {
     width: 8rem;
+    visibility: visible;
 }
 
-/* REVISAR: row-reverse y gap: 3rem también aplicaban al menú móvil (antes "nav ul" era global), por eso el
-   orden visual de los íconos del footer móvil sale invertido. Se dejó igual; si no es intencional,
-   quiten .navegation-mobile ul de este selector. */
+/* ul de los dos menús: lo que tienen en común. El row-reverse es solo del de escritorio */
 .navegation-desktop ul,
 .navegation-mobile ul {
     display: flex;
-    gap: 3rem;
     align-items: center;
-    flex-direction: row-reverse;
     flex-wrap: wrap;
 }
 
+/* ul del menú de escritorio */
 .navegation-desktop ul {
-    margin-right: 2em;
+    gap: 3rem;
+    flex-direction: row-reverse;
 }
 
 .navegation-desktop a {
     text-decoration: none;
-    font-size: 1.3rem;
 }
 
 .navegation-desktop a:hover {
@@ -968,10 +972,69 @@ main.metricas {
     list-style: none;
 }
 
+/* menú móvil (footer del admin) */
+.navegation-mobile {
+    visibility: visible;
+    display: flex;
+    gap: 0.5em;
+    width: 100%;
+}
+
+.navegation-mobile ul {
+    gap: 0.25rem;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.navegation-mobile li {
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+}
+
+.navegation-mobile a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navegation-mobile img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.navegation-mobile p {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--colorPlaceholder);
+}
+
+
+/* footer móvil del admin */
+/* REVISAR: ahora es la base (móvil) y se oculta con display: none en escritorio.
+   Se agregó background-color porque se veía transparente. */
+.footer-mobile {
+    display: block;
+    background-color: var(--color-background);
+    border-top: 0.1rem solid rgba(255, 255, 255, 0.08);
+    margin-top: 1em;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    position: sticky;
+}
+
 /* formulario del admin */
 /* REVISAR: aquí van el ancho del form y el título; el display flex column ya viene de globals.css */
 :where(body:has(> header > .navegation-desktop)) form {
-    width: 60%;
+    width: 90%;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -980,27 +1043,51 @@ main.metricas {
     text-align: center;
 }
 
+/* REVISAR: antes 2em; el diseño móvil usa un label de ~20px */
+:where(body:has(> header > .navegation-desktop)) label {
+    font-size: 1.25rem;
+}
+
 /* REVISAR: los ids del admin se limitaron a las páginas de admin porque #imagen-lugar también existe
    en lugar.html (era una <img>) y se le habrían aplicado estos estilos */
 :where(body:has(> header > .navegation-desktop)) #nombre-lugar {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 1rem;
     text-align: initial;
-    margin-bottom: 40px;
+    margin-bottom: 3em;
 }
 
 :where(body:has(> header > .navegation-desktop)) #nombre-lugar input {
     width: 100%;
 }
 
-:where(body:has(> header > .navegation-desktop)) #direccion-lugar,
+/* móvil: dirección en columna */
+:where(body:has(> header > .navegation-desktop)) #direccion-lugar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: initial;
+    margin-bottom: 4em;
+}
+
+/* Latitud y Longitud lado a lado */
 :where(body:has(> header > .navegation-desktop)) #coordenadas-lugar {
     display: flex;
     gap: 1rem;
     text-align: initial;
-    margin-bottom: 40px;
+    margin-bottom: 3em;
+}
+
+/* cada campo (label + input) de dirección y coordenadas */
+:where(body:has(> header > .navegation-desktop)) #direccion-lugar > div,
+:where(body:has(> header > .navegation-desktop)) #coordenadas-lugar > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+    min-width: 0; /* para que Latitud y Longitud midan lo mismo y no se desborden */
 }
 
 :where(body:has(> header > .navegation-desktop)) #categoria-lugar select {
@@ -1010,14 +1097,14 @@ main.metricas {
 :where(body:has(> header > .navegation-desktop)) #descricion-lugar {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
 
 :where(body:has(> header > .navegation-desktop)) #imagen-lugar {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 3em;
 }
 
 /* inputs, select y textarea del admin: se mostraban como bloque */
@@ -1027,10 +1114,24 @@ main.metricas {
     display: block;
 }
 
-/* botones del admin */
+/* en móvil el input ocupa todo el ancho */
+:where(body:has(> header > .navegation-desktop)) input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* REVISAR: el textarea del HTML tiene cols="40" y se desbordaba en móvil */
+:where(body:has(> header > .navegation-desktop)) textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* botones del admin: en móvil ocupan el 80% y van centrados */
 :where(body:has(> header > .navegation-desktop)) button {
     padding: 0.4rem;
-    width: 30%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     transition-duration: 0.2s;
 }
 
@@ -1041,44 +1142,130 @@ main.metricas {
 }
 
 /* ventanas emergentes (dialog) */
+dialog {
+    width: 80%;
+    max-width: 420px;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1.5rem 1.5rem 1.25rem;
+    border: none;
+    border-radius: 1.25rem;
+    background-color: #f2f2f2;
+    color: var(--color-background);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+dialog h2 {
+    margin: 0 0 1.25rem;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-background);
+}
+
 dialog p {
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: bold;
     text-align: center;
-    color: var(--color-background); /* REVISAR: antes #272933 a mano */
+    color: var(--color-background);
+}
+
+/* etiqueta + campo */
+dialog .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+dialog label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-background);
+}
+
+dialog input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: var(--colorInput);
+    color: var(--colorTexto);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* botones: Aceptar (rosa) a la izquierda, Cancelar (gris) a la derecha */
+dialog .modal-acciones {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 dialog button {
-    display: inline-block;
-    width: calc(50% - 5px);
+    width: auto;
+    margin: 0;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 0.5rem;
+    background: var(--colorResaltar);
+    box-shadow: none;
 }
 
-#boton-cancelar {
-    background-color: var(--color-boton-cancelar); /* REVISAR: antes #64748B a mano */
+#boton-cancelar,
+#boton-cancelar-eliminar {
+    background: var(--color-boton-cancelar);
 }
 
 /* gestionar categorías */
+.form-gestionar-categoria {
+    align-items: stretch;
+}
+
+.form-gestionar-categoria h1 {
+    text-align: left;
+    margin: 1.5rem 0 2rem;
+}
+
 .categoria {
-    background-color: var(--colorTarjeta); /* REVISAR: antes var(--backgroundHerramientasAdministrador) */
+    background-color: var(--colorTarjeta);
     display: flex;
-    margin-bottom: 20px;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1.25rem;
+    padding: 1.5rem 1.25rem;
+    border-radius: 1rem;
 }
 
 .nombre-categoria {
-    justify-content: left;
-    margin-left: 1em;
+    flex: 1;
+    min-width: 0;
+    margin-left: 0.5rem;
+}
+
+.nombre-categoria h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    overflow-wrap: anywhere;
 }
 
 .opciones-categoria {
     display: flex;
     align-items: center;
-    gap: 1.5em;
-}
-
-.opciones-categoria p {
-    text-align: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
 }
 
 .opciones-categoria div {
@@ -1088,89 +1275,161 @@ dialog button {
     cursor: pointer;
 }
 
+.opciones-categoria p {
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
 .opciones-categoria img {
-    width: 2.5em;
-    height: 2.5em;
+    width: 2.5rem;
+    height: 2.5rem;
     margin: 0 auto;
 }
 
+
+.form-gestionar-categoria .boton-crear-categoria {
+    align-self: flex-start;
+    width: auto;
+    margin: 6rem 0 2rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.8rem;
+}
+
+
 /* crear categoría */
-:where(body:has(> header > .navegation-desktop)) #crear-categoria {
+.form-crear-categoria {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: stretch;
 }
 
-:where(body:has(> header > .navegation-desktop)) #crear-categoria input {
-    width: 60%;
-    padding: 15px;
-    margin-bottom: 20px;
+.form-crear-categoria h1 {
+    text-align: left;
+    margin: 1.5rem 0 2rem;
 }
+
+/* el div que envuelve etiqueta + input */
+#crear-categoria {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#crear-categoria label {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+#crear-categoria input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    border-radius: 0.5rem;
+    background-color: var(--colorInput);
+    color: var(--colorTexto);
+    font-size: 1.25rem;
+}
+
+.form-crear-categoria .boton-crear-categoria {
+    align-self: flex-start;
+    width: auto;
+    margin: 4rem 0 2rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.8rem;
+}
+
 
 /* gestión de usuarios */
+.titulo-usuarios {
+    text-align: left;
+}
+
+/* buscador*/
 #gestion-usuarios {
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--colorInput);
+    border-radius: var(--radio-border);
+    box-shadow: var(--shadow-box-effect);
+    padding: 0 1rem;
+    margin: 1.5rem 0;
+}
+
+.lupa-busqueda {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    color: var(--colorTexto);
 }
 
 #gestion-usuarios input {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 2em 0 2em 0;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0.9rem 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
 }
 
+/* lista de tarjetas */
 #seccion-usuarios {
     width: 100%;
-    background-color: var(--colorTarjeta);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    gap: 2rem;
+    padding-bottom: 2rem;
 }
 
 .tarjeta-usuario {
-    align-items: center;
-    width: 90%;
-    background-color: var(--colorTarjetaClara);
     display: flex;
-    margin: auto;
-}
-
-/* REVISAR: antes era ".tarjeta-usuario img, p { margin-left: 10px }", la coma hacía que TODOS los <p>
-   de las páginas de admin tuvieran margin-left. Ahora solo los de la tarjeta. */
-.tarjeta-usuario img,
-.tarjeta-usuario p {
-    margin-left: 10px;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 0.75rem;
+    background-color: var(--colorTarjeta);
+    border-radius: var(--radio-border);
 }
 
 .tarjeta-usuario img {
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 100%;
-    height: 50px;
-    width: 50px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .tarjeta-usuario p {
-    color: var(--colorPlaceholder);
-    font-size: 20px;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    color: var(--colorTexto);
+    font-size: 1.1rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .tarjeta-usuario p::before {
     content: "@";
-    color: var(--colorPlaceholder);
-    font-size: 20px;
-    font-weight: bold;
 }
 
 .tarjeta-usuario button {
-    width: 20%;
-    margin: auto 10px auto auto;
-}
-
-/* footer móvil del admin */
-/* REVISAR: antes se ocultaba con visibility en pantallas grandes y seguía ocupando espacio.
-   Ahora se oculta con display: none y solo se muestra en móvil. */
-.footer-mobile {
-    display: none;
+    flex-shrink: 0;
+    width: auto;
+    margin: 0;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    font-weight: normal;
 }
 
 /* ==================================================================
@@ -1182,8 +1441,6 @@ dialog button {
     /* ------------------------------------------------------------
        ESCRITORIO: Leonel.css
        ------------------------------------------------------------ */
-
-
     /* configuración para escritorio de visibilidad entre móvil y escritorio. De Leonel.css */
     /* REVISAR: antes era display: none !important / display: block !important, ya no hace falta
        porque este bloque va después de la regla base */
@@ -1272,7 +1529,6 @@ dialog button {
         line-height: 1.4;
         margin: 0;
     }
-
 
 
     /* 1. Asegura que la sección alinee todo al centro */
@@ -1477,8 +1733,6 @@ dialog button {
     /* ------------------------------------------------------------
        ESCRITORIO: aaron.css
        ------------------------------------------------------------ */
-
-
     /* configuración para escritorio de inicio de sesión, registro y formulario tipo tarjeta. De aaron.css */
     .page-form {
         min-height: 100vh;
@@ -1550,7 +1804,7 @@ dialog button {
         box-shadow: inset var(--shadow-box-effect);
         display: grid;
         grid-template-columns: 300px 1fr; /* columna de la foto */
-        grid-template-rows: auto auto;    /* fila 1: info, fila 2: reseñas apiladas */
+        grid-template-rows: auto auto; /* fila 1: info, fila 2: reseñas apiladas */
         gap: 1.5rem;
         align-items: start;
         background: var(--color-background); /* REVISAR: antes #272933 a mano */
@@ -1703,7 +1957,6 @@ dialog button {
     /* ------------------------------------------------------------
        ESCRITORIO: andre.css
        ------------------------------------------------------------ */
-
     .usuarioContenedorInferior {
         justify-content: center;
     }
@@ -1711,10 +1964,10 @@ dialog button {
     .metricas-escritorio {
         visibility: visible;
     }
+
     .metricas-movil {
         visibility: hidden;
     }
-
 
 
     /* configuración para escritorio de visibilidad entre móvil y escritorio. De andre.css */
@@ -1758,122 +2011,89 @@ dialog button {
         width: 85%;
         margin: 2rem auto;
     }
-}
 
+    /* ------------------------------------------------------------
+      ESCRITORIO: styleAdmin.css
+      ------------------------------------------------------------ */
+    /* navegación del admin */
+    .navegation-desktop {
+        visibility: visible;
+    }
 
-/* configuración para móvil del admin (antes max-width: 768px, ahora max-width: 1023px). De styleAdmin.css */
-@media (max-width: 1023px) {
+    .navegation-desktop ul {
+        margin-right: 2em;
+    }
+
+    .navegation-desktop a {
+        font-size: 1.3rem;
+    }
+
+    /* el footer móvil del admin no se usa en escritorio */
+    .footer-mobile {
+        display: none;
+    }
+
+    /* formulario del admin */
     :where(body:has(> header > .navegation-desktop)) form {
-        width: 90%;
-        max-width: 700px;
+        width: 60%;
+        max-width: none;
     }
 
+    /* REVISAR: 24px es el label global según el comentario de aaron.css.
+       Si en globals.css es otro valor, cámbienlo aquí. */
+    /* DESPUÉS */
     :where(body:has(> header > .navegation-desktop)) label {
-        font-size: 2em;
+        font-size: 1.5rem;
     }
 
-    :where(body:has(> header > .navegation-desktop)) #nombre-lugar input {
-        width: 100%;
+    :where(body:has(> header > .navegation-desktop)) #nombre-lugar {
+        gap: 0.4rem;
     }
 
-    :where(body:has(> header > .navegation-desktop)) input[type="text"] {
-        width: 100%;
-        box-sizing: border-box;
-        display: block;
-    }
-
-    :where(body:has(> header > .navegation-desktop)) #nombre-lugar,
+    /* dirección en fila (en móvil va en columna) */
     :where(body:has(> header > .navegation-desktop)) #direccion-lugar {
-        display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
     }
 
+    /* REVISAR: si en globals.css el input de texto tenía otro ancho, ponerlo aquí */
+    :where(body:has(> header > .navegation-desktop)) input[type="text"] {
+        width: auto;
+    }
+
+    /* botones del admin */
     :where(body:has(> header > .navegation-desktop)) button {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
+        width: 30%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    .categoria {
-        gap: 12px;
-        padding: 1.5em;
-    }
-
-    :where(body:has(> header > .navegation-desktop)) #crear-categoria label {
-        font-size: 20px;
-    }
-
-    :where(body:has(> header > .navegation-desktop)) #crear-categoria input {
-        width: 100%;
-    }
-
+    /* ventanas emergentes (dialog) */
     dialog {
-        width: 70%;
+        width: fit-content;
+        min-width: 380px;
     }
 
-    .tarjeta-usuario button {
-        width: 35%;
+    /* gestionar categorías */
+    .categoria {
+        padding: 1.2rem 1.75rem;
     }
 
-    .navegation-desktop {
-        visibility: hidden;
+    .opciones-categoria img {
+        width: 2.25rem;
+        height: 2.25rem;
     }
 
-    .navegation-desktop .logo {
-        visibility: visible;
+    .form-gestionar-categoria .boton-crear-categoria {
+        margin-top: 8rem;
     }
 
-    .navegation-mobile {
-        visibility: visible;
-        display: flex;
-        gap: 0.5em;
-        width: 100%;
+    /* crear categoría */
+    #crear-categoria label {
+        font-size: 1.5rem;
     }
 
-    .footer-mobile {
-        display: block;
-        margin-top: 1em;
-        width: 100%;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        bottom: 0;
-        left: 0;
-        position: sticky;
-    }
-
-    .navegation-mobile ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 8px 0;
-        width: 100%;
-    }
-
-    .navegation-mobile li {
-        flex: 1;
-        text-align: center;
-        min-width: 0;
-    }
-
-    .navegation-mobile a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .navegation-mobile img {
-        width: 24px;
-        height: 24px;
-        object-fit: contain;
-    }
-
-    .navegation-mobile p {
-        margin-top: 4px;
-        font-size: 12px;
-        /* REVISAR: se quitó font-family: sans-serif, ahora usa Quicksand como el resto */
+    .form-crear-categoria .boton-crear-categoria {
+        margin-top: 6rem;
     }
 }
