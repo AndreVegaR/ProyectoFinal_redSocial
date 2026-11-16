@@ -1,8 +1,13 @@
 package redSocial.redSocial.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import redSocial.redSocial.dtos.AdministradorDTO;
 import redSocial.redSocial.service.CuentaService;
 
 /**
@@ -15,13 +20,39 @@ public class AuthController {
     @Autowired
     private CuentaService cuentaService;
 
-    @GetMapping("/login")
+    @GetMapping("/admin/inicio-sesion")
     public String mostrarLogin(){
 
         // como para mostrar login no se necesitan
         // cargar datos, no se ocupa PRG.
-        return "login";
+        return "inicio-sesion";
     }
 
-    // ya no le seguí, mejor hago thymeleaf xd
+    @PostMapping("/admin/inicio-sesion")
+    public String procesarLogin(@RequestParam("correo") String correo,
+                                @RequestParam("contrasenia") String contrasenia,
+                                Model modelo,
+                                HttpSession session){
+
+        AdministradorDTO admin = cuentaService.autentificarCuenta(correo, contrasenia);
+
+        if(admin != null){
+
+            // para este punto esto es necesario para guardar quién es la persona
+            session.setAttribute("admin_id", admin.getId());
+
+            // patrón PRG  q es (post, redirect, get)
+            return "redirect:/feed-admin";
+        }else{
+            modelo.addAttribute("error", "Credencial inválida. Intentalo nuevamente.");
+            return "inicio-sesion";
+        }
+    }
+
+    // LOGOUT
+    @GetMapping("/admin/logout")
+    public String logout(HttpSession sesion){
+        sesion.invalidate();
+        return "redirect:/";
+    }
 }

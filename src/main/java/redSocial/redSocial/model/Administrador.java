@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "administradores")
 @PrimaryKeyJoinColumn(name = "cuenta_id")
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true) // PARA COMPARAR UN ADMIN CON OTRO, COMPARA ATRIBUTOS HEREDADODS
 public class Administrador extends Cuenta{
 }

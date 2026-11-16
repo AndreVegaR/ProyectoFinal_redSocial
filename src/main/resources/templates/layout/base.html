@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title,content)">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(title,contenido,claseBody)">
 <head>
     <meta charset="UTF-8">
-    <title th:replace="${title}">Configuracion prematuraxd</title>
-
-    <!-- OJO CON ESTO, RECUERDO QUE MENCIONÓ ALGO DE LOS ESTILOS, DE MANTENERLOS SEGUROS O ALGO SIMILAR-->
-    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Configuracion de la vista</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
 </head>
-<body>
 
+<!-- Cambienlo a necesidad xd-->
+
+<body th:class="${claseBody}">
+
+    <header>
+        <a class="logo">
+            <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
+        </a>
+        <img th:src="@{/recursos/icons/titulo.png}" alt="titulo obregon dice" class="titulo-app">
+    </header>
     <nav>
 
+        <!-- RESTRINGIR ACCESOS -->
+
+        <th:block th:if="${session.admin_id != null}">
+            <form th:action="@{/admin/logout}" method="post">
+                <button type="submit">Cerrar sesión</button>
+            </form>
+        </th:block>
+
+        <th:block th:if="${session.admin_id == null}">
+        </th:block>
+
     </nav>
+
+    <main class ="container" th:replace="${contenido}">
+        Contenido default.
+    </main>
 </body>
 </html>

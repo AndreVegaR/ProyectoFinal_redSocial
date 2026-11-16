@@ -1,55 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
-    <title>Página de inicio sesión</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
-</head>
-<body class="page-form">
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-form')}">
+    <title>Inicio Sesión - Obregón Dice</title>
+
+    <main>
 
 
-<header>
-    <a class="logo">
-        <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
-    </a>
-    <img src="../recursos/icons/titulo.png" alt="titulo obregon dice" class="titulo-app">
-</header>
+        <form th:action="@{/admin/inicio-sesion}" method="post">
+
+            <legend> Iniciar Sesión</legend>
+
+            <p th:if="${param.error}" style="color: red;">
+                Credencial inválida.
+            </p>
+
+            <p th:if="${param.logout}">
+                Cerraste sesión.
+            </p>
+
+            <div>
+                <label for="txt-correo"> Correo Electrónico</label>
+                <input type="email" name="correo" id="txt-correo" placeholder="lapiz@mail.com">
+            </div>
 
 
-<main>
+            <div>
+                <label for="txt-contrasenia">Contraseña</label>
+                <input type="password" name ="contrasenia" id="txt-contrasenia" placeholder="*********">
+            </div>
 
 
-    <!-- ESTRUCTURA DE FOMRULARIO PARA INICIO DE SESIÓN -->
+            <div>
+                <button type="submit" class="form-button">Ingresar</button>
+                <p>¿No tienes cuenta? <a href="./registro.html"><span>Registrate</span></a></p>
+                <a href="feed-admin.html"><p>Temporal: ingresar como administrador</p></a>
+            </div>
+        </form>
 
+        <!-- IMAGEN PARA ESCRITORIO -->
+        <img th:src="@{/recursos/imgs/yaqui.png}" alt="Figura yaqui" class ="img-yaqui">
+    </main>
 
-    <form action="Feed-principal-usuario.html" method="GET">
-        <legend> Iniciar Sesión</legend>
+</th:block>
 
-
-        <div>
-            <label for="txt-correo"> Correo Electrónico</label>
-            <input type="email" name="correo" id="txt-correo" placeholder="lapiz@mail.com">
-        </div>
-
-
-        <div>
-            <label for="txt-contrasenia">Contraseña</label>
-            <input type="password" name ="contrasenia" id="txt-contrasenia" placeholder="*********">
-        </div>
-
-
-        <div>
-            <button type="submit" class="form-button">Ingresar</button>
-            <p>¿No tienes cuenta? <a href="./registro.html"><span>Registrate</span></a></p>
-            <a href="feed-admin.html"><p>Temporal: ingresar como administrador</p></a>
-        </div>
-    </form>
-
-    <!-- IMAGEN PARA ESCRITORIO -->
-    <img src="../recursos/imgs/yaqui.png" alt="Figura yaqui" class ="img-yaqui">
-</main>
-</body>
-</html>
 

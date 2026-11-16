@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Configuración de Spring Security.
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * peticiones: el control de acceso a las rutas lo haremos nosotros mismos.
  */
 @Configuration
-@EnableWebMvc // CONFIGURACIÓN DE SPRING MVC
 public class SecurityConfig {
 
     /**
