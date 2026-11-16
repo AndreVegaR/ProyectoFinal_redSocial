@@ -17,7 +17,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         // SI NO SE GUARDÓ LA COOCKIE o HABERLA SETEADO NULL
         if (session == null || session.getAttribute("admin_id") == null) {
-            response.sendRedirect("/inicio-sesion");
+            response.sendRedirect("/inicio-sesion"); //esto lo redirige al admin, falta la logica para usuairo normal.
             return false;
         }
         // SI TIENE PERMISO, VERDADERO

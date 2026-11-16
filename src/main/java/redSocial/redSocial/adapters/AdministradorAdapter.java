@@ -33,4 +33,19 @@ public class AdministradorAdapter {
                 administradorBO.getCorreo()
         );
     }
+
+    public static Administrador dto_a_entidad(AdministradorDTO administradorDTO) {
+        if (administradorDTO == null) {
+            return null;
+        }
+
+        Administrador administrador = new Administrador();
+
+        administrador.setId(administradorDTO.getId());
+        administrador.setNombres(administradorDTO.getNombres());
+        administrador.setApellidos(administradorDTO.getApellidos());
+        administrador.setCorreo(administradorDTO.getCorreo());
+
+        return administrador;
+    }
 }

@@ -17,7 +17,7 @@ public class Cuenta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long    id;
+    private Long id;
 
     @Column(nullable = false, name = "nombre_completo")
     private String nombres;

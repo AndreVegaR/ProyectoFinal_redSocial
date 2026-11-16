@@ -20,6 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
+                .addPathPatterns("/**") //esto intercepta todas las rutas
                 .excludePathPatterns(
                         "/",
                         "/admin/inicio-sesion",

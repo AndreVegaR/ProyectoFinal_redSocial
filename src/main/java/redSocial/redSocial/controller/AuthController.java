@@ -20,15 +20,7 @@ public class AuthController {
     @Autowired
     private CuentaService cuentaService;
 
-    @GetMapping("/admin/inicio-sesion")
-    public String mostrarLogin(){
-
-        // como para mostrar login no se necesitan
-        // cargar datos, no se ocupa PRG.
-        return "inicio-sesion";
-    }
-
-    @PostMapping("/admin/inicio-sesion")
+    @PostMapping("/inicio-sesion")
     public String procesarLogin(@RequestParam("correo") String correo,
                                 @RequestParam("contrasenia") String contrasenia,
                                 Model modelo,
@@ -37,7 +29,6 @@ public class AuthController {
         AdministradorDTO admin = cuentaService.autentificarCuenta(correo, contrasenia);
 
         if(admin != null){
-
             // para este punto esto es necesario para guardar quién es la persona
             session.setAttribute("admin_id", admin.getId());
 
@@ -50,7 +41,7 @@ public class AuthController {
     }
 
     // LOGOUT
-    @GetMapping("/admin/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession sesion){
         sesion.invalidate();
         return "redirect:/";
