@@ -2,11 +2,9 @@
     <title>Inicio Sesión - Obregón Dice</title>
 
     <main>
-
-
         <form th:action="@{/inicio-sesion}" method="post">
 
-            <legend> Iniciar Sesión</legend>
+            <legend>Iniciar Sesión</legend>
 
             <p th:if="${param.error}" style="color: red;">
                 Credencial inválida.
@@ -17,28 +15,24 @@
             </p>
 
             <div>
-                <label for="txt-correo"> Correo Electrónico</label>
+                <label for="txt-correo">Correo Electrónico</label>
                 <input type="email" name="correo" id="txt-correo" placeholder="lapiz@mail.com">
             </div>
 
-
             <div>
                 <label for="txt-contrasenia">Contraseña</label>
-                <input type="password" name ="contrasenia" id="txt-contrasenia" placeholder="*********">
+                <input type="password" name="contrasenia" id="txt-contrasenia" placeholder="*********">
             </div>
-
 
             <div>
                 <button type="submit" class="form-button">Ingresar</button>
-                <p>¿No tienes cuenta? <a href="./registro.html"><span>Registrate</span></a></p>
-                <a href="feed-admin.html"><p>Temporal: ingresar como administrador</p></a>
+                <p>¿No tienes cuenta? <a th:href="@{/registro}"><span>Regístrate</span></a></p>
+                <a th:href="@{/feed-admin}"><p>Temporal: ingresar como administrador</p></a>
             </div>
         </form>
 
-        <!-- IMAGEN PARA ESCRITORIO -->
-        <img th:src="@{/recursos/imgs/yaqui.png}" alt="Figura yaqui" class ="img-yaqui">
+        <!-- imagen escritorio -->
+        <img th:src="@{/recursos/imgs/yaqui.png}" alt="Figura yaqui" class="img-yaqui">
     </main>
 
 </th:block>
-
-

@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:replace="${title}">Configuracion de la vista</title>
     <link rel="stylesheet" th:href="@{/styles/styles.css}">
+    <link rel="icon" type="image/png" th:href="@{/recursos/imgs/isotipo.png}">
 </head>
 
 <!-- Cambienlo a necesidad xd-->
 
 <body th:class="${claseBody}">
 
-    <header>
+    <header th:if="${claseBody != 'page-feed-admin'}">
         <a class="logo">
             <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
         </a>
@@ -37,5 +38,17 @@
     <main class ="container" th:replace="${contenido}">
         Contenido default.
     </main>
+
+    <footer class="footer-mobile" th:if="${session.admin_id != null}">
+        <nav class="navegation-mobile">
+            <ul>
+                <li><a th:href="@{/admin/lugares}"><img th:src="@{/recursos/icons/marcador.png}" alt="Marcador"><p>Lugares</p></a></li>
+                <li><a th:href="@{/admin/categorias}"><img th:src="@{/recursos/icons/categoria.png}" alt="Categorías"><p>Categorías</p></a></li>
+                <li><a th:href="@{/admin/usuarios}"><img th:src="@{/recursos/icons/usuarios.png}" alt="Usuarios"><p>Usuarios</p></a></li>
+                <li><a th:href="@{/admin/metricas}"><img th:src="@{/recursos/icons/metricas.png}" alt="Métricas"><p>Métricas</p></a></li>
+                <li><a th:href="@{/admin/feed}"><img th:src="@{/recursos/icons/casita.png}" alt="Inicio"><p>Inicio</p></a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 </html>

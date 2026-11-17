@@ -1,177 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../styles/styles.css">
-  <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
-  <title>Inicio admin</title>
-</head>
-<body>
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-feed-admin')}">
 
-<header>
+  <title>Inicio admin - Obregón Dice</title>
 
-  <div class="version-desktop">
-    <img src="../recursos/imgs/imgFeedDesktop.png" class="fondo-img-desktop" alt="Fondo">
-    <div class="contenido-header-desktop">
-      <div class="header-top-desktop">
-        <a class="logo-desktop">
-          <img src="../recursos/icons/titulo.png" alt="logo obregon dice">
-        </a>
+  <main>
+    <header>
+      <!-- desktop -->
+      <div class="version-desktop">
+        <img th:src="@{/recursos/imgs/imgFeedDesktop.png}" class="fondo-img-desktop" alt="Fondo">
+        <div class="contenido-header-desktop">
+          <div class="header-top-desktop">
+            <a class="logo-desktop" th:href="@{/admin/feed}">
+              <img th:src="@{/recursos/icons/titulo.png}" alt="logo obregon dice">
+            </a>
 
-        <div class="buscador-desktop">
-          <input type="text" placeholder="Busca cosas de tu interés">
-          <button class="btn-lupa-desktop">
-            <img src="../recursos/icons/lupa.png" alt="buscar">
-          </button>
-        </div>
+            <form th:action="@{/admin/feed}" method="get" class="buscador-desktop">
+              <input type="text" name="busqueda" th:value="${param.busqueda}" placeholder="Busca cosas de tu interés">
+              <button type="submit" class="btn-lupa-desktop">
+                <img th:src="@{/recursos/icons/lupa.png}" alt="buscar">
+              </button>
+            </form>
 
-        <nav class="navegation-desktop">
-          <a class="logo">
-            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
-          </a>
-          <ul>
-            <li><a href="crear-lugar.html">Lugares</a></li>
-            <li><a href="gestionar-categoria.html">Categorías</a></li>
-            <li><a href="gestion-usuarios.html">Usuarios</a></li>
-            <li><a href="metricas.html">Métricas</a></li>
-            <li><a href="feed-admin.html">Inicio</a></li>
-          </ul>
-        </nav>
-      </div>
+            <nav class="navegation-desktop">
+              <ul>
+                <li><a th:href="@{/admin/lugares}">Lugares</a></li>
+                <li><a th:href="@{/admin/categorias}">Categorías</a></li>
+                <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+                <li><a th:href="@{/admin/metricas}">Métricas</a></li>
+                <li><a th:href="@{/admin/feed}">Inicio</a></li>
+              </ul>
+            </nav>
+          </div>
 
-      <div class="pestanas-desktop">
-        <a href="#" class="activa">Lugares</a>
-        <a href="#">Usuarios</a>
-      </div>
+          <div class="pestanas-desktop">
+            <a th:href="@{/admin/feed(tipo='lugares')}" class="activa">Lugares</a>
+            <a th:href="@{/admin/feed(tipo='usuarios')}">Usuarios</a>
+          </div>
 
-      <div class="filtros-desktop">
-        <div class="categorias-desktop">
-          <span class="dropdown">Gastronomia</span>
-          <span class="dropdown">Cultura</span>
-          <span class="dropdown">Entretenimiento</span>
-          <span class="dropdown">Naturaleza</span>
-        </div>
+          <div class="filtros-desktop">
+            <div class="categorias-desktop">
+              <a th:each="cat : ${categorias}"
+                 th:href="@{/admin/feed(categoriaId=${cat.id})}"
+                 th:text="${cat.nombre}"
+                 class="dropdown">Gastronomía</a>
+            </div>
 
-        <div class="calificacion-desktop">
-          <span>Calificación</span>
-          <div class="fuegos-desktop">
-            <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-            <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-            <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-            <img src="../recursos/icons/fueguito.png" alt="fuego_4">
-            <img src="../recursos/icons/fueguito.png" alt="fuego_5">
+            <div class="calificacion-desktop">
+              <span>Calificación</span>
+              <div class="fuegos-desktop">
+                <a th:each="num : ${#numbers.sequence(1, 5)}"
+                   th:href="@{/admin/feed(calificacion=${num})}">
+                  <img th:src="@{/recursos/icons/fueguito.png}" th:alt="'fuego_' + ${num}">
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-
-  <div class="version-movil">
-    <a class="logo-movil">
-      <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
-    </a>
-
-    <nav class="nav-movil">
-      <div class="buscador">
-        <a class="lupa">
-          <img src="../recursos/icons/lupa.png" alt="lupa buscadora">
+      <!-- movil -->
+      <div class="version-movil">
+        <a class="logo-movil" th:href="@{/admin/feed}">
+          <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
         </a>
-        <input type="text" id="barra-busqueda" placeholder="Busca tu lugar de preferencia">
-      </div>
 
-      <div class="filtros">
-        <div class="categorias">
-          <input type="checkbox" id="menu-desplegable" class="desplegar">
-          <label for="menu-desplegable" class="boton-desplegado">Categorias ▼</label>
-
-          <div class="opciones">
-            <label><input type="checkbox" name="opcion" value="1"> Gastronomia</label>
-            <label><input type="checkbox" name="opcion" value="2"> Naturaleza</label>
-            <label><input type="checkbox" name="opcion" value="3"> Cafe</label>
+        <form th:action="@{/admin/feed}" method="get" class="nav-movil">
+          <div class="buscador">
+            <button type="submit" class="lupa">
+              <img th:src="@{/recursos/icons/lupa.png}" alt="lupa buscadora">
+            </button>
+            <input type="text" name="busqueda" th:value="${param.busqueda}" id="barra-busqueda" placeholder="Busca tu lugar de preferencia">
           </div>
-        </div>
 
-        <div class="calificacion">
-          <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-          <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-          <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-          <img src="../recursos/icons/fueguito.png" alt="fuego_4">
-          <img src="../recursos/icons/fueguito.png" alt="fuego_5">
-        </div>
+          <div class="filtros">
+            <div class="categorias">
+              <input type="checkbox" id="menu-desplegable" class="desplegar">
+              <label for="menu-desplegable" class="boton-desplegado">Categorías ▼</label>
+
+              <div class="opciones">
+                <label th:each="cat : ${categorias}">
+                  <input type="checkbox" name="categoriaIds" th:value="${cat.id}">
+                  <span th:text="${cat.nombre}">Gastronomía</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="calificacion">
+              <img th:each="num : ${#numbers.sequence(1, 5)}"
+                   th:src="@{/recursos/icons/fueguito.png}" th:alt="'fuego_' + ${num}">
+            </div>
+          </div>
+
+          <div class="botones">
+            <button type="submit" name="tipo" value="lugares" id="boton-filtro-lugar">Lugares</button>
+            <button type="submit" name="tipo" value="usuarios" id="boton-filtro-usuario">Usuarios</button>
+          </div>
+        </form>
       </div>
+    </header>
 
-      <div class="botones">
-        <button id="boton-filtro-lugar">Lugares</button>
-        <button id="boton-filtro-usuario">Usuarios</button>
-      </div>
-    </nav>
-  </div>
-</header>
-<section>
+    <!-- tarjetas de lugares -->
+    <section>
+      <a th:href="@{/admin/lugares/{id}(id=${lugar.id})}" class="enlace-tarjeta" th:each="lugar : ${lugares}">
+        <article class="tarjeta">
+          <h3 th:text="${lugar.nombre}">Mc Donalds's</h3>
 
-  <a href="lugar.html" class="enlace-tarjeta">
-    <article class="tarjeta">
-      <h3>Mc Donalds's</h3>
-      <div class="calificacion-tarjeta">
-        <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-        <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-        <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_4">
-        <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
-        <h3 class="numero-resenas">15</h3>
-      </div>
+          <div class="calificacion-tarjeta">
+            <img th:each="i : ${#numbers.sequence(1, 5)}"
+                 th:src="${i <= (lugar.calificacionPromedio ?:0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
+                 th:alt="'fuego_' + ${i}">
 
-      <img src="../recursos/imgs/mcdonals.png" alt="McDonalds">
-    </article>
-  </a>
+            <h3 class="numero-resenas" th:text="${#lists.size(lugar.resenas)}">15</h3>
+          </div>
 
-  <article class="tarjeta">
-    <h3>Carls Jr</h3>
-    <div class="calificacion-tarjeta">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_4">
-      <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
-      <h3 class="numero-resenas">15</h3>
-    </div>
-    <img src="../recursos/imgs/Carls%20Jr.png">
-  </article>
+          <img th:src="@{'/recursos/imgs/' + ${lugar.imagenUrl}}" th:alt="${lugar.nombre}">
+        </article>
+      </a>
 
-  <article class="tarjeta">
-    <h3>Dogos el chapo</h3>
-    <div class="calificacion-tarjeta">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_4">
-      <img src="../recursos/icons/fueguito.png" alt="fuego_5">
-      <h3 class="numero-resenas">15</h3>
-    </div>
-
-
-    <img src="../recursos/imgs/dogos.png">
-  </article>
-
-</section>
-<footer class="footer-mobile">
-  <nav class="navegation-mobile">
-    <ul>
-      <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
-        <p>Lugares</p></a></li>
-      <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
-        <p>Categorías</p></a></li>
-      <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
-        <p>Usuarios</p></a></li>
-      <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
-        <p>Métricas</p></a></li>
-      <li><a href="feed-admin.html"><img src="../recursos/icons/casita.png" alt="Marcador">
-        <p>Inicio</p></a></li>
-    </ul>
-  </nav>
-</footer>
-
-</body>
-</html>
+      <p th:if="${#lists.isEmpty(lugares)}">No se encontraron lugares para mostrar.</p>
+    </section>
+  </main>
+</th:block>

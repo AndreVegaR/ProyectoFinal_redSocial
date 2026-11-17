@@ -286,6 +286,9 @@ dialog button {
 
 /* Adaptación Dispositivos Móviles (Celular) */
 @media (max-width: 768px) {
+    .version-movil{
+        display: none;
+    }
     form {
         width: 90%;
         max-width: 700px;
