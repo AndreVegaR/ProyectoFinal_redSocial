@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import redSocial.redSocial.dtos.AdministradorDTO;
+import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.CuentaService;
+import redSocial.redSocial.service.LugarService;
+
+import java.util.List;
 
 /**
  * Controlador de autenticación.

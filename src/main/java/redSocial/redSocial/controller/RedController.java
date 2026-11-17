@@ -1,13 +1,24 @@
 package redSocial.redSocial.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import redSocial.redSocial.service.CategoriaService;
+import redSocial.redSocial.service.LugarService;
 
 /*
 Controlador de navegación
 */
 @Controller
 public class RedController {
+
+    @Autowired
+    private LugarService lugarService;
+
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/")
     public String inicio(){
@@ -20,7 +31,9 @@ public class RedController {
     }
 
     @GetMapping("/feed-admin")
-    public String mostrarFeedAdmin() {
+    public String mostrarFeedAdmin(@RequestParam(required = false) String busqueda, Model model) {
+        model.addAttribute("lugares", lugarService.listarLugares(busqueda));
+        model.addAttribute("categorias", categoriaService.listarTodas());
         return "feed-admin";
     }
 
