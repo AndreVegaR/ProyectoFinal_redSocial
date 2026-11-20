@@ -1,4 +1,4 @@
-package redSocial.redSocial.controller;
+package redSocial.redSocial.config;
 
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;

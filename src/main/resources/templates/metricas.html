@@ -1,150 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<th:block th:replace="~{layout/base :: layout(~{::encabezado}, ~{::main}, 'page-metricas')}">
+
+    <!-- Solo para ver el archivo sin Spring: al servirlo, th:replace descarta todo lo que
+         no sea el bloque "encabezado" y el main (el layout ya trae charset, viewport y styles.css) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
-    <title>Métricas</title>
-</head>
-<body>
 
-<header>
-    <nav class="navegation-desktop">
-        <a class="logo">
-            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
-        </a>
-        <ul>
-            <li><a href="crear-lugar.html">Lugares</a></li>
-            <li><a href="gestionar-categoria.html">Categorías</a></li>
-            <li><a href="gestion-usuarios.html">Usuarios</a></li>
-            <li><a href="metricas.html">Métricas</a></li>
-            <li><a href="feed-admin.html">Inicio</a></li>
-        </ul>
-    </nav>
-</header>
+    <!-- Este bloque SÍ viaja al <head> del layout, en el lugar de su <title>.
+         Así metricasPC.css lo importa solo esta vista y base.html no se modifica -->
+    <th:block th:fragment="encabezado">
+        <title>Métricas - Obregón Dice</title>
+        <link rel="stylesheet" href="../styles/metricasPC.css" th:href="@{/styles/metricasPC.css}">
+    </th:block>
 
-<main class="metricas">
-    <!-- PARTE PARA MOVIL -->
-    <div class="metricas-movil">
-        <!-- Parte superior -->
-        <section class="tituloMetricas">
-            <h1>Métricas</h1>
-            <div class="comboboxMetricas">
-                <select class="combobox" id="opciones" name="opciones">
-                    <option value="opcion1">Últimos 30 días</option>
-                    <option value="opcion2">Últimos 60 días</option>
-                    <option value="opcion3">Últimos 90 días</option>
-                </select>
-            </div>
-        </section>
-
-        <!-- Cuadritos con información resumida clave sobre las métricas -->
-        <section class="cantidadMetricas">
-            <div class="cuadritoMetricas">
-                <legend>Reseñas</legend>
-                <h3>15</h3>
-            </div>
-
-            <div class="cuadritoMetricas">
-                <legend>Promedio</legend>
-                <h3>4 (300 reseñas)</h3>
-            </div>
-        </section>
-
-        <!-- Lugares más reseñados -->
-        <section class="masReseniados">
-            <h1>Más reseñados</h1>
-
-            <!-- Lugar reseñado -->
-            <article class="tarjeta">
-                <h3>Mc Donalds's</h3>
-                <div class="calificacion-tarjeta">
-                    <img src="../recursos/icons/fueguito.png" alt="fuego_1">
-                    <img src="../recursos/icons/fueguito.png" alt="fuego_2">
-                    <img src="../recursos/icons/fueguito.png" alt="fuego_3">
-                    <img src="../recursos/icons/fuego-apagado.png" alt="fuego_4">
-                    <img src="../recursos/icons/fuego-apagado.png" alt="fuego_5">
-                    <h3 class="numero-resenas">15</h3>
+    <main class="metricas">
+        <!-- PARTE PARA MOVIL -->
+        <div class="metricas-movil">
+            <!-- Parte superior -->
+            <section class="tituloMetricas">
+                <h1>Métricas</h1>
+                <div class="comboboxMetricas">
+                    <select class="combobox" id="opciones" name="opciones">
+                        <option value="opcion1">Últimos 30 días</option>
+                        <option value="opcion2">Últimos 60 días</option>
+                        <option value="opcion3">Últimos 90 días</option>
+                    </select>
                 </div>
-                <img src="../recursos/imgs/mcdonals.png">
-            </article>
-        </section>
+            </section>
 
-        <!-- Más activos -->
-        <section class="masActivos">
-            <h1>Más activos</h1>
+            <!-- Cuadritos con información resumida clave sobre las métricas -->
+            <section class="cantidadMetricas">
+                <div class="cuadritoMetricas">
+                    <legend>Reseñas</legend>
+                    <h3>15</h3>
+                </div>
 
-            <!-- Usuario -->
-            <article class="tarjetaAndre tarjetaUsuario">
-                <img class="pfp" src="../src/img/marron.png">
-                <h3>@marron (31)</h3>
-                <button>Seguir</button>
-            </article>
+                <div class="cuadritoMetricas">
+                    <legend>Promedio</legend>
+                    <h3>4 (300 reseñas)</h3>
+                </div>
+            </section>
 
-            <!-- Usuario -->
-            <article class="tarjetaAndre tarjetaUsuario">
-                <img class="pfp" src="../src/img/gamota.png">
-                <h3>@gamota(27)</h3>
-                <button>Siguiendo</button>
-            </article>
-        </section>
-    </div>
+            <!-- Lugares más reseñados -->
+            <section class="masReseniados">
+                <h1>Más reseñados</h1>
+
+                <!-- Lugar reseñado -->
+                <article class="tarjeta">
+                    <h3>Mc Donalds's</h3>
+                    <div class="calificacion-tarjeta">
+                        <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1">
+                        <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2">
+                        <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3">
+                        <img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_4">
+                        <img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5">
+                        <h3 class="numero-resenas">15</h3>
+                    </div>
+                    <img src="../recursos/imgs/mcdonals.png" th:src="@{/recursos/imgs/mcdonals.png}">
+                </article>
+            </section>
+
+            <!-- Más activos -->
+            <section class="masActivos">
+                <h1>Más activos</h1>
+
+                <!-- Usuario -->
+                <article class="tarjetaAndre tarjetaUsuario">
+                    <img class="pfp" src="../src/img/marron.png" th:src="@{/src/img/marron.png}">
+                    <h3>@marron (31)</h3>
+                    <button>Seguir</button>
+                </article>
+
+                <!-- Usuario -->
+                <article class="tarjetaAndre tarjetaUsuario">
+                    <img class="pfp" src="../src/img/gamota.png" th:src="@{/src/img/gamota.png}">
+                    <h3>@gamota(27)</h3>
+                    <button>Siguiendo</button>
+                </article>
+            </section>
+        </div>
 
 
 
-    <!-- PARTE PARA ESCRITORIO -->
-    <div class="metricas-escritorio">
-        <!-- Parte superior de las métricas -->
-        <section class="tituloMetricas">
-            <h1>Métricas</h1>
-            <div class="comboboxMetricas">
+        <!-- PARTE PARA ESCRITORIO -->
+        <div class="metricas-escritorio">
+            <!-- Parte superior de las métricas -->
+            <section class="tituloMetricasEscritorio">
+                <h1>Métricas</h1>
 
-                <!-- Combobox para días -->
-                <select class="combobox" id="opciones-escritorio" name="opciones">
-                    <option value="opcion1">Últimos 30 días</option>
-                    <option value="opcion2">Últimos 60 días</option>
-                    <option value="opcion3">Últimos 90 días</option>
-                </select>
+                <div class="filtrosEscritorio">
+                    <!-- Buscador -->
+                    <div class="buscadorEscritorio">
+                        <input type="text" id="buscador-escritorio" name="buscador" placeholder="Buscar">
+                        <button class="botonLupaEscritorio" type="button">
+                            <img src="../recursos/icons/lupa.png" th:src="@{/recursos/icons/lupa.png}" alt="Buscar">
+                        </button>
+                    </div>
 
-                <!-- Combobox para categorías -->
-                <select class="combobox" id="categorias-escritorio" name="opciones">
-                    <option value="opcion1">Restaurantes</option>
-                    <option value="opcion2">Recreación</option>
-                    <option value="opcion3">Instituciones</option>
-                </select>
+                    <!-- Combobox para días -->
+                    <select class="combobox comboboxEscritorio" id="opciones-escritorio" name="opciones">
+                        <option value="opcion1">Últimos 30 días</option>
+                        <option value="opcion2">Últimos 60 días</option>
+                        <option value="opcion3">Últimos 90 días</option>
+                    </select>
 
-                <!-- Combobox según reseñas -->
-                <select class="combobox" id="reseniados-escritorio" name="opciones">
-                    <option value="opcion1">Más reseñados</option>
-                    <option value="opcion2">Menos reseñados</option>
-                </select>
+                    <!-- Combobox para categorías -->
+                    <select class="combobox comboboxEscritorio" id="categorias-escritorio" name="opciones">
+                        <option value="">Categoría</option>
+                        <option value="opcion1">Restaurantes</option>
+                        <option value="opcion2">Recreación</option>
+                        <option value="opcion3">Instituciones</option>
+                    </select>
+
+                    <!-- Filtro por calificación -->
+                    <div class="calificacionFiltroEscritorio">
+                        <h3>Calificación</h3>
+                        <div class="fuegosFiltroEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_5"></div>
+                    </div>
+
+                    <!-- Combobox según reseñas -->
+                    <select class="combobox comboboxEscritorio" id="reseniados-escritorio" name="opciones">
+                        <option value="opcion1">Más reseñados</option>
+                        <option value="opcion2">Menos reseñados</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Contenido: lugares y usuarios -->
+            <div class="contenidoEscritorio">
+                <!-- Lugares más reseñados -->
+                <section class="panelEscritorio masReseniadosEscritorio">
+                    <h2>Más reseñados</h2>
+
+                    <!-- Lugar reseñado -->
+                    <article class="lugarEscritorio">
+                        <h3>Dogos el chapo</h3>
+                        <div class="datosLugarEscritorio">
+                            <img class="fotoLugarEscritorio" src="../recursos/imgs/dogos.png" th:src="@{/recursos/imgs/dogos.png}" alt="Dogos el chapo">
+                            <div class="cuadroDatoEscritorio">
+                                <h4>Reseñas</h4>
+                                <p>250</p>
+                            </div>
+                            <div class="cuadroDatoEscritorio">
+                                <h4>Promedio</h4>
+                                <div class="fuegosEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Lugar reseñado -->
+                    <article class="lugarEscritorio">
+                        <h3>Mc Donnald's</h3>
+                        <div class="datosLugarEscritorio">
+                            <img class="fotoLugarEscritorio" src="../recursos/imgs/mcdonals.png" th:src="@{/recursos/imgs/mcdonals.png}" alt="Mc Donnald's">
+                            <div class="cuadroDatoEscritorio">
+                                <h4>Reseñas</h4>
+                                <p>130</p>
+                            </div>
+                            <div class="cuadroDatoEscritorio">
+                                <h4>Promedio</h4>
+                                <div class="fuegosEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_4"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5"></div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Usuarios más activos -->
+                <section class="panelEscritorio masActivosEscritorio">
+                    <h2>Más activos</h2>
+                    <div class="listaUsuariosEscritorio">
+
+                        <!-- Usuario -->
+                        <article class="usuarioEscritorio">
+                            <img class="fotoUsuarioEscritorio" src="../src/img/gamota.png" th:src="@{/src/img/gamota.png}" alt="gamota">
+                            <h3>@gamota (31)</h3>
+                            <button class="botonGestionarEscritorio">Gestionar</button>
+                        </article>
+
+                        <!-- Usuario -->
+                        <article class="usuarioEscritorio">
+                            <img class="fotoUsuarioEscritorio" src="../src/img/andree.png" th:src="@{/src/img/andree.png}" alt="andree">
+                            <h3>@andree (27)</h3>
+                            <button class="botonGestionarEscritorio">Gestionar</button>
+                        </article>
+
+                        <!-- Usuario -->
+                        <article class="usuarioEscritorio">
+                            <img class="fotoUsuarioEscritorio" src="../src/img/marron.png" th:src="@{/src/img/marron.png}" alt="marron">
+                            <h3>@marron (22)</h3>
+                            <button class="botonGestionarEscritorio">Gestionar</button>
+                        </article>
+                    </div>
+                </section>
             </div>
-        </section>
-    </div>
+        </div>
 
 
-
-
-
-</main>
-
-<!-- Pie de págida -->
-<footer class="footer-mobile">
-    <nav class="navegation-mobile">
-        <ul>
-            <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
-                <p>Lugares</p></a></li>
-            <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
-                <p>Categorías</p></a></li>
-            <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
-                <p>Usuarios</p></a></li>
-            <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
-                <p>Métricas</p></a></li>
-            <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
-                <p>Inicio</p></a></li>
-        </ul>
-    </nav>
-</footer>
-</body>
-</html>
+    </main>
+</th:block>
