@@ -16,3 +16,5 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true) // PARA COMPARAR UN ADMIN CON OTRO, COMPARA ATRIBUTOS HEREDADODS
 public class Administrador extends Cuenta{
 }
+
+

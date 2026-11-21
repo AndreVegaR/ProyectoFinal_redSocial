@@ -1,16 +1,12 @@
 <th:block th:replace="~{layout/base :: layout(~{::encabezado}, ~{::main}, 'page-metricas')}">
 
-    <!-- Solo para ver el archivo sin Spring: al servirlo, th:replace descarta todo lo que
-         no sea el bloque "encabezado" y el main (el layout ya trae charset, viewport y styles.css) -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styles.css">
 
-    <!-- Este bloque SÍ viaja al <head> del layout, en el lugar de su <title>.
-         Así metricasPC.css lo importa solo esta vista y base.html no se modifica -->
     <th:block th:fragment="encabezado">
         <title>Métricas - Obregón Dice</title>
-        <link rel="stylesheet" href="../styles/metricasPC.css" th:href="@{/styles/metricasPC.css}">
     </th:block>
 
     <main class="metricas">
