@@ -1,0 +1,133 @@
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-place')}">
+
+    <title th:text="${lugar.nombre} + ' - Admin Obregón Dice'">Detalle del lugar</title>
+
+    <main>
+        <header>
+            <a class="logo" th:href="@{/feed-admin}">
+                <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
+            </a>
+
+            <div class="version-desktop">
+                <img th:src="@{/recursos/imgs/imgFeedDesktop.png}" class="fondo-img-desktop" alt="Fondo">
+                <div class="contenido-header-desktop">
+                    <div class="header-top-desktop">
+                        <a class="logo-desktop" th:href="@{/feed-admin}">
+                            <img th:src="@{/recursos/icons/titulo.png}" alt="logo obregon dice">
+                        </a>
+
+                        <form th:action="@{/feed-admin}" method="get" class="buscador-desktop">
+                            <input type="text" name="busqueda" placeholder="Busca cosas de tu interés">
+                            <button type="submit" class="btn-lupa-desktop">
+                                <img th:src="@{/recursos/icons/lupa.png}" alt="buscar">
+                            </button>
+                        </form>
+
+                        <nav class="navegation-desktop">
+                            <ul>
+                                <li><a th:href="@{/admin/lugares}">Lugares</a></li>
+                                <li><a th:href="@{/admin/categorias}">Categorías</a></li>
+                                <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+                                <li><a th:href="@{/admin/metricas}">Métricas</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="pestanas-desktop">
+                        <a th:href="@{/feed-admin}" class="activa">Lugares</a>
+                    </div>
+
+                    <div class="filtros-desktop">
+                        <div class="categorias-desktop">
+                            <a th:each="cat : ${categorias}"
+                               th:href="@{/feed-admin(categoriaId=${cat.id})}"
+                               th:text="${cat.nombre + ' ▼'}"
+                               class="dropdown">Gastronomía ▼</a>
+                        </div>
+
+                        <div class="calificacion-desktop">
+                            <span>Calificación</span>
+                            <div class="fuegos-desktop">
+                                <a th:each="num : ${#numbers.sequence(1, 5)}"
+                                   th:href="@{/feed-admin(calificacion=${num})}">
+                                    <img th:src="@{/recursos/icons/fueguito.png}" th:alt="'fuego_' + ${num}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article class="info-lugar">
+            <!-- Columna izquierda: título e imagen -->
+            <header id="header-lugar">
+                <h1><span th:text="${lugar.nombre}"></span></h1>
+                <img th:src="@{'/recursos/imgs/' + ${lugar.imagenUrl}}" th:alt="${lugar.nombre}" id="imagen-lugar">
+            </header>
+
+            <!-- Columna derecha: calificación, datos y botón Editar -->
+            <section class="info-lugar-detalle">
+                <div id="calificacion-lugar">
+                    <img th:each="i : ${#numbers.sequence(1, 5)}"
+                         th:src="${i <= (lugar.calificacionPromedio ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
+                         th:alt="'fuego_' + ${i}">
+                    <h2 th:text="${#lists.size(lugar.resenas)} + ' reseñas'">0 reseñas</h2>
+                </div>
+
+                <p th:text="${lugar.descripcion}">Descripción del lugar.</p>
+
+                <h3>Dirección</h3>
+                <h3>Dirección</h3>
+                <p th:if="${lugar.direccion != null}"
+                   th:text="${lugar.direccion.calle + ' #' + lugar.direccion.numero + ', Col. ' + lugar.direccion.colonia}">
+                </p>
+
+                <div class="categoria-fila">
+                    <div class="categoria-info">
+                        <h3>Categoría</h3>
+                        <p><span th:text="${lugar.categoria.nombre}">Restaurante</span></p>
+                    </div>
+
+                    <button type="button"
+                            id="boton-reseñar"
+                            class="btn-editar-lugar"
+                            th:onclick="|window.location.href='@{/admin/lugares/editar/{id}(id=${lugar.id})}'|">
+                        Editar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Sección inferior: reseñas -->
+            <section class="reseñas">
+                <article class="reseña" th:each="resena : ${lugar.resenas}">
+                    <div class="encabezado-usuario">
+                        <img th:src="${resena.usuario.fotoPerfil != null} ? @{'/recursos/imgs/' + ${resena.usuario.fotoPerfil}} : @{/recursos/imgs/perrolengua.png}"
+                             th:alt="${resena.usuario.nombreUsuario}"
+                             class="foto-perfil">
+
+                        <div class="datos-usuario-resena">
+                            <h3 th:text="${resena.usuario.nombreUsuario}">marron</h3>
+                            <div class="calificacion-usuario-lugar">
+                                <img th:each="i : ${#numbers.sequence(1, 5)}"
+                                     th:src="${i <= (resena.calificacion ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
+                                     th:alt="'fuego_' + ${i}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <p th:text="${resena.comentario}">Comentario de la reseña.</p>
+                </article>
+
+                <p th:if="${#lists.isEmpty(lugar.resenas)}" style="color: var(--colorTextoApagado); text-align: center;">
+                    Este lugar aún no tiene reseñas registradas.
+                </p>
+            </section>
+        </article>
+
+        <footer class="footer-desk">
+            <p><span>Copyright© 2026 ObregonDice</span></p>
+        </footer>
+    </main>
+
+</th:block>

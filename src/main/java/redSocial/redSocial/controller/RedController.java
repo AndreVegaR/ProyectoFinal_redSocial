@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import redSocial.redSocial.model.Lugar;
 import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.LugarService;
 
@@ -40,5 +42,15 @@ public class RedController {
     @GetMapping("/Feed-principal-usuario")
     public String mostrarFeedUsuario() {
         return "Feed-principal-usuario";
+    }
+
+    @GetMapping("/admin/lugares/{id}")
+    public String mostrarDetalleLugarAdmin(@PathVariable Long id, Model model) { 
+        Lugar lugar = lugarService.buscarPorId(id);
+
+        model.addAttribute("lugar", lugar);
+        model.addAttribute("categorias", categoriaService.listarTodas());
+
+        return "lugar-admin";
     }
 }
