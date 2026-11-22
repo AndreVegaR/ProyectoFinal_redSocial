@@ -30,6 +30,11 @@ public class Cuenta {
     @Column(nullable = false, length = 100)
     private String apellidos;
 
+    @NotBlank(message = "El nickname es obligatorio")
+    @Size(min = 2, max = 100, message = "El nickname debe tener entre 2 y 100 caracteres")
+    @Column(name = "nickname", nullable = false, length = 100)
+    private String nickname;
+
     @NotNull(message = "La fecha de nacimiento es obligatoria")
     @Past(message = "La fecha de nacimiento debe ser anterior a la fecha actual")
     @Column(nullable = false)

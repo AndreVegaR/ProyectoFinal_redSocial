@@ -26,4 +26,6 @@ public class LugarService {
         return lugarRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No se encontró el lugar con ID: " + id));
     }
+
+
 }
