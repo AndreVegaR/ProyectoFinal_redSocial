@@ -60,4 +60,12 @@ public class RedController {
         model.addAttribute("categorias", categoriaService.listarTodas());
         return "crear-lugar";
     }
+
+    @GetMapping("/admin/lugares/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
+        Lugar lugar = lugarService.buscarPorId(id);
+        model.addAttribute("lugar", lugar);
+        model.addAttribute("categorias", categoriaService.listarTodas());
+        return "crear-lugar";
+    }
 }

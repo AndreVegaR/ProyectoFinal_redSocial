@@ -1,42 +1,48 @@
 <th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-admin-crear-lugar')}">
 
-    <title>Crear Lugar - Obregón Dice</title>
+    <title th:text="${lugar != null and lugar.id != null} ? 'Editar Lugar - Obregón Dice' : 'Crear Lugar - Obregón Dice'">
+        Crear Lugar - Obregón Dice
+    </title>
 
     <main>
         <form id="form-crear-lugar"
               th:action="@{/admin/crear-lugar/guardar}"
               method="post"
               enctype="multipart/form-data">
-            <h1>¡Crea un lugar!</h1>
+            <h1 th:text="${lugar != null and lugar.id != null} ? '¡Edita el lugar!' : '¡Crea un lugar!'">
+                ¡Crea un lugar!
+            </h1>
+
+            <input type="hidden" name="id" th:value="${lugar?.id}">
 
             <div id="nombre-lugar">
                 <label for="txt-lugar"> Nombre lugar:</label>
-                <input type="text" name="nombre" id="txt-lugar" placeholder="Nombre del lugar">
+                <input type="text" name="nombre" id="txt-lugar" th:value="${lugar?.nombre}"  placeholder="Nombre del lugar" required>
             </div>
 
             <div id="direccion-lugar">
                 <div>
                     <label for="txt-calle"> Calle:</label>
-                    <input type="text" name="calle" id="txt-calle" placeholder="Calle">
+                    <input type="text" name="calle" id="txt-calle" th:value="${lugar?.direccion?.calle}" placeholder="Calle">
                 </div>
                 <div>
                     <label for="txt-numero"> Número:</label>
-                    <input type="text" name="numero" id="txt-numero" placeholder="Número">
+                    <input type="text" name="numero" id="txt-numero" th:value="${lugar?.direccion?.numero}" placeholder="Número">
                 </div>
                 <div>
                     <label for="txt-colonia"> Colonia:</label>
-                    <input type="text" name="colonia" id="txt-colonia" placeholder="Colonia">
+                    <input type="text" name="colonia" id="txt-colonia" th:value="${lugar?.direccion?.colonia}" placeholder="Colonia">
                 </div>
             </div>
 
             <div id="coordenadas-lugar">
                 <div>
                     <label for="txt-latitud">Latitud:</label>
-                    <input type="text" name="latitud" id="txt-latitud" placeholder="Latitud">
+                    <input type="text" name="latitud" id="txt-latitud" th:value="${lugar?.direccion?.latitud}" placeholder="Latitud">
                 </div>
                 <div>
                     <label for="txt-longitud">Longitud:</label>
-                    <input type="text" name="longitud" id="txt-longitud" placeholder="Longitud">
+                    <input type="text" name="longitud" id="txt-longitud" th:value="${lugar?.direccion?.longitud}" placeholder="Longitud">
                 </div>
             </div>
 
@@ -45,22 +51,28 @@
                 <select name="categoria.id" id="categoria" required>
                     <option th:each="cat : ${categorias}"
                             th:value="${cat.id}"
-                            th:text="${cat.nombre}">Restaurante</option>
+                            th:text="${cat.nombre}"
+                            th:selected="${lugar?.categoria != null and lugar.categoria.id == cat.id}">Restaurante</option>
                 </select>
             </div>
 
             <div id="descricion-lugar">
                 <label for="descripcion">Descripción</label>
                 <textarea name="descripcion" id="descripcion" cols="40" rows="5"
-                          placeholder="Ingrese una descripción"></textarea>
+                          th:text="${lugar?.descripcion}" placeholder="Ingrese una descripción"></textarea>
             </div>
 
             <div id="imagen-lugar">
                 <label for="input-imagen">Imagen:</label>
                 <input type="file" name="imagen" id="input-imagen" accept="image/*">
+                <p th:if="${lugar != null and lugar.imagenUrl != null}">
+                    Imagen actual: <span th:text="${lugar.imagenUrl}"></span>
+                </p>
             </div>
 
-            <button type="button" id="publicar-lugar">Publicar lugar</button>
+            <button type="button" id="publicar-lugar"
+                    th:text="${lugar != null and lugar.id != null} ? 'Guardar cambios' : 'Publicar lugar'">
+                Publicar lugar</button>
         </form>
 
         <dialog id="aceptarModal">
