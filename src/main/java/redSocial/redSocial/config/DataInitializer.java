@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import redSocial.redSocial.model.*;
 import redSocial.redSocial.repository.AdministradorRepository;
+import redSocial.redSocial.repository.CategoriaRepository;
 import redSocial.redSocial.repository.LugarRepository;
 import redSocial.redSocial.repository.UsuarioRepository;
 
@@ -16,15 +17,18 @@ public class DataInitializer {
     private final PasswordEncoder passwordEncoder;
     private final UsuarioRepository usuarioRepository;
     private final LugarRepository lugarRepository;
+    private final CategoriaRepository categoriaRepository;
 
     public DataInitializer(AdministradorRepository administradorRepository,
                            UsuarioRepository usuarioRepository,
                            LugarRepository lugarRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           CategoriaRepository categoriaRepository) {
         this.administradorRepository = administradorRepository;
         this.passwordEncoder = passwordEncoder;
         this.usuarioRepository = usuarioRepository;
         this.lugarRepository = lugarRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
     @PostConstruct //Esto de aqui hace que spring ejecute esto automáticamente al iniciar la ejecución
@@ -75,12 +79,15 @@ public class DataInitializer {
         if (lugarRepository.findAll().isEmpty()) {
             Categoria categoria = new Categoria();
             categoria.setNombre("Restaurante");
+            categoria = categoriaRepository.save(categoria); // ✅ Guardar primero para obtener su ID
+
             Direccion direccion = new Direccion();
             direccion.setCalle("Villas del Rey");
             direccion.setColonia("Villas del Rey");
             direccion.setNumero("670");
             direccion.setLatitud("27.4828");
             direccion.setLongitud("-109.9304");
+
             Lugar lugar1 = new Lugar();
             lugar1.setNombre("Hotdogs el Chapo");
             lugar1.setCategoria(categoria);
@@ -91,6 +98,8 @@ public class DataInitializer {
 
             Categoria categoria2 = new Categoria();
             categoria2.setNombre("Decoración");
+            categoria2 = categoriaRepository.save(categoria2); // ✅ Guardar primero para obtener su ID
+
             Lugar lugar2 = new Lugar();
             lugar2.setNombre("La Laguna");
             lugar2.setCategoria(categoria2);
