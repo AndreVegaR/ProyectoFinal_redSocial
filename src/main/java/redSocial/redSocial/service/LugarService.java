@@ -1,16 +1,21 @@
 package redSocial.redSocial.service;
 
-import org.apache.coyote.Adapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import redSocial.redSocial.adapters.AdministradorAdapter;
+import org.springframework.web.multipart.MultipartFile;
+import redSocial.redSocial.adapters.LugarAdapter;
 import redSocial.redSocial.dtos.LugarDTO;
 import redSocial.redSocial.model.Lugar;
 import redSocial.redSocial.repository.LugarRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class LugarService {
@@ -31,11 +36,34 @@ public class LugarService {
                 .orElseThrow(() -> new RuntimeException("No se encontró el lugar con ID: " + id));
     }
 
-    public Lugar registrarLugar(@RequestBody LugarDTO lugardto){
-        if(lugardto != null){
-            //lugarRepository.save()
+    @Transactional
+    public Long registrarLugar(LugarDTO lugardto, MultipartFile imagen) throws IOException {
+        String nombreArchivo = null;
+
+        if (imagen != null && !imagen.isEmpty()) {
+            nombreArchivo = guardarArchivoEnCarpeta(imagen);
+            lugardto.setImagenUrl(nombreArchivo);
         }
-        return null;
+
+        Lugar lugar = LugarAdapter.toEntity(lugardto, nombreArchivo);
+        Lugar lugarGuardado = lugarRepository.save(lugar);
+
+        return lugarGuardado.getId();
     }
 
+
+    private String guardarArchivoEnCarpeta(MultipartFile imagen) throws IOException {
+        String carpetaDestino = "src/main/resources/recursos/imgs/";
+        Path rutaCarpeta = Paths.get(carpetaDestino);
+
+        if (!Files.exists(rutaCarpeta)) {
+            Files.createDirectories(rutaCarpeta);
+        }
+
+        String nombreArchivo = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
+        Path rutaArchivo = rutaCarpeta.resolve(nombreArchivo);
+        Files.copy(imagen.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
+
+        return nombreArchivo;
+    }
 }

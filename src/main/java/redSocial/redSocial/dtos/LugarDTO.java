@@ -1,6 +1,7 @@
 package redSocial.redSocial.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import redSocial.redSocial.model.Categoria;
@@ -16,7 +17,7 @@ public class LugarDTO {
 
     private String imagenUrl;
 
-    @NotBlank(message = "categoría es obligatorio")
+    @NotNull(message = "La categoría es obligatoria")
     private Categoria categoria;
 
     @NotBlank(message = "calle es obligatorio")

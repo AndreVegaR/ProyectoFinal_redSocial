@@ -4,7 +4,7 @@
 
     <main>
         <form id="form-crear-lugar"
-              th:action="@{/admin/lugares}"
+              th:action="@{/admin/crear-lugar/guardar}"
               method="post"
               enctype="multipart/form-data">
             <h1>¡Crea un lugar!</h1>
@@ -42,7 +42,7 @@
 
             <div id="categoria-lugar">
                 <label for="categoria"> Categoría:</label>
-                <select name="categoriaId" id="categoria">
+                <select name="categoria.id" id="categoria" required>
                     <option th:each="cat : ${categorias}"
                             th:value="${cat.id}"
                             th:text="${cat.nombre}">Restaurante</option>
