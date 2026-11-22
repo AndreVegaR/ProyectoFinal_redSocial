@@ -103,7 +103,7 @@
                  th:src="${i <= (lugar.calificacionPromedio ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
                  th:alt="'fuego_' + ${i}">
 
-            <h3 class="numero-resenas" th:text="${#lists.size(lugar.resenas)} + ' reseñas'">0 reseñas</h3>
+            <h3 class="numero-resenas" th:text="${#lists.size(lugar.resenas.?[estado != null and estado.name() == 'ACTIVO'])} + ' reseñas'">0 reseñas</h3>
           </div>
 
           <img th:src="@{'/recursos/imgs/' + ${lugar.imagenUrl}}" th:alt="${lugar.nombre}">

@@ -1519,6 +1519,15 @@ body.page-place #calificacion-lugar {
     align-items: center;
     gap: 0.4rem;
 }
+body.page-place .reseña .btn-moderar-lugar {
+    margin-left: auto;
+    width: auto;
+    padding: 0.45rem 1.2rem;
+    background-color: var(--color-boton-normal-desktop);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
 
 @media (min-width: 800px) {
     body.page-place main {

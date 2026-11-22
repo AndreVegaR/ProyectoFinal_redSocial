@@ -72,12 +72,11 @@
                     <img th:each="i : ${#numbers.sequence(1, 5)}"
                          th:src="${i <= (lugar.calificacionPromedio ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
                          th:alt="'fuego_' + ${i}">
-                    <h2 th:text="${#lists.size(lugar.resenas)} + ' reseñas'">0 reseñas</h2>
+                    <h2 th:text="${#lists.size(lugar.resenas.?[estado != null and estado.name() == 'ACTIVO'])} + ' reseñas'">0 reseñas</h2>
                 </div>
 
                 <p th:text="${lugar.descripcion}">Descripción del lugar.</p>
 
-                <h3>Dirección</h3>
                 <h3>Dirección</h3>
                 <p th:if="${lugar.direccion != null}"
                    th:text="${lugar.direccion.calle + ' #' + lugar.direccion.numero + ', Col. ' + lugar.direccion.colonia}">
@@ -100,30 +99,87 @@
 
             <!-- Sección inferior: reseñas -->
             <section class="reseñas">
-                <article class="reseña" th:each="resena : ${lugar.resenas}">
+                <article class="reseña"
+                         th:each="resena : ${lugar.resenas}"
+                         th:if="${resena.estado?.name() == 'ACTIVO'}">
                     <div class="encabezado-usuario">
                         <img th:src="${resena.usuario.fotoPerfil != null} ? @{'/recursos/imgs/' + ${resena.usuario.fotoPerfil}} : @{/recursos/imgs/perrolengua.png}"
-                             th:alt="${resena.usuario.nombreUsuario}"
+                             th:alt="${resena.usuario.nickname}"
                              class="foto-perfil">
 
                         <div class="datos-usuario-resena">
-                            <h3 th:text="${resena.usuario.nombreUsuario}">marron</h3>
+                            <h3 th:text="${resena.usuario.nickname}">marron</h3>
                             <div class="calificacion-usuario-lugar">
                                 <img th:each="i : ${#numbers.sequence(1, 5)}"
                                      th:src="${i <= (resena.calificacion ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
                                      th:alt="'fuego_' + ${i}">
                             </div>
                         </div>
+
+                        <button type="button"
+                                class="btn-moderar-lugar"
+                                th:data-id="${resena.id}">
+                            Moderar
+                        </button>
                     </div>
 
-                    <p th:text="${resena.comentario}">Comentario de la reseña.</p>
+                    <p th:text="${resena.texto}">Comentario de la reseña.</p>
                 </article>
 
-                <p th:if="${#lists.isEmpty(lugar.resenas)}" style="color: var(--colorTextoApagado); text-align: center;">
+                <p th:if="${#lists.isEmpty(lugar.resenas.?[estado?.name() == 'ACTIVO'])}">
                     Este lugar aún no tiene reseñas registradas.
                 </p>
             </section>
         </article>
+
+        <dialog id="modal-moderar">
+            <h2>Justificación</h2>
+
+            <form th:action="@{/admin/resenas/moderar}" method="post">
+                <input type="hidden" name="resenaId" id="input-resena-id">
+                <input type="hidden" name="lugarId" th:value="${lugar.id}">
+
+                <div class="opciones-justificacion">
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Contenido Inapropiado" checked>
+                        <span>Contenido Inapropiado</span>
+                    </label>
+
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Spam">
+                        <span>Spam</span>
+                    </label>
+
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Violación a las políticas de la plataforma">
+                        <span>Violación a las políticas de la plataforma</span>
+                    </label>
+                </div>
+
+                <div class="modal-acciones">
+                    <button type="submit">Aceptar</button>
+                    <button type="button" id="boton-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <script>
+            const modalModerar = document.getElementById('modal-moderar');
+            const inputResenaId = document.getElementById('input-resena-id');
+            const btnCancelar = document.getElementById('boton-cancelar');
+
+            document.querySelectorAll('.btn-moderar-lugar').forEach(boton => {
+                boton.addEventListener('click', () => {
+                    inputResenaId.value = boton.dataset.id;
+                    modalModerar.querySelector('input[type="radio"]').checked = true;
+                    modalModerar.showModal();
+                });
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modalModerar.close();
+            });
+        </script>
 
         <footer class="footer-desk">
             <p><span>Copyright© 2026 ObregonDice</span></p>
