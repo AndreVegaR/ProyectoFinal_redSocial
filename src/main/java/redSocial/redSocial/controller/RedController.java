@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import redSocial.redSocial.model.Lugar;
+import redSocial.redSocial.repository.CategoriaRepository;
 import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.LugarService;
 
@@ -52,5 +53,11 @@ public class RedController {
         model.addAttribute("categorias", categoriaService.listarTodas());
 
         return "lugar-admin";
+    }
+
+    @GetMapping("/admin/crear-lugar")
+    public String mostrarCrearLugar(Model model) {
+        model.addAttribute("categorias", categoriaService.listarTodas());
+        return "crear-lugar";
     }
 }

@@ -13,20 +13,41 @@
 
     <body th:class="${claseBody}">
     <header th:if="${claseBody != 'page-feed-admin' and claseBody != 'page-place'}">
-        <a class="logo">
-            <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
-        </a>
-        <img th:src="@{/recursos/icons/titulo.png}" alt="titulo obregon dice" class="titulo-app">
+
+        <!-- Admin: misma estructura que tenías en crear-lugar.html -->
+        <nav class="navegation-desktop"
+             th:if="${claseBody != null and #strings.startsWith(claseBody, 'page-admin')}">
+            <a class="logo" th:href="@{/feed-admin}">
+                <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
+            </a>
+            <ul>
+                <li><a th:href="@{/admin/crear-lugar}">Lugares</a></li>
+                <li><a th:href="@{/admin/categorias}">Categorías</a></li>
+                <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+                <li><a th:href="@{/admin/metricas}">Métricas</a></li>
+                <li><a th:href="@{/feed-admin}">Inicio</a></li>
+            </ul>
+        </nav>
+
+        <!-- Resto de páginas (login, registro, etc.): igual que antes -->
+        <th:block th:unless="${claseBody != null and #strings.startsWith(claseBody, 'page-admin')}">
+            <a class="logo">
+                <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
+            </a>
+            <img th:src="@{/recursos/icons/titulo.png}" alt="titulo obregon dice" class="titulo-app">
+        </th:block>
     </header>
 
+
     <!-- Oculto en feed-admin para no encimarse al banner -->
-    <nav th:if="${claseBody != 'page-feed-admin' and claseBody != 'page-place'}">
+    <nav th:if="${claseBody != 'page-feed-admin' and claseBody != 'page-place' and claseBody != 'page-admin-crear-lugar'}">
         <th:block th:if="${session.admin_id != null}">
             <form th:action="@{/admin/logout}" method="post">
                 <button type="submit">Cerrar sesión</button>
             </form>
         </th:block>
     </nav>
+
 
     <!-- Main -->
     <main class="container" th:replace="${contenido}">
@@ -37,7 +58,7 @@
     <footer class="footer-mobile" th:if="${session.admin_id != null}">
         <nav class="navegation-mobile">
             <ul>
-                <li><a th:href="@{/admin/lugares}"><img th:src="@{/recursos/icons/marcador.png}" alt="Marcador"><p>Lugares</p></a></li>
+                <li><a th:href="@{/admin/crear-lugar}"><img th:src="@{/recursos/icons/marcador.png}" alt="Marcador"><p>Lugares</p></a></li>
                 <li><a th:href="@{/admin/categorias}"><img th:src="@{/recursos/icons/categoria.png}" alt="Categorías"><p>Categorías</p></a></li>
                 <li><a th:href="@{/admin/usuarios}"><img th:src="@{/recursos/icons/usuarios.png}" alt="Usuarios"><p>Usuarios</p></a></li>
                 <li><a th:href="@{/admin/metricas}"><img th:src="@{/recursos/icons/metricas.png}" alt="Métricas"><p>Métricas</p></a></li>

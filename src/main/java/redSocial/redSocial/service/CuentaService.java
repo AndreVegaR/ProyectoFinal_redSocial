@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import redSocial.redSocial.adapters.AdministradorAdapter;
-import redSocial.redSocial.bos.AdministradorBO;
 import redSocial.redSocial.dtos.AdministradorDTO;
 import redSocial.redSocial.model.Administrador;
 import redSocial.redSocial.repository.AdministradorRepository;
@@ -27,14 +26,12 @@ public class CuentaService {
 
         if(administrador.isPresent()){
 
-            // para trabajar con el bo
-            AdministradorBO adminBO = AdministradorAdapter.entity_a_bo(administrador.get());
 
             // ahora sí matchear
-            if(passwordEncoder.matches(contrasenia, adminBO.getContrasenia())){
+            if(passwordEncoder.matches(contrasenia, administrador.get().getContrasenia())){
 
                 // pa que se envíe pa arriba xddd lolol
-                return AdministradorAdapter.bo_a_dto(adminBO);
+                return AdministradorAdapter.entity_a_dto(administrador.get());
             }
         }
         return null;
