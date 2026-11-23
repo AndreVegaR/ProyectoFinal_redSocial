@@ -3,14 +3,16 @@ package redSocial.redSocial.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import redSocial.redSocial.dtos.LugarDTO;
 import redSocial.redSocial.model.Lugar;
 import redSocial.redSocial.repository.CategoriaRepository;
 import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.LugarService;
 import redSocial.redSocial.service.UsuarioService;
+
+import java.io.IOException;
 
 /*
 Controlador de navegación
@@ -28,12 +30,12 @@ public class RedController {
     private UsuarioService usuarioService;
 
     @GetMapping("/")
-    public String inicio(){
+    public String inicio() {
         return "inicio-sesion";
     }
 
     @GetMapping("/inicio-sesion")
-    public String mostrarInicioSesion(){
+    public String mostrarInicioSesion() {
         return "inicio-sesion";
     }
 
@@ -50,7 +52,7 @@ public class RedController {
     }
 
     @GetMapping("/admin/lugares/{id}")
-    public String mostrarDetalleLugarAdmin(@PathVariable Long id, Model model) { 
+    public String mostrarDetalleLugarAdmin(@PathVariable Long id, Model model) {
         Lugar lugar = lugarService.buscarPorId(id);
 
         model.addAttribute("lugar", lugar);
@@ -67,14 +69,23 @@ public class RedController {
 
     @GetMapping("/admin/lugares/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        Lugar lugar = lugarService.buscarPorId(id);
-        model.addAttribute("lugar", lugar);
+        model.addAttribute("lugar", lugarService.buscarPorId(id));
         model.addAttribute("categorias", categoriaService.listarTodas());
         return "crear-lugar";
     }
 
+    @PostMapping("/admin/lugares/editar/{id}")
+    public String actualizarLugar(@PathVariable Long id,
+                                  @ModelAttribute LugarDTO lugardto,
+                                  @RequestParam(value = "imagen", required = false) MultipartFile imagen)
+            throws IOException {
+
+        lugarService.actualizarLugar(id, lugardto, imagen);
+        return "redirect:/admin/lugares/" + id;
+    }
+
     @GetMapping("/admin/categorias")
-    public String mostrarCategorias(Model model){
+    public String mostrarCategorias(Model model) {
         model.addAttribute("categorias", categoriaService.listarTodas());
         return "gestionar-categoria";
     }

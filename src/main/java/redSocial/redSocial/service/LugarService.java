@@ -51,6 +51,32 @@ public class LugarService {
         return lugarGuardado.getId();
     }
 
+    @Transactional
+    public Long actualizarLugar(Long id, LugarDTO lugardto, MultipartFile imagen) throws IOException {
+        Lugar existente = buscarPorId(id);
+
+        // Por defecto conservamos la imagen que ya tenía
+        String nombreArchivo = existente.getImagenUrl();
+
+        // Si subieron una nueva, la guardamos y borramos la anterior
+        if (imagen != null && !imagen.isEmpty()) {
+            eliminarArchivo(existente.getImagenUrl());
+            nombreArchivo = guardarArchivoEnCarpeta(imagen);
+        }
+
+        lugardto.setImagenUrl(nombreArchivo);
+
+        Lugar actualizado = LugarAdapter.toEntity(lugardto, nombreArchivo);
+        actualizado.setId(existente.getId());   // con id existente, save() hace UPDATE
+
+        return lugarRepository.save(actualizado).getId();
+    }
+
+    private void eliminarArchivo(String nombreArchivo) throws IOException {
+        if (nombreArchivo != null && !nombreArchivo.isBlank()) {
+            Files.deleteIfExists(Paths.get("src/main/resources/recursos/imgs/").resolve(nombreArchivo));
+        }
+    }
 
     private String guardarArchivoEnCarpeta(MultipartFile imagen) throws IOException {
         String carpetaDestino = "src/main/resources/recursos/imgs/";
