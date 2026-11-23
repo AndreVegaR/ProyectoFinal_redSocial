@@ -1,0 +1,199 @@
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-admin-perfil')}">
+
+    <title th:text="'@' + ${usuario.nickname} + ' - Admin Obregón Dice'">Perfil de Usuario</title>
+
+    <main class="sombrear main-perfil">
+
+        <!-- Contenedor principal del perfil -->
+        <section class="usuarioContenedor">
+            <div class="todoUsuarioMenosDescripcion">
+
+                <!-- Imagen de perfil  -->
+                <div class="usuarioImagen">
+                    <img th:if="${usuario.estado?.name() == 'ACTIVO'}"
+                         class="pfp"
+                         th:src="${usuario.fotoPerfil != null} ? @{'/recursos/imgs/' + ${usuario.fotoPerfil}} : @{/recursos/imgs/perrolengua.png}"
+                         th:alt="${usuario.nickname}">
+
+                    <div th:unless="${usuario.estado?.name() == 'ACTIVO'}" class="pfp pfp-bloqueado">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="50" cy="36" r="19" fill="#ffffff"/>
+                            <path d="M18 86 C18 65, 82 65, 82 86 Z" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Nombre de usuario -->
+                <div class="usuarioInfo">
+                    <h2 th:text="'@' + ${usuario.nickname}">@marron</h2>
+                </div>
+
+                <!-- Seguidores y Seguidos -->
+                <div class="usuarioDatosNumeros">
+                    <div class="usuarioDatosCantidad">
+                        <p>Seguidores</p>
+                        <p>0</p>
+                    </div>
+
+                    <div class="usuarioDatosCantidad">
+                        <p>Seguidos</p>
+                        <p th:text="${usuario.seguidos != null ? usuario.seguidos.size() : 0}">200</p>
+                    </div>
+                </div>
+
+                <!-- Botón Desactivar  -->
+                <button th:if="${usuario.estado?.name() == 'ACTIVO'}"
+                        type="button"
+                        class="apareceEscritorio btn-desactivar-usuario"
+                        th:data-id="${usuario.id}">
+                    Desactivar
+                </button>
+
+                <!-- Botón Activar  -->
+                <button th:unless="${usuario.estado?.name() == 'ACTIVO'}"
+                        type="button"
+                        class="apareceEscritorio btn-activar-usuario"
+                        th:data-id="${usuario.id}">
+                    Activar
+                </button>
+            </div>
+
+            <!-- Reseñas publicadas  -->
+            <section class="usuarioContenedorInferior" th:if="${usuario.estado?.name() == 'ACTIVO'}">
+                <article class="tarjetaAndre reseniaPerfil"
+                         th:each="resena : ${usuario.resenas}"
+                         th:if="${resena.estado?.name() == 'ACTIVO'}">
+
+                    <div class="articuloCabeza">
+                        <h2 th:text="${resena.lugar.nombre}">Mc Donnald's</h2>
+
+                        <div class="calificacion-usuario-lugar">
+                            <img th:each="i : ${#numbers.sequence(1, 5)}"
+                                 th:src="${i <= (resena.calificacion ?: 0)} ? @{/recursos/icons/fueguito.png} : @{/recursos/icons/fuego-apagado.png}"
+                                 th:alt="'fuego_' + ${i}">
+                        </div>
+
+                        <p class="fecha-resena"
+                           th:text="${resena.fecha != null ? #temporals.format(resena.fecha, 'dd MMM, yyyy') : ''}">
+                            12 sep, 2026
+                        </p>
+                    </div>
+
+                    <div class="reseniaCuerpo">
+                        <img class="reseniaImagen"
+                             th:src="${resena.lugar.imagenUrl != null} ? @{'/recursos/imgs/' + ${resena.lugar.imagenUrl}} : @{/recursos/imgs/mcDonnals.png}"
+                             th:alt="${resena.lugar.nombre}">
+
+                        <p th:text="${resena.texto}">Comentario de la reseña.</p>
+                    </div>
+                </article>
+
+                <p th:if="${#lists.isEmpty(usuario.resenas.?[estado?.name() == 'ACTIVO'])}"
+                   style="color: var(--colorTextoApagado); text-align: center; margin-top: 1.5rem;">
+                    Este usuario aún no tiene reseñas activas.
+                </p>
+            </section>
+
+            <!-- Pantalla de cuenta bloqueada -->
+            <section class="cuenta-bloqueada-contenedor" th:unless="${usuario.estado?.name() == 'ACTIVO'}">
+                <svg class="icono-candado-bloqueado" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <rect x="4" y="11" width="16" height="10" rx="3"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    <line x1="12" y1="15" x2="12" y2="17.5"/>
+                </svg>
+
+                <p class="mensaje-cuenta-bloqueada">
+                    !Ups¡ Esta cuenta ha sido<br>
+                    bloqueada por violar las<br>
+                    políticas de la plataforma
+                </p>
+            </section>
+        </section>
+
+        <!-- Modal para Desactivar usuario -->
+        <dialog id="modal-moderar">
+            <h2>Justificación</h2>
+
+            <form th:action="@{/admin/usuarios/desactivar}" method="post">
+                <input type="hidden" name="usuarioId" id="input-usuario-id">
+
+                <div class="opciones-justificacion">
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Contenido Inapropiado" checked>
+                        <span>Contenido Inapropiado</span>
+                    </label>
+
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Spam">
+                        <span>Spam</span>
+                    </label>
+
+                    <label class="opcion-radio">
+                        <input type="radio" name="justificacion" value="Violación a las políticas de la plataforma">
+                        <span>Violación a las políticas de la plataforma</span>
+                    </label>
+                </div>
+
+                <div class="modal-acciones">
+                    <button type="submit">Aceptar</button>
+                    <button type="button" id="boton-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Modal para Reactivar usuario -->
+        <dialog id="modal-activar">
+            <h2>Activar cuenta</h2>
+            <p>¿Estás seguro de que deseas activar nuevamente esta cuenta?</p>
+
+            <form th:action="@{/admin/usuarios/activar}" method="post">
+                <input type="hidden" name="usuarioId" id="input-activar-usuario-id">
+
+                <div class="modal-acciones">
+                    <button type="submit">Aceptar</button>
+                    <button type="button" id="boton-cancelar-activar">Cancelar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <script>
+            const modalModerar = document.getElementById('modal-moderar');
+            const inputUsuarioId = document.getElementById('input-usuario-id');
+            const btnCancelar = document.getElementById('boton-cancelar');
+
+            document.querySelectorAll('.btn-desactivar-usuario').forEach(boton => {
+                boton.addEventListener('click', () => {
+                    inputUsuarioId.value = boton.dataset.id;
+                    modalModerar.querySelector('input[type="radio"]').checked = true;
+                    modalModerar.showModal();
+                });
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modalModerar.close();
+            });
+
+            const modalActivar = document.getElementById('modal-activar');
+            const inputActivarUsuarioId = document.getElementById('input-activar-usuario-id');
+            const btnCancelarActivar = document.getElementById('boton-cancelar-activar');
+
+            document.querySelectorAll('.btn-activar-usuario').forEach(boton => {
+                boton.addEventListener('click', () => {
+                    inputActivarUsuarioId.value = boton.dataset.id;
+                    modalActivar.showModal();
+                });
+            });
+
+            btnCancelarActivar.addEventListener('click', () => {
+                modalActivar.close();
+            });
+        </script>
+
+        <footer class="footer-desk">
+            <p><span>Copyright© 2026 ObregonDice</span></p>
+        </footer>
+    </main>
+
+</th:block>

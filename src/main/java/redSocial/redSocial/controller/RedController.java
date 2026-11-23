@@ -10,6 +10,7 @@ import redSocial.redSocial.model.Lugar;
 import redSocial.redSocial.repository.CategoriaRepository;
 import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.LugarService;
+import redSocial.redSocial.service.UsuarioService;
 
 /*
 Controlador de navegación
@@ -22,6 +23,9 @@ public class RedController {
 
     @Autowired
     private CategoriaService categoriaService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/")
     public String inicio(){
@@ -73,5 +77,17 @@ public class RedController {
     public String mostrarCategorias(Model model){
         model.addAttribute("categorias", categoriaService.listarTodas());
         return "gestionar-categoria";
+    }
+
+    @GetMapping("/admin/gestion-usuarios")
+    public String mostrarUsuarios(Model model) {
+        model.addAttribute("usuarios", usuarioService.consultarTodosLosUsuarios());
+        return "gestion-usuarios";
+    }
+
+    @GetMapping("/admin/usuarios/{id}")
+    public String mostrarDetalleUsuarioAdmin(@PathVariable Long id, Model model) {
+        model.addAttribute("usuario", usuarioService.buscarPorId(id));
+        return "admin-perfil-usuario";
     }
 }

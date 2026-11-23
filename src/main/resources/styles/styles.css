@@ -1529,6 +1529,188 @@ body.page-place .reseña .btn-moderar-lugar {
     font-weight: bold;
 }
 
+/*
+    Admin-perfil-usuario
+*/
+body.page-admin-perfil .main-perfil {
+    max-width: 1050px;
+    margin: 2rem auto 4rem;
+    padding: 0 1.5rem;
+}
+
+body.page-admin-perfil .usuarioContenedor {
+    background-color: #232530;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+}
+
+body.page-admin-perfil .todoUsuarioMenosDescripcion {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    width: 100%;
+}
+
+body.page-admin-perfil .usuarioImagen .pfp {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+body.page-admin-perfil .usuarioInfo h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--colorTexto);
+}
+
+body.page-admin-perfil .usuarioDatosNumeros {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-left: auto;
+    text-align: center;
+}
+
+body.page-admin-perfil .usuarioDatosCantidad p {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+body.page-admin-perfil .btn-desactivar-usuario {
+    margin-left: auto;
+    width: auto;
+    padding: 0.55rem 1.75rem;
+    background-color: var(--color-boton-normal-desktop);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body.page-admin-perfil .usuarioContenedorInferior {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    padding-left: 1.5rem;
+}
+
+body.page-admin-perfil .tarjetaAndre.reseniaPerfil {
+    background-color: #363a49;
+    border-radius: 10px;
+    padding: 1.25rem 1.75rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body.page-admin-perfil .articuloCabeza {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+body.page-admin-perfil .articuloCabeza h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+body.page-admin-perfil .calificacion-usuario-lugar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+body.page-admin-perfil .calificacion-usuario-lugar img {
+    width: 20px;
+    height: 20px;
+}
+
+body.page-admin-perfil .fecha-resena {
+    margin: 0 0 0 auto;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+body.page-admin-perfil .reseniaCuerpo {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.75rem;
+}
+
+body.page-admin-perfil .reseniaCuerpo .reseniaImagen {
+    width: 245px;
+    height: 145px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+body.page-admin-perfil .reseniaCuerpo p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #e6e8ef;
+}
+body.page-admin-perfil .pfp-bloqueado {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #cccccc;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.page-admin-perfil .pfp-bloqueado svg {
+    width: 100%;
+    height: 100%;
+}
+
+body.page-admin-perfil .btn-activar-usuario {
+    margin-left: auto;
+    width: auto;
+    padding: 0.55rem 2.25rem;
+    background-color: var(--color-boton-normal-desktop);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body.page-admin-perfil .cuenta-bloqueada-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 5.5rem 2rem;
+    color: #77869c;
+}
+
+body.page-admin-perfil .icono-candado-bloqueado {
+    width: 135px;
+    height: 135px;
+    flex-shrink: 0;
+}
+
+body.page-admin-perfil .mensaje-cuenta-bloqueada {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
 @media (min-width: 800px) {
     body.page-place main {
         width: 100%;

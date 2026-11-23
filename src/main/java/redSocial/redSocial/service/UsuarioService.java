@@ -36,6 +36,10 @@ public class  UsuarioService {
         return usuarioRepository.findByEstado(Estado.ACTIVO);
     }
 
+    public List<Usuario> consultarTodosLosUsuarios(){
+        return usuarioRepository.findAll();
+    }
+
     public void deshabilitarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
@@ -48,5 +52,11 @@ public class  UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
         usuario.setEstado(Estado.ACTIVO);
         usuarioRepository.save(usuario);
+    }
+
+    public Usuario buscarPorId(Long id){
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No se encontró el usuario con ID: " + id));
+        return usuario;
     }
 }

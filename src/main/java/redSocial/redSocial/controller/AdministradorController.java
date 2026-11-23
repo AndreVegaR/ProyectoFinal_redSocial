@@ -14,6 +14,7 @@ import redSocial.redSocial.model.Categoria;
 import redSocial.redSocial.service.CategoriaService;
 import redSocial.redSocial.service.LugarService;
 import redSocial.redSocial.service.ResenaService;
+import redSocial.redSocial.service.UsuarioService;
 
 @Controller
 public class AdministradorController {
@@ -26,6 +27,9 @@ public class AdministradorController {
 
     @Autowired
     private CategoriaService categoriaService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping("/admin/crear-lugar/guardar")
     public String guardarLugar(@ModelAttribute LugarDTO lugardto,
@@ -65,6 +69,18 @@ public class AdministradorController {
     public String eliminarCategoria(@ModelAttribute Categoria categoria){
         categoriaService.eliminarCategoria(categoria.getId());
         return "redirect:/admin/categorias";
+    }
+
+    @PostMapping("/admin/usuarios/desactivar")
+    public String desactivarUsuario(@RequestParam("usuarioId") Long usuarioId) {
+        usuarioService.deshabilitarUsuario(usuarioId);
+        return "redirect:/admin/gestion-usuarios";
+    }
+
+    @PostMapping("/admin/usuarios/activar")
+    public String activarUsuario(@RequestParam("usuarioId") Long usuarioId) {
+        usuarioService.habilitarUsuario(usuarioId);
+        return "redirect:/admin/usuarios/" + usuarioId;
     }
 
 }
