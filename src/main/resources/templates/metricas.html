@@ -1,9 +1,4 @@
-<th:block th:replace="~{layout/base :: layout(~{::encabezado}, ~{::main}, 'page-metricas')}">
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
+<th:block th:replace="~{layout/base :: layout(~{::encabezado}, ~{::main}, 'page-admin-metricas')}">
 
     <th:block th:fragment="encabezado">
         <title>Métricas - Obregón Dice</title>
@@ -60,23 +55,30 @@
             <section class="masActivos">
                 <h1>Más activos</h1>
 
-                <!-- Usuario -->
-                <article class="tarjetaAndre tarjetaUsuario">
-                    <img class="pfp" src="../src/img/marron.png" th:src="@{/src/img/marron.png}">
-                    <h3>@marron (31)</h3>
-                    <button>Seguir</button>
-                </article>
+                <!-- Un solo article que se repite por cada usuario -->
+                <article class="tarjetaAndre tarjetaUsuario" th:each="usuario : ${usuarios}">
+                    <img class="pfp"
+                         th:src="${usuario.fotoPerfil != null and !#strings.isEmpty(usuario.fotoPerfil)} ? @{${usuario.fotoPerfil}} : @{/recursos/imgs/mcdonals.png}"
+                         th:alt="${usuario.nickname}">
 
-                <!-- Usuario -->
-                <article class="tarjetaAndre tarjetaUsuario">
-                    <img class="pfp" src="../src/img/gamota.png" th:src="@{/src/img/gamota.png}">
-                    <h3>@gamota(27)</h3>
-                    <button>Siguiendo</button>
+                    <h3 th:text="'@' + ${usuario.nickname} + ' (' + ${#lists.size(usuario.resenas)} + ')'">
+                        @usuario (0)
+                    </h3>
+
+                    <form th:if="${usuario.estado.name() == 'ACTIVO'}"
+                          th:action="@{/admin/metricas/{id}/deshabilitar(id=${usuario.id})}"
+                          method="post" style="display: contents;">
+                        <button type="submit">Deshabilitar</button>
+                    </form>
+
+                    <form th:if="${usuario.estado.name() == 'INACTIVO'}"
+                          th:action="@{/admin/metricas/{id}/habilitar(id=${usuario.id})}"
+                          method="post" style="display: contents;">
+                        <button type="submit">Habilitar</button>
+                    </form>
                 </article>
             </section>
         </div>
-
-
 
         <!-- PARTE PARA ESCRITORIO -->
         <div class="metricas-escritorio">
@@ -85,12 +87,15 @@
                 <h1>Métricas</h1>
 
                 <div class="filtrosEscritorio">
-                    <!-- Buscador -->
+                    <!-- Buscador manteniendo la estructura original para no romper el CSS -->
                     <div class="buscadorEscritorio">
-                        <input type="text" id="buscador-escritorio" name="buscador" placeholder="Buscar">
-                        <button class="botonLupaEscritorio" type="button">
-                            <img src="../recursos/icons/lupa.png" th:src="@{/recursos/icons/lupa.png}" alt="Buscar">
-                        </button>
+                        <form th:action="@{/admin/metricas}" method="get" style="display: contents;">
+                            <input type="text" id="buscador-escritorio" name="buscador"
+                                   th:value="${busquedaActual}" placeholder="Buscar">
+                            <button class="botonLupaEscritorio" type="submit">
+                                <img src="../recursos/icons/lupa.png" th:src="@{/recursos/icons/lupa.png}" alt="Buscar">
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Combobox para días -->
@@ -111,7 +116,13 @@
                     <!-- Filtro por calificación -->
                     <div class="calificacionFiltroEscritorio">
                         <h3>Calificación</h3>
-                        <div class="fuegosFiltroEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_5"></div>
+                        <div class="fuegosFiltroEscritorio">
+                            <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1">
+                            <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2">
+                            <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3">
+                            <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4">
+                            <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_5">
+                        </div>
                     </div>
 
                     <!-- Combobox según reseñas -->
@@ -139,7 +150,13 @@
                             </div>
                             <div class="cuadroDatoEscritorio">
                                 <h4>Promedio</h4>
-                                <div class="fuegosEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5"></div>
+                                <div class="fuegosEscritorio">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_4">
+                                    <img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5">
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -155,7 +172,13 @@
                             </div>
                             <div class="cuadroDatoEscritorio">
                                 <h4>Promedio</h4>
-                                <div class="fuegosEscritorio"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2"><img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_4"><img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5"></div>
+                                <div class="fuegosEscritorio">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_1">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_2">
+                                    <img src="../recursos/icons/fueguito.png" th:src="@{/recursos/icons/fueguito.png}" alt="fuego_3">
+                                    <img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_4">
+                                    <img src="../recursos/icons/fuego-apagado.png" th:src="@{/recursos/icons/fuego-apagado.png}" alt="fuego_5">
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -166,31 +189,38 @@
                     <h2>Más activos</h2>
                     <div class="listaUsuariosEscritorio">
 
-                        <!-- Usuario -->
-                        <article class="usuarioEscritorio">
-                            <img class="fotoUsuarioEscritorio" src="../src/img/gamota.png" th:src="@{/src/img/gamota.png}" alt="gamota">
-                            <h3>@gamota (31)</h3>
-                            <button class="botonGestionarEscritorio">Gestionar</button>
+                        <article class="usuarioEscritorio" th:each="usuario : ${usuarios}">
+
+                            <!-- Usa fotoPerfil (con imagen de respaldo que sí existe en /recursos/imgs/) -->
+                            <img class="fotoUsuarioEscritorio"
+                                 th:src="${usuario.fotoPerfil != null and !#strings.isEmpty(usuario.fotoPerfil)} ? @{${usuario.fotoPerfil}} : @{/recursos/imgs/mcdonals.png}"
+                                 th:alt="${usuario.nickname}">
+
+                            <!-- Muestra @nickname y el total de reseñas -->
+                            <h3 th:text="'@' + ${usuario.nickname} + ' (' + ${#lists.size(usuario.resenas)} + ')'">
+                                @usuario (0)
+                            </h3>
+
+                            <!-- Botón para deshabilitar -->
+                            <form th:if="${usuario.estado.name() == 'ACTIVO'}"
+                                  th:action="@{/admin/metricas/{id}/deshabilitar(id=${usuario.id})}"
+                                  method="post" style="display: contents;">
+                                <button type="submit" class="botonGestionarEscritorio">Deshabilitar</button>
+                            </form>
+
+                            <!-- Botón para habilitar -->
+                            <form th:if="${usuario.estado.name() == 'INACTIVO'}"
+                                  th:action="@{/admin/metricas/{id}/habilitar(id=${usuario.id})}"
+                                  method="post" style="display: contents;">
+                                <button type="submit" class="botonGestionarEscritorio">Habilitar</button>
+                            </form>
+
                         </article>
 
-                        <!-- Usuario -->
-                        <article class="usuarioEscritorio">
-                            <img class="fotoUsuarioEscritorio" src="../src/img/andree.png" th:src="@{/src/img/andree.png}" alt="andree">
-                            <h3>@andree (27)</h3>
-                            <button class="botonGestionarEscritorio">Gestionar</button>
-                        </article>
-
-                        <!-- Usuario -->
-                        <article class="usuarioEscritorio">
-                            <img class="fotoUsuarioEscritorio" src="../src/img/marron.png" th:src="@{/src/img/marron.png}" alt="marron">
-                            <h3>@marron (22)</h3>
-                            <button class="botonGestionarEscritorio">Gestionar</button>
-                        </article>
                     </div>
                 </section>
             </div>
         </div>
-
 
     </main>
 </th:block>

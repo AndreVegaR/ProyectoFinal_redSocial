@@ -8,7 +8,7 @@ import redSocial.redSocial.repository.UsuarioRepository;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class  UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;

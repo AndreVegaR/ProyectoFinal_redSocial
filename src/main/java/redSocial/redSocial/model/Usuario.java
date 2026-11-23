@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = "seguidos")
-@ToString(exclude = "seguidos")
+@EqualsAndHashCode(callSuper = true, exclude = {"seguidos", "resenas"})
+@ToString(exclude = {"seguidos", "resenas"})
 @Entity
 @Table(name = "usuarios")
 @PrimaryKeyJoinColumn(name = "cuenta_id")
@@ -32,4 +34,7 @@ public class Usuario extends Cuenta {
             inverseJoinColumns = @JoinColumn(name = "seguido_id")
     )
     private Set<Usuario> seguidos = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Resena> resenas = new ArrayList<>();
 }
