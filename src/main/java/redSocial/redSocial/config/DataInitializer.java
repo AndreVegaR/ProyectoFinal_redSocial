@@ -35,6 +35,7 @@ public class DataInitializer {
     public void inicializar() {
         inicializarAdmin();
         inicializarUsuarios();
+        inicializarCategoria();
         inicializarLugares();
     }
 
@@ -79,7 +80,7 @@ public class DataInitializer {
         if (lugarRepository.findAll().isEmpty()) {
             Categoria categoria = new Categoria();
             categoria.setNombre("Restaurante");
-            categoria = categoriaRepository.save(categoria); // ✅ Guardar primero para obtener su ID
+            categoria = categoriaRepository.save(categoria);
 
             Direccion direccion = new Direccion();
             direccion.setCalle("Villas del Rey");
@@ -98,7 +99,7 @@ public class DataInitializer {
 
             Categoria categoria2 = new Categoria();
             categoria2.setNombre("Decoración");
-            categoria2 = categoriaRepository.save(categoria2); // ✅ Guardar primero para obtener su ID
+            categoria2 = categoriaRepository.save(categoria2);
 
             Lugar lugar2 = new Lugar();
             lugar2.setNombre("La Laguna");
@@ -107,6 +108,15 @@ public class DataInitializer {
             lugar2.setDireccion(direccion);
             lugar2.setImagenUrl("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/7b/5f/f4/la-laguna-del-nainari.jpg?w=1200&h=1200&s=1");
             lugarRepository.save(lugar2);
+        }
+    }
+
+    private void inicializarCategoria() {
+        Categoria sinCategoria = categoriaRepository.findByNombreIgnoreCase("Sin categoría");
+        if (sinCategoria == null) {
+            Categoria categoria = new Categoria();
+            categoria.setNombre("Sin categoría");
+            categoriaRepository.save(categoria);
         }
     }
 }

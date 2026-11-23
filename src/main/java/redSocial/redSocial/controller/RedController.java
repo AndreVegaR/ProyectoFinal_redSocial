@@ -68,4 +68,10 @@ public class RedController {
         model.addAttribute("categorias", categoriaService.listarTodas());
         return "crear-lugar";
     }
+
+    @GetMapping("/admin/categorias")
+    public String mostrarCategorias(Model model){
+        model.addAttribute("categorias", categoriaService.listarTodas());
+        return "gestionar-categoria";
+    }
 }

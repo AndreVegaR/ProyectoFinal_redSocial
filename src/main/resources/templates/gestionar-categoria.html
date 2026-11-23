@@ -1,154 +1,159 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="../recursos/imgs/isotipo.png">
-    <title>Gestionar Categoría</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
-</head>
-<body>
-<header>
-    <nav class="navegation-desktop">
-        <a class="logo">
-            <img src="../recursos/icons/isotipo.png" alt="logo obregon dice">
-        </a>
-        <ul>
-            <li><a href="crear-lugar.html">Lugares</a></li>
-            <li><a href="gestionar-categoria.html">Categorías</a></li>
-            <li><a href="gestion-usuarios.html">Usuarios</a></li>
-            <li><a href="metricas.html">Métricas</a></li>
-            <li><a href="index.html">Inicio</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <form action="" class="form-gestionar-categoria">
-        <h1>Gestionar categoría</h1>
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main}, 'page-admin-categorias')}">
 
-        <div class="categoria">
-            <div class="nombre-categoria">
-                <h2>Restaurante</h2>
-            </div>
-            <div class="opciones-categoria">
-                <div class="accion-editar">
-                    <img src="../recursos/icons/lapiz.png" alt="Lápiz">
-                    <p>Editar</p>
+    <title>Gestionar Categoría - Obregón Dice</title>
+
+    <main>
+        <form action="" class="form-gestionar-categoria">
+            <h1>Gestionar categoría</h1>
+
+            <div class="categoria"
+                 th:each="categoria : ${categorias}"
+                 th:if="${!#strings.equalsIgnoreCase(categoria.nombre, 'Sin categoría')}"
+                 th:data-id="${categoria.id}">
+                <div class="nombre-categoria">
+                    <h2 th:text="${categoria.nombre}">Restaurante</h2>
                 </div>
+                <div class="opciones-categoria">
+                    <div class="accion-editar">
+                        <img th:src="@{/recursos/icons/lapiz.png}" alt="Lápiz">
+                        <p>Editar</p>
+                    </div>
 
-                <div class="accion-eliminar">
-                    <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
-                    <p>Eliminar</p>
+                    <div class="accion-eliminar">
+                        <img th:src="@{/recursos/icons/boteBasura.png}" alt="Bote de basura">
+                        <p>Eliminar</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="categoria">
-            <div class="nombre-categoria">
-                <h2>Café</h2>
-            </div>
-            <div class="opciones-categoria">
-                <div class="accion-editar">
-                    <img src="../recursos/icons/lapiz.png" alt="Lápiz">
-                    <p>Editar</p>
+            <p th:if="${#lists.isEmpty(categorias)}">Aún no hay categorías registradas.</p>
+
+            <dialog id="modalCrearCategoria">
+                <h2>Nueva categoría</h2>
+
+                <div class="form-group">
+                    <label for="crear-nombre-input">Introduce el nombre de la categoría:</label>
+                    <input type="text" id="crear-nombre-input" placeholder="Escribe aquí..." autocomplete="off">
                 </div>
 
-                <div class="accion-eliminar">
-                    <img src="../recursos/icons/boteBasura.png" alt="Bote de basura">
-                    <p>Eliminar</p>
+                <div class="modal-acciones">
+                    <button type="button" id="boton-cancelar-crear">Cancelar</button>
+                    <button type="button" id="boton-aceptar-crear">Aceptar</button>
                 </div>
-            </div>
-        </div>
+            </dialog>
 
-        <dialog id="modalEditarCategoria">
-            <h2>Nuevo nombre</h2>
+            <dialog id="modalEditarCategoria">
+                <h2>Nuevo nombre</h2>
 
-            <div class="form-group">
-                <label for="nuevo-nombre-input">Introduce el nuevo nombre:</label>
-                <input type="text" id="nuevo-nombre-input" placeholder="Escribe aquí..." autocomplete="off">
-            </div>
+                <div class="form-group">
+                    <label for="nuevo-nombre-input">Introduce el nuevo nombre:</label>
+                    <input type="text" id="nuevo-nombre-input" placeholder="Escribe aquí..." autocomplete="off">
+                </div>
 
-            <div class="modal-acciones">
-                <button type="button" id="boton-cancelar">Cancelar</button>
-                <button type="button" id="boton-aceptar">Aceptar</button>
-            </div>
-        </dialog>
+                <div class="modal-acciones">
+                    <button type="button" id="boton-cancelar">Cancelar</button>
+                    <button type="button" id="boton-aceptar">Aceptar</button>
+                </div>
+            </dialog>
 
-        <dialog id="modalEliminarCategoria">
-            <h2>¿Eliminar categoría?</h2>
-            <div class="modal-acciones">
-                <button type="button" id="boton-cancelar-eliminar">Cancelar</button>
-                <button type="button" id="boton-confirmar-eliminar">Eliminar</button>
-            </div>
-        </dialog>
+            <dialog id="modalEliminarCategoria">
+                <h2>¿Eliminar categoría?</h2>
+                <div class="modal-acciones">
+                    <button type="button" id="boton-cancelar-eliminar">Cancelar</button>
+                    <button type="button" id="boton-confirmar-eliminar">Eliminar</button>
+                </div>
+            </dialog>
 
-        <dialog id="modalExito">
-            <h2>Cambios realizados</h2>
-            <div class="modal-acciones">
-                <button type="button" id="boton-exito-aceptar">Aceptar</button>
-            </div>
-        </dialog>
+            <dialog id="modalExito">
+                <h2 th:text="${mensaje}">Cambios realizados</h2>
+                <div class="modal-acciones">
+                    <button type="button" id="boton-exito-aceptar">Aceptar</button>
+                </div>
+            </dialog>
 
-        <button type="button" class="boton-crear-categoria" onclick="location.href='crear-categoria.html'">Crear categoría</button>
-    </form>
+            <button type="button" class="boton-crear-categoria" id="boton-abrir-crear">Crear categoría</button>
+        </form>
 
-    <script>
-        const modalEditar = document.getElementById('modalEditarCategoria');
-        const modalEliminar = document.getElementById('modalEliminarCategoria');
-        const modalExito = document.getElementById('modalExito');
-        const inputNombre = document.getElementById('nuevo-nombre-input');
+        <script th:inline="javascript">
+            const modalCrear = document.getElementById('modalCrearCategoria');
+            const modalEditar = document.getElementById('modalEditarCategoria');
+            const modalEliminar = document.getElementById('modalEliminarCategoria');
+            const modalExito = document.getElementById('modalExito');
 
-        // Abrir modales según el botón pulsado
-        document.addEventListener('click', (e) => {
-            const editar = e.target.closest('.accion-editar');
-            const eliminar = e.target.closest('.accion-eliminar');
+            const inputCrearNombre = document.getElementById('crear-nombre-input');
+            const inputNombre = document.getElementById('nuevo-nombre-input');
 
-            if (editar) {
-                inputNombre.value = editar.closest('.categoria').querySelector('.nombre-categoria h2').textContent;
-                modalEditar.showModal();
-            } else if (eliminar) {
-                modalEliminar.showModal();
+            const URL_CREAR = /*[[@{/admin/crear-categoria}]]*/ '/admin/crear-categoria';
+            const URL_EDITAR = /*[[@{/admin/editar-categoria}]]*/ '/admin/editar-categoria';
+            const URL_ELIMINAR = /*[[@{/admin/eliminar-categoria}]]*/ '/admin/eliminar-categoria';
+            const HAY_MENSAJE = /*[[${mensaje != null}]]*/ false;
+
+            let categoriaId = null;
+
+            function enviarPost(url, datos) {
+                const f = document.createElement('form');
+                f.method = 'post';
+                f.action = url;
+
+                for (const [clave, valor] of Object.entries(datos)) {
+                    const i = document.createElement('input');
+                    i.type = 'hidden';
+                    i.name = clave;
+                    i.value = valor;
+                    f.appendChild(i);
+                }
+
+                document.body.appendChild(f);
+                f.submit();
             }
-        });
 
-        // Editar
-        document.getElementById('boton-cancelar').addEventListener('click', () => modalEditar.close());
+            // Crear
+            document.getElementById('boton-abrir-crear').addEventListener('click', () => {
+                inputCrearNombre.value = '';
+                modalCrear.showModal();
+            });
+            document.getElementById('boton-cancelar-crear').addEventListener('click', () => modalCrear.close());
+            document.getElementById('boton-aceptar-crear').addEventListener('click', () => {
+                const nombre = inputCrearNombre.value.trim();
+                if (!nombre) return;
+                enviarPost(URL_CREAR, { nombre: nombre });
+            });
 
-        document.getElementById('boton-aceptar').addEventListener('click', () => {
-            // aquí va la lógica de editar la categoría
-            modalEditar.close();
-            modalExito.showModal();
-        });
+            // Abrir editar / eliminar
+            document.addEventListener('click', (e) => {
+                const editar = e.target.closest('.accion-editar');
+                const eliminar = e.target.closest('.accion-eliminar');
 
-        // Eliminar
-        document.getElementById('boton-cancelar-eliminar').addEventListener('click', () => modalEliminar.close());
+                if (editar) {
+                    const cat = editar.closest('.categoria');
+                    categoriaId = cat.dataset.id;
+                    inputNombre.value = cat.querySelector('.nombre-categoria h2').textContent.trim();
+                    modalEditar.showModal();
+                } else if (eliminar) {
+                    categoriaId = eliminar.closest('.categoria').dataset.id;
+                    modalEliminar.showModal();
+                }
+            });
 
-        document.getElementById('boton-confirmar-eliminar').addEventListener('click', () => {
-            //aquí va la lógica de eliminar la categoría
-            modalEliminar.close();
-            modalExito.showModal();
-        });
+            // Editar
+            document.getElementById('boton-cancelar').addEventListener('click', () => modalEditar.close());
+            document.getElementById('boton-aceptar').addEventListener('click', () => {
+                const nombre = inputNombre.value.trim();
+                if (!nombre) return;
+                enviarPost(URL_EDITAR, { id: categoriaId, nombre: nombre });
+            });
 
-        // Éxito
-        document.getElementById('boton-exito-aceptar').addEventListener('click', () => modalExito.close());
-    </script>
-</main>
+            // Eliminar
+            document.getElementById('boton-cancelar-eliminar').addEventListener('click', () => modalEliminar.close());
+            document.getElementById('boton-confirmar-eliminar').addEventListener('click', () => {
+                enviarPost(URL_ELIMINAR, { id: categoriaId });
+            });
 
-<footer class="footer-mobile">
-    <nav class="navegation-mobile">
-        <ul>
-            <li><a href="crear-lugar.html"><img src="../recursos/icons/marcador.png" alt="Marcador">
-                <p>Lugares</p></a></li>
-            <li><a href="gestionar-categoria.html"><img src="../recursos/icons/categoria.png" alt="Marcador">
-                <p>Categorías</p></a></li>
-            <li><a href="gestion-usuarios.html"><img src="../recursos/icons/usuarios.png" alt="Marcador">
-                <p>Usuarios</p></a></li>
-            <li><a href="metricas.html"><img src="../recursos/icons/metricas.png" alt="Marcador">
-                <p>Métricas</p></a></li>
-            <li><a href="index.html"><img src="../recursos/icons/casita.png" alt="Marcador">
-                <p>Inicio</p></a></li>
-        </ul>
-    </nav>
-</footer>
-</body>
-</html>
+            // Éxito
+            if (HAY_MENSAJE) {
+                modalExito.showModal();
+            }
+            document.getElementById('boton-exito-aceptar').addEventListener('click', () => modalExito.close());
+        </script>
+    </main>
+</th:block>
