@@ -21,6 +21,7 @@
                 <img th:src="@{/recursos/icons/isotipo.png}" alt="logo obregon dice">
             </a>
             <ul>
+                <li><a th:href="@{/logout}">Cerrar Sesión</a></li>
                 <li><a th:href="@{/admin/crear-lugar}">Lugares</a></li>
                 <li><a th:href="@{/admin/categorias}">Categorías</a></li>
                 <li><a th:href="@{/admin/gestion-usuarios}">Usuarios</a></li>
@@ -37,17 +38,6 @@
             <img th:src="@{/recursos/icons/titulo.png}" alt="titulo obregon dice" class="titulo-app">
         </th:block>
     </header>
-
-
-    <!-- Oculto en feed-admin para no encimarse al banner -->
-    <nav th:if="${claseBody != 'page-feed-admin' and claseBody != 'page-place' and claseBody != 'page-admin-crear-lugar' and claseBody != 'page-admin-metricas'}">
-        <th:block th:if="${session.admin_id != null}">
-            <form th:action="@{/admin/logout}" method="post">
-                <button type="submit">Cerrar sesión</button>
-            </form>
-        </th:block>
-    </nav>
-
 
     <!-- Main -->
     <main class="container" th:replace="${contenido}">

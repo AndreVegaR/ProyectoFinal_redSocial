@@ -1206,8 +1206,10 @@ dialog button {
     box-shadow: none;
 }
 
+/* REVISAR: se agregó #boton-cancelar-activar (modal de activar usuario del perfil admin) */
 #boton-cancelar,
-#boton-cancelar-eliminar {
+#boton-cancelar-eliminar,
+#boton-cancelar-activar {
     background: var(--color-boton-cancelar);
 }
 
@@ -1529,256 +1531,6 @@ body.page-place .reseña .btn-moderar-lugar {
     font-weight: bold;
 }
 
-/*
-    Admin-perfil-usuario
-*/
-body.page-admin-perfil .main-perfil {
-    max-width: 1050px;
-    margin: 2rem auto 4rem;
-    padding: 0 1.5rem;
-}
-
-body.page-admin-perfil .usuarioContenedor {
-    background-color: #232530;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 2rem 2.5rem;
-}
-
-body.page-admin-perfil .todoUsuarioMenosDescripcion {
-    display: flex;
-    align-items: center;
-    gap: 1.75rem;
-    width: 100%;
-}
-
-body.page-admin-perfil .usuarioImagen .pfp {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-}
-
-body.page-admin-perfil .usuarioInfo h2 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--colorTexto);
-}
-
-body.page-admin-perfil .usuarioDatosNumeros {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    margin-left: auto;
-    text-align: center;
-}
-
-body.page-admin-perfil .usuarioDatosCantidad p {
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.35;
-}
-
-body.page-admin-perfil .btn-desactivar-usuario {
-    margin-left: auto;
-    width: auto;
-    padding: 0.55rem 1.75rem;
-    background-color: var(--color-boton-normal-desktop);
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-body.page-admin-perfil .usuarioContenedorInferior {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 2rem;
-    padding-left: 1.5rem;
-}
-
-body.page-admin-perfil .tarjetaAndre.reseniaPerfil {
-    background-color: #363a49;
-    border-radius: 10px;
-    padding: 1.25rem 1.75rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-body.page-admin-perfil .articuloCabeza {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-body.page-admin-perfil .articuloCabeza h2 {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-body.page-admin-perfil .calificacion-usuario-lugar {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-body.page-admin-perfil .calificacion-usuario-lugar img {
-    width: 20px;
-    height: 20px;
-}
-
-body.page-admin-perfil .fecha-resena {
-    margin: 0 0 0 auto;
-    font-size: 1.05rem;
-    font-weight: 600;
-}
-
-body.page-admin-perfil .reseniaCuerpo {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.75rem;
-}
-
-body.page-admin-perfil .reseniaCuerpo .reseniaImagen {
-    width: 245px;
-    height: 145px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0;
-}
-
-body.page-admin-perfil .reseniaCuerpo p {
-    margin: 0;
-    font-size: 1.05rem;
-    line-height: 1.55;
-    color: #e6e8ef;
-}
-body.page-admin-perfil .pfp-bloqueado {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: #cccccc;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-body.page-admin-perfil .pfp-bloqueado svg {
-    width: 100%;
-    height: 100%;
-}
-
-body.page-admin-perfil .btn-activar-usuario {
-    margin-left: auto;
-    width: auto;
-    padding: 0.55rem 2.25rem;
-    background-color: var(--color-boton-normal-desktop);
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-body.page-admin-perfil .cuenta-bloqueada-contenedor {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    padding: 5.5rem 2rem;
-    color: #77869c;
-}
-
-body.page-admin-perfil .icono-candado-bloqueado {
-    width: 135px;
-    height: 135px;
-    flex-shrink: 0;
-}
-
-body.page-admin-perfil .mensaje-cuenta-bloqueada {
-    margin: 0;
-    font-size: 1.6rem;
-    font-weight: 600;
-    line-height: 1.35;
-}
-@media (min-width: 800px) {
-    body.page-place main {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    body.page-place .info-lugar {
-        margin: 3rem auto;
-        padding-bottom: 2rem;
-    }
-
-    body.page-place #header-lugar h1 {
-        font-size: 1.6rem;
-        margin: 1.5rem 0 1rem 0;
-        text-align: left;
-    }
-
-    body.page-place #header-lugar img {
-        height: 185px;
-        border-radius: 8px;
-    }
-
-    body.page-place #calificacion-lugar img {
-        padding-top: 0;
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    body.page-place #calificacion-lugar h2 {
-        padding-top: 0;
-        font-size: 1.3rem;
-        color: white;
-    }
-
-    body.page-place .btn-editar-lugar {
-        background-color: var(--color-boton-normal-desktop);
-        margin: 0;
-        width: 28%;
-        padding: 0.6rem 1.5rem;
-        border-radius: 8px;
-        font-weight: bold;
-    }
-
-    body.page-place .reseña .encabezado-usuario {
-        justify-content: flex-start;
-    }
-
-    body.page-place .datos-usuario-resena {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    body.page-place .reseña .calificacion-usuario-lugar {
-        margin: 0;
-    }
-
-    body.page-place .reseña .calificacion-usuario-lugar img {
-        width: 1.1rem;
-        height: 1.1rem;
-    }
-
-    body.page-place .footer-desk {
-        margin-top: auto;
-    }
-}
 /* ==================================================================
    MEDIA QUERIES (al final para que ganen a las reglas base)
    ================================================================== */
@@ -2727,5 +2479,440 @@ body.page-admin-perfil .mensaje-cuenta-bloqueada {
         color: white;
         font-size: 0.8rem;
         font-weight: normal;
+    }
+}
+
+
+/* ==================================================================
+   ADMIN- PERFIL DE USUARIO
+   ================================================================== */
+
+/* ---------- Página ---------- */
+.page-admin-perfil .main-perfil {
+    --perfil-pad: 0.75rem; /* margen lateral de la página (el footer lo compensa) */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;   /* el main global trae place-items: center */
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 0.75rem var(--perfil-pad) 0;
+    background-color: var(--color-background);
+    box-sizing: border-box;
+}
+
+.page-admin-perfil .main-perfil *,
+.page-admin-perfil .main-perfil *::before,
+.page-admin-perfil .main-perfil *::after {
+    box-sizing: border-box;
+}
+
+.page-admin-perfil .main-perfil h2,
+.page-admin-perfil .main-perfil p {
+    margin: 0;
+}
+
+/* ---------- Panel principal ---------- */
+.page-admin-perfil .usuarioContenedor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0.75rem;
+    background-color: var(--color-background);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radio-border);
+}
+
+/* ---------- Cabecera: foto · nombre · números · botón ----------
+   Móvil: foto + nombre arriba, números y botón debajo */
+.page-admin-perfil .todoUsuarioMenosDescripcion {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    width: 100%;
+}
+
+.page-admin-perfil .usuarioImagen {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.page-admin-perfil .todoUsuarioMenosDescripcion .pfp {
+    display: block;
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+}
+
+.page-admin-perfil .todoUsuarioMenosDescripcion .pfp-bloqueado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--colorPlaceholder);
+}
+
+.page-admin-perfil .pfp-bloqueado svg {
+    width: 100%;
+    height: 100%;
+}
+
+.page-admin-perfil .usuarioInfo {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+}
+
+.page-admin-perfil .usuarioInfo h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page-admin-perfil .todoUsuarioMenosDescripcion .usuarioDatosNumeros {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-admin-perfil .usuarioDatosCantidad {
+    text-align: center;
+    line-height: 1.15;
+}
+
+.page-admin-perfil .usuarioDatosCantidad p {
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+/* Botones Activar / Desactivar.
+   Se fuerza display: block para que también se vean en móvil
+   (.apareceEscritorio los oculta por defecto). */
+.page-admin-perfil .btn-desactivar-usuario,
+.page-admin-perfil .btn-activar-usuario {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    background: var(--color-boton-normal-desktop);
+    border-radius: 6px;
+    box-shadow: none;
+    color: #FFFFFF;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.page-admin-perfil .btn-desactivar-usuario:hover {
+    background: var(--color-boton-admin-hover);
+}
+
+/* Activar usa el rosa de resaltar para diferenciarse del Desactivar */
+.page-admin-perfil .btn-activar-usuario {
+    background: var(--colorResaltar);
+}
+
+.page-admin-perfil .btn-activar-usuario:hover {
+    background: var(--color-boton-normal);
+}
+
+.page-admin-perfil .btn-desactivar-usuario:focus-visible,
+.page-admin-perfil .btn-activar-usuario:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 2px;
+}
+
+/* ---------- Reseñas ---------- */
+.page-admin-perfil .usuarioContenedorInferior {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-admin-perfil .usuarioContenedorInferior .reseniaPerfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    /* el fondo (--colorTarjeta) ya lo da .tarjetaAndre */
+}
+
+/* Cabeza: nombre · fuegos · fecha */
+.page-admin-perfil .articuloCabeza {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+}
+
+.page-admin-perfil .articuloCabeza h2 {
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.page-admin-perfil .calificacion-usuario-lugar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+}
+
+/* REVISAR: andre.css pone ".reseniaPerfil img { height: 100px }", que estiraba los fuegos */
+.page-admin-perfil .calificacion-usuario-lugar img {
+    display: block;
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+.page-admin-perfil .fecha-resena {
+    margin-left: auto;
+    font-size: 1.05rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Cuerpo: imagen + texto (móvil: apilados) */
+.page-admin-perfil .reseniaCuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.page-admin-perfil .reseniaPerfil .reseniaImagen {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 169 / 98;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.page-admin-perfil .reseniaCuerpo p {
+    color: var(--colorTextoResena);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    text-align: justify;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Cuenta bloqueada ---------- */
+.page-admin-perfil .cuenta-bloqueada-contenedor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.page-admin-perfil .icono-candado-bloqueado {
+    width: 72px;
+    height: 72px;
+    color: var(--colorTextoApagado);
+}
+
+.page-admin-perfil .mensaje-cuenta-bloqueada {
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+
+.page-admin-perfil dialog form {
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.page-admin-perfil dialog form div {
+    width: 100%;
+}
+
+.page-admin-perfil .opciones-justificacion {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+    margin: 0.25rem 0 0.5rem;
+    text-align: left;
+}
+
+.page-admin-perfil .opcion-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    line-height: 1.3;
+}
+
+.page-admin-perfil .opcion-radio input[type="radio"] {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    box-shadow: none;
+    accent-color: var(--colorResaltar);
+}
+
+
+.page-admin-perfil .opcion-radio span {
+    color: var(--color-background);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+.page-admin-perfil .footer-desk {
+    width: auto;
+    margin: 0.75rem calc(var(--perfil-pad) * -1) 0;
+    font-size: 0.8rem;
+}
+
+.page-admin-perfil .footer-desk span {
+    opacity: 0.5;
+}
+
+
+@media (min-width: 800px) {
+    .page-admin-perfil .main-perfil {
+        --perfil-pad: 1.9rem;
+        padding-top: 1.2rem;
+    }
+
+    .page-admin-perfil .usuarioContenedor {
+        gap: 0.9rem;
+        min-height: 23rem;
+        padding: 0.4rem 1.5rem 2rem 2rem;
+    }
+
+    /* Fila: foto · nombre · seguidores/seguidos · botón */
+    .page-admin-perfil .todoUsuarioMenosDescripcion {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+    }
+
+    .page-admin-perfil .todoUsuarioMenosDescripcion .pfp {
+        width: 53px;
+        height: 53px;
+    }
+
+    .page-admin-perfil .usuarioInfo {
+        flex: 1;
+        margin-left: 0.25rem;
+    }
+
+    .page-admin-perfil .todoUsuarioMenosDescripcion .usuarioDatosNumeros {
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        gap: 1.75rem;
+    }
+
+    .page-admin-perfil .usuarioDatosCantidad p {
+        font-size: 1.1rem;
+    }
+
+    .page-admin-perfil .btn-desactivar-usuario,
+    .page-admin-perfil .btn-activar-usuario {
+        width: auto;
+        padding: 0.2rem 0.55rem;
+        border-radius: 5px;
+    }
+
+    /* Reseña */
+    .page-admin-perfil .usuarioContenedorInferior {
+        padding-left: 1rem;
+    }
+
+    .page-admin-perfil .usuarioContenedorInferior .reseniaPerfil {
+        gap: 0.6rem;
+        padding: 0.5rem 0.5rem 0.65rem;
+    }
+
+    .page-admin-perfil .articuloCabeza {
+        flex-wrap: nowrap;
+        gap: 2rem;
+    }
+
+    .page-admin-perfil .fecha-resena {
+        margin-right: 0.85rem;
+    }
+
+    .page-admin-perfil .calificacion-usuario-lugar img {
+        width: 13px;
+        height: 13px;
+    }
+
+    .page-admin-perfil .reseniaCuerpo {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .page-admin-perfil .reseniaPerfil .reseniaImagen {
+        flex: 0 0 169px;
+        width: 169px;
+        height: 98px;
+        aspect-ratio: auto;
+    }
+
+    .page-admin-perfil .reseniaCuerpo p {
+        flex: 1;
+    }
+
+    .page-admin-perfil .footer-desk {
+        margin-top: 0.75rem;
+    }
+}
+
+/* ==================================================================
+   ≥ 1024px · Escritorio amplio
+   ================================================================== */
+@media (min-width: 1024px) {
+    .page-admin-perfil .main-perfil {
+        --perfil-pad: 2.5rem;
+    }
+
+    .page-admin-perfil .usuarioContenedor {
+        width: 100%;
+        max-width: 1100px;
+        margin-inline: auto;
+    }
+
+    .page-admin-perfil .reseniaCuerpo p {
+        font-size: 1rem;
     }
 }
